@@ -17,7 +17,7 @@ const Admin = () => {
           <Route path="home" element={<Home/>}/>
           <Route path="all-products" element=
           {<ViewProducts/>} />
-          <Route path="add-product" element=
+          <Route path="add-product/:id" element=
           {<AddProduct />} />
           <Route path="orders" element=
           {<Orders />} />
