@@ -126,7 +126,7 @@ const AddProduct = () => {
         brand: product.brand,
         desc: product.desc,
         createdAt: productEdit.createdAt,
-        editedAt: Timestamp.now().toDate()
+        editedAt: Timestamp.now().toDate(),
       });
       setIsLoading(false);
       toast.success("Product edited successfully.");
