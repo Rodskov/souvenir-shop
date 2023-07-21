@@ -32,7 +32,7 @@ const Slider = () => {
             const auto = () => {
                 slideInterval = setInterval(nextSlide, intervalTime);
             };
-            auto()
+            auto();
         }
         return () => clearInterval(slideInterval);
     }, [currentSlide, slideInterval, autoScroll]);

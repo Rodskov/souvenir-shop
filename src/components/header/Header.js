@@ -10,6 +10,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import { REMOVE_ACTIVE_USER, SET_ACTIVE_USER } from '../../redux/slice/authSlice'
 import ShowOnLogin, { ShowOnLogout } from '../hiddenLink/hiddenLink'
+import AdminOnlyRoute, { AdminOnlyLink } from '../adminOnlyRoute/AdminOnlyRoute'
 
 
 
@@ -112,10 +113,19 @@ const Header = () => {
                   <Link to= "/">{logo}</Link>
                   <FaTimes size={25} color='#fff' onClick={hideMenu} />
                 </li>
+
+                <li>
+                  <AdminOnlyLink>
+                    <Link to="/admin/home">
+                    <button className='--btn --btn-primary'>Admin</button>
+                    </Link>
+                  </AdminOnlyLink>
+                </li>
+
                 <li>
                   <NavLink to= "/" className={activeLink}>Home</NavLink>
-                 
                 </li>
+
                 <li>
                   <NavLink to= "/contact" className={activeLink}>Contact Us</NavLink>
                 </li>

@@ -2,7 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //Pages
 import Header from "./components/header/Header";
 //Components
-import { Home, Contact, Login, SignUp, Reset } from './pages';
+import { Home, Contact, Login, SignUp, Reset, Admin } from './pages';
+import AdminOnlyRoute from "./components/adminOnlyRoute/AdminOnlyRoute";
 
 // Try comment
 function App() {
@@ -17,6 +18,16 @@ function App() {
           <Route path="/login" element={ <Login/>} />
           <Route path="/register" element={ <SignUp/>} />
           <Route path="/reset" element={ <Reset/>} />
+
+          <Route 
+            path="/admin/*" 
+            element={
+              <AdminOnlyRoute>
+                <Admin/>
+              </AdminOnlyRoute>
+            } 
+          />
+
         </Routes>
       </BrowserRouter>
     </>
