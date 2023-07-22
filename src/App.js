@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //Pages
 import Header from "./components/header/Header";
 //Components
-import { Home, Contact, Login, SignUp, Reset, Admin } from './pages';
+import { Home, Contact, Login, SignUp, Reset, Admin, Cart } from './pages';
 import AdminOnlyRoute from "./components/adminOnlyRoute/AdminOnlyRoute";
 
 // Try comment
@@ -18,6 +18,7 @@ function App() {
           <Route path="/login" element={ <Login/>} />
           <Route path="/register" element={ <SignUp/>} />
           <Route path="/reset" element={ <Reset/>} />
+          <Route path="/cart" element={ <Cart/>} />
 
           <Route 
             path="/admin/*" 
