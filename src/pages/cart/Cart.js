@@ -1,48 +1,116 @@
-import {useState} from 'react'
-import {BsFillTrashFill} from "react-icons/bs"
-import "./Cart.scss"
-import { cartData } from './cart-data'
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import styles from "./Cart.module.scss";
+import { ADD_TO_CART, CLEAR_CART, DECREASE_CART, REMOVE_FROM_CART, selectCartItems, selectCartTotalAmount, selectCartTotalQuantity } from '../../redux/slice/cartSlice';
+import { Link } from 'react-router-dom';
+import { FaTrashAlt } from 'react-icons/fa';
+import Card from '../../components/card/Card';
+
 
 const Cart = () => {
-    const [cartItem, setCartItem] = useState(cartData);
+  const cartItems = useSelector(selectCartItems);
+  const cartTotalAmount = useSelector(selectCartTotalAmount);
+  const cartTotalQuantity = useSelector(selectCartTotalQuantity);
+  const dispatch = useDispatch();
 
-    const removeItem = (id) => {
-      const newCartList = cartItem.filter((item) => item.id !== id);
-      setCartItem(newCartList);
-      // console.log(id);
-    };
-    
-  return (
-    <section className='cart-sec--flex-center --100vh --bg-primary'> 
-      <div className='container'>
-        <h2 className='--text-light'>My Cart</h2>
-        {cartItem.map((item) =>{
-          const {id, name, price, img} = item;
-          return (
-            <div className='cart --card --flex-between --p' key={id}> 
-            <img src={img} alt='Item'></img>
-            <div className='description'>
-              <h4 className='--text-light'>Name: {name}</h4>
-              <p className='--text-light'>Price: {price}</p>
+  const increaseCart = (cart) => {
+    dispatch(ADD_TO_CART(cart));
+  };
+  const decreaseCart = (cart) => {
+    dispatch(DECREASE_CART(cart));
+  };
+
+  const removeFromCart = (cart) => {
+    dispatch(REMOVE_FROM_CART(cart));
+  };
+
+  const clearCart = () => {
+    dispatch(CLEAR_CART());
+  };
+
+  return <section>
+    <div className={`container ${styles.table}`}>
+      <h2>Shopping Cart</h2>
+      {cartItems.length === 0 ? (
+        <>
+          <p>Your cart is currently empty.</p>
+          <br />
+          <div>
+            <Link to="/#products">&larr; Continue Shopping</Link>
+          </div>
+        </>
+      ) : (
+        <>
+        <table>
+          <thead>
+            <tr>
+              <th>s/n</th>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cartItems.map((cart, index) => {
+              const {id, name, price, imageURL, cartQuantity} = cart;
+              return (
+                <tr key={id}>
+                  <td>{index + 1}</td>
+                  <td>
+                    <p>
+                      <b>{name}</b>
+                    </p>
+                    <img 
+                      src={imageURL} 
+                      alt={name} 
+                      style={{width: "100px"}}
+                    />
+                  </td>
+                  <td>{price}</td>
+                  <td>
+                    <div className={styles.count}>
+                      <button className='--btn' onClick={() => decreaseCart(cart)}>-</button>
+                      <p>
+                        <b>{cartQuantity}</b>
+                      </p>
+                      <button className='--btn' onClick={() => increaseCart(cart)}>+</button>
+                    </div>
+                  </td>
+                  <td>
+                    {(price * cartQuantity).toFixed(2)}
+                  </td>
+                  <td className={styles.icons}>
+                    <FaTrashAlt size={19} color='red' onClick={() => removeFromCart(cart)}/>
+                  </td>
+                </tr>
+              );
+            })};
+          </tbody>
+        </table>
+        <div className={styles.summary}>
+          <button className='--btn --btn-danger' onClick={clearCart}>Clear Cart</button>
+          <div className={styles.checkout}>
+            <div>
+              <Link to="/#products">&larr; Continue Shopping</Link>
             </div>
-            <BsFillTrashFill
-            size={18}
-            className='icon'
-            onClick={() => removeItem(id)}/>
-            </div>
-          )
-        })}
-        
+            <br />
+            <Card cardClass={styles.card}>
+              <p>{`Cart item(s): ${cartTotalQuantity}`}</p>
+              <div className={styles.text}>
+                <h4>Subtotal:</h4>
+                <h3>{`₱${cartTotalAmount.toFixed(2)}`}</h3>
+              </div>
+              <p>Tax and shipping calculated at checkout</p>
+              <button className='--btn --btn-primary --btn-block'>Checkout</button>
+            </Card>
+          </div>
+        </div>
+        </>
+      )}
+    </div>
+  </section>;
+};
 
-        <button
-        className='--btn --btn-danger'
-        onClick={() => setCartItem([])}
-        >
-          Clear Items
-          </button>
-      </div>
-    </section>
-  )
-}
-
-export default Cart
+export default Cart;
