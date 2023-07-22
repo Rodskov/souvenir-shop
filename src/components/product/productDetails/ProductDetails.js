@@ -6,15 +6,19 @@ import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {db} from "../../../firebase/config"
 import loaderImg from "../../../assets/loader.gif"
-
+import { useDispatch, useSelector } from "react-redux";
+import { ADD_TO_CART, CALCULATE_TOTAL_QUANTITY, DECREASE_CART, selectCartItems } from "../../../redux/slice/cartSlice";
 
 const ProductDetails = () => {
-  const {id} = useParams()
-  const [product, setProduct] = useState(null)
+  const {id} = useParams();
+  const [product, setProduct] = useState(null);
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
 
-  useEffect(() => {
-    getProduct()
-  }, [])
+  const cart = cartItems.find((cart) => cart.id === id);
+  const isCartAdded = cartItems.findIndex((cart) => {
+    return cart.id === id
+  })
 
   const getProduct = async () => {
 
@@ -30,6 +34,20 @@ const ProductDetails = () => {
     } else {
       toast.error("Product not found!")
     }
+  };
+  
+  useEffect(() => {
+    getProduct();
+  }, []);
+
+  const addToCart = (product) => {
+    dispatch(ADD_TO_CART(product));
+    dispatch(CALCULATE_TOTAL_QUANTITY());
+  };
+
+  const decreaseCart = (product) => {
+    dispatch(DECREASE_CART(product));
+    dispatch(CALCULATE_TOTAL_QUANTITY());
   };
 
   return (
@@ -64,13 +82,18 @@ const ProductDetails = () => {
               </p>
 
               <div className={styles.count}>
-                <button className="--btn">-</button>
-                <p>
-                  <b>1</b>
-                </p>
-                <button className="--btn">+</button>
+                {isCartAdded < 0 ? null : (
+                  <>
+                  <button className="--btn" onClick={() => decreaseCart(product)}>-</button>
+                  <p>
+                    <b>{cart.cartQuantity}</b>
+                  </p>
+                  <button className="--btn" onClick={() => addToCart(product)}>+</button>
+                  </>
+                )}
+                
               </div>
-              <button className="--btn --btn-danger">ADD TO CART</button>
+              <button className="--btn --btn-danger" onClick={() => addToCart(product)}>ADD TO CART</button>
             </div>
           </div>
         </>
