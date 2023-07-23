@@ -1,3 +1,5 @@
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -6,7 +8,7 @@ import { selectEmail } from '../../redux/slice/authSlice';
 import { CALCULATE_SUBTOTAL, CALCULATE_TOTAL_QUANTITY, selectCartItems, selectCartTotalAmount } from '../../redux/slice/cartSlice';
 import { selectBillingAddress, selectShippingAddress } from '../../redux/slice/checkoutSlice';
 
-// const paymongoPromise = process.env.REACT_APP_PAYMONGO_PK
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 
 const Checkout = () => {
 
@@ -29,10 +31,9 @@ const Checkout = () => {
 
     const description = `eShop payment: email: ${customerEmail}, Amount: ${totalAmount}`
     
-    // Create payment intent to the backend
     useEffect(() => {
       // Create PaymentIntent as soon as the page loads
-      fetch("/create-payment-intent", {
+      fetch("http://localhost:4242/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -72,11 +73,11 @@ const Checkout = () => {
           {!clientSecret && <h3>{message}</h3>}
         </div>
       </section>
-      {/* {clientSecret && (
+      {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm />
         </Elements>
-      )} */}
+      )}
     </>
   )
 }
