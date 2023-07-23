@@ -10,6 +10,7 @@ import Checkout from "./pages/checkout/Checkout";
 import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
 import History from "./pages/orderHistory/History";
 import OrderDetails from "./pages/orderDetails/OrderDetails";
+import ReviewProducts from "./components/reviewProducts/ReviewProducts";
 
 // Try comment
 function App() {
@@ -42,6 +43,7 @@ function App() {
           <Route path="/checkout-success" element={ <CheckoutSuccess/>} />
           <Route path="/order-history" element={ <History/>} />
           <Route path="/order-details/:id" element={ <OrderDetails/>} />
+          <Route path="/review-product/:id" element={ <ReviewProducts/>} />
         </Routes>
       </BrowserRouter>
     </>
