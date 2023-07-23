@@ -8,6 +8,8 @@ import ProductDetails from "./components/product/productDetails/ProductDetails";
 import CheckoutDetails from "./pages/checkout/CheckoutDetails";
 import Checkout from "./pages/checkout/Checkout";
 import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
+import History from "./pages/orderHistory/History";
+import OrderDetails from "./pages/orderDetails/OrderDetails";
 
 // Try comment
 function App() {
@@ -38,6 +40,8 @@ function App() {
           <Route path="/checkout-details" element={ <CheckoutDetails/>} />
           <Route path="/checkout" element={ <Checkout/>} />
           <Route path="/checkout-success" element={ <CheckoutSuccess/>} />
+          <Route path="/order-history" element={ <History/>} />
+          <Route path="/order-details/:id" element={ <OrderDetails/>} />
         </Routes>
       </BrowserRouter>
     </>

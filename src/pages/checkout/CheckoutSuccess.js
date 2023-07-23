@@ -8,9 +8,9 @@ const CheckoutSuccess = () => {
         <h2>Checkout Successful</h2>
         <p>Thank you for your purchase!</p>
         <br />
-        <Link to="/order-history">
-          <button className='--btn --btn-primary'>View Order Status</button>
-        </Link>
+        
+          <button className='--btn --btn-primary'><Link to="/order-history">View Order Status</Link></button>
+        
       </div>
 
     </section>

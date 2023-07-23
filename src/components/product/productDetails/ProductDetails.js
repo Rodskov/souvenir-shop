@@ -8,37 +8,24 @@ import {db} from "../../../firebase/config"
 import loaderImg from "../../../assets/loader.gif"
 import { useDispatch, useSelector } from "react-redux";
 import { ADD_TO_CART, CALCULATE_TOTAL_QUANTITY, DECREASE_CART, selectCartItems } from "../../../redux/slice/cartSlice";
+import useFetchDocuments from "../../../customHooks/useFetchDocuments";
 
 const ProductDetails = () => {
   const {id} = useParams();
   const [product, setProduct] = useState(null);
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
+  const { document } = useFetchDocuments("products", id)
 
   const cart = cartItems.find((cart) => cart.id === id);
   const isCartAdded = cartItems.findIndex((cart) => {
     return cart.id === id
   })
 
-  const getProduct = async () => {
 
-    const docRef = doc(db, "products", id);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      const obj = {
-        id: id,
-        ...docSnap.data()
-      }
-      setProduct(obj)
-    } else {
-      toast.error("Product not found!")
-    }
-  };
-  
   useEffect(() => {
-    getProduct();
-  }, []);
+    setProduct(document)
+  }, [document]);
 
   const addToCart = (product) => {
     dispatch(ADD_TO_CART(product));

@@ -12,7 +12,7 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 
 const Checkout = () => {
 
-    const [message, setMessage] = useState("Initializing checkout");
+    const [message, setMessage] = useState("Initializing checkout...");
     const [clientSecret, setClientSecret] = useState("");
 
     const cartItems = useSelector(selectCartItems)
