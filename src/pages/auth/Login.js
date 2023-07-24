@@ -10,6 +10,7 @@ import { auth } from "../../firebase/config"
 import Loader from "../../components/loader/Loader"
 import { useSelector } from 'react-redux'
 import { selectPreviousURL } from '../../redux/slice/cartSlice'
+import { BsEye, BsEyeSlash } from "react-icons/bs"
 
 const Login = () => {
   const [email, setEmail] = useState("")
@@ -56,6 +57,9 @@ const Login = () => {
       
     });
   }
+
+  const [visible , setVisible] = useState(false);
+
   return (
     <>
     <ToastContainer position='top-left'
@@ -79,7 +83,12 @@ const Login = () => {
           
           <form onSubmit={loginUser}>
               <input type='text' placeholder='Email' required value={email} onChange={(e) => setEmail(e.target.value)} />
-              <input type='password' placeholder='Password' required value={password} onChange={(e) => setPassword(e.target.value)} />
+              <div className={styles['password-box']}>
+                <input type={visible ? "text" : "password"} placeholder='Password' required value={password} onChange={(e) => setPassword(e.target.value)} />
+                <div onClick={()=> setVisible(!visible)} className={styles.eyePassword}>
+                  {visible ? <BsEye/> : <BsEyeSlash/>}
+                </div>
+              </div>
               <button type='submit' className='--btn --btn-primary --btn-block'>Login</button>
               <div className={styles.links}>
                 <Link to ='/reset'>Reset Password</Link>

@@ -19,7 +19,8 @@
       form {
         input[type="text"],
         input[type="email"],
-        input[type="password"] {
+        input[type="password"]
+        {
           display: block;
           font-size: 1.6rem;
           font-weight: 300;
@@ -27,7 +28,7 @@
           margin: 1rem auto;
           width: 100%;
           border: 1px solid #777;
-          border-radius: 3px;
+          border-radius:5px;
           outline: none;
         }
         .links {
@@ -47,7 +48,22 @@
         align-items: center;
         margin-top: 1rem;
       }
+      .password-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+      }
+      
+      .eyePassword{
+        position: absolute;
+        right: 3%;
+        font-size: 1.5em;
+        
+      }
+     
     }
+    
   
     @keyframes slide-up {
       0% {
