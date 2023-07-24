@@ -11,10 +11,10 @@ import { useSelector } from 'react-redux';
 import { selectProducts } from '../../../redux/slice/productSlice';
 
 const categories = [
-  {id: 1, name: "Laptop"},
-  {id: 2, name: "Electronic"},
-  {id: 3, name: "Fashion"},
-  {id: 4, name: "Phone"},
+  {id: 1, name: "Apparel"},
+  {id: 2, name: "Accessories"},
+  {id: 3, name: "Stationary"},
+  {id: 4, name: "Miscellaneous"},
 ]
 
 const initialState = {
@@ -22,7 +22,6 @@ const initialState = {
   imageURL: "",
   price: 0,
   category: "",
-  brand: "",
   desc: "",
 }
 
@@ -107,7 +106,6 @@ const AddProduct = () => {
         imageURL: product.imageURL,
         price: Number(product.price),
         category: product.category,
-        variation: val,
         desc: product.desc,
         createdAt: Timestamp.now().toDate()
       });
@@ -138,7 +136,7 @@ const AddProduct = () => {
         imageURL: product.imageURL,
         price: Number(product.price),
         category: product.category,
-        variation: val,
+
         desc: product.desc,
         createdAt: productEdit.createdAt,
         editedAt: Timestamp.now().toDate(),
@@ -224,17 +222,8 @@ const AddProduct = () => {
               })}
           </select>
           
-          <label>Variations:</label>
-          <button onClick={()=>handleAdd()}>Add a variation</button>
-          {val.map((data, i) => {
-            return(
-              <div>
-                <input type='text' value={data} onChange={e=>  handleChange(e,i)} required/>
-                <button onClick={()=>handleDelete(i)}>x</button>
-              </div>
-            )
-          })}
-          {/* <input 
+          {/* <label>Product Company/Brand:</label>
+          <input 
             type='text' 
             placeholder='Product brand' 
             required 
@@ -252,6 +241,7 @@ const AddProduct = () => {
           </textarea>
           
           <button className='--btn --btn-primary'>{detectForm(id, "Save Product", "Edit Product")}</button>
+          
           </form>
         </Card>
       </div>

@@ -99,8 +99,7 @@ const Header = () => {
   const cart = (
     <span className={styles.cart}>
       <Link to="/cart">
-        Cart
-        <FaShoppingCart size={15}/>
+        <FaShoppingCart size={20}/>
         <p>{cartTotalQuantity}</p>
       </Link>
     </span>
