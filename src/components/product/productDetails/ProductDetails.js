@@ -65,7 +65,7 @@ const ProductDetails = () => {
               <p>
                 <b>SKU</b> {product.id}
               </p>
-              <p>
+              {/* <p>
                 <b>Variations</b> {product.variation.map((data, i) => {
                   return(
                     <div key={i}>
@@ -75,7 +75,7 @@ const ProductDetails = () => {
                   )
                 })}
                 {product.brand}
-              </p>
+              </p> */}
 
               <div className={styles.count}>
                 {isCartAdded < 0 ? null : (

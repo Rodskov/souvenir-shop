@@ -29,19 +29,47 @@
         // display: flex;
         // justify-content: space-between;
         // align-items: center;
-        padding: 0 1rem;
+        padding: 1rem;
         h4 {
           font-weight: 400;
-          font-size: 1.8rem;
+          font-size: 2rem;
+          font-weight: 300;
         }
         p {
           font-weight: 500;
           color: orangered;
+          font-size: 1.8rem;
         }
       }
+      // button {
+      //   display: block;
+      //   width: 100%;
+      // }
+      .cartIcon {
+        position: absolute;
+        bottom: 30rem; 
+        right: 1rem; 
+
+        // Add a small box background for the cart icon
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: orangered; 
+        width: 4rem; // Adjust the width of the box
+        height: 3.5rem; // Adjust the height of the box
+
+        &:hover {
+          background-color: rgba(135, 55, 29, 0.844); 
+          
+        }
+      }
+      // button cart icon
       button {
-        display: block;
-        width: 100%;
+        border: none;
+        background: none;
+        cursor: pointer;
+        color: #fff; 
+        font-size: 1.5rem; 
       }
     }
   }
@@ -78,17 +106,45 @@
         flex-direction: column;
         margin-bottom: 1rem;
         h4 {
+          font-size: 2.8rem;
           font-weight: 400;
         }
         p {
           font-weight: 500;
           color: var(--color-danger);
+          font-size: 1.8rem;
         }
       }
-      button {
+      // button {
+      //   position: absolute;
+      //   bottom: 1rem;
+      //   left: 1rem;
+      // }
+      .cartIcon {
         position: absolute;
-        bottom: 1rem;
-        left: 1rem;
+        bottom: 1.5rem; 
+        left: 1.5rem; 
+
+        // Add a small box background for the cart icon
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: orangered; 
+        width: 4rem; // Adjust the width of the box
+        height: 3.5rem; // Adjust the height of the box
+        
+        &:hover {
+          background-color: rgba(135, 55, 29, 0.844); 
+
+        }
+      }
+  
+      button {
+        border: none;
+        background: none;
+        cursor: pointer;
+        color: #fff; 
+        font-size: 1.5rem; 
       }
     }
   }

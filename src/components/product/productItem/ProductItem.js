@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from "./ProductItem.module.scss";
 import { useDispatch } from 'react-redux';
 import { ADD_TO_CART, CALCULATE_TOTAL_QUANTITY } from '../../../redux/slice/cartSlice';
+import { FaShoppingCart } from "react-icons/fa";
 
 const ProductItem = ({product, grid, id, name, price, desc, imageURL}) => {
   const dispatch = useDispatch();
@@ -36,7 +37,9 @@ const ProductItem = ({product, grid, id, name, price, desc, imageURL}) => {
       </div>
       {!grid && <p className={styles.desc}>{shortenText(desc, 200)}</p>}
 
-      <button className='--btn --btn-danger' onClick={() => addToCart(product)}>Add To Cart</button>
+      <button className={styles.cartIcon} onClick={() => addToCart(product)}>
+        <FaShoppingCart size={20} />
+      </button>
     </div>
   </Card>
   );
