@@ -1,22 +1,20 @@
-export const sliderData = [
-    {
-      image: "https://htmlcolorcodes.com/assets/images/colors/rose-red-color-solid-background-1920x1080.png",
-      heading: "Shoes Villa",
-      desc: "Up to 30% off on all onsale proucts.",
-    },
-    {
-      image: "https://htmlcolorcodes.com/assets/images/colors/pastel-yellow-color-solid-background-1920x1080.png",
-      heading: "Women Fashion",
-      desc: "Up to 30% off on all onsale proucts.",
-    },
-    {
-      image: "https://htmlcolorcodes.com/assets/images/colors/baby-blue-color-solid-background-1920x1080.png",
-      heading: "Men Fashion",
-      desc: "Up to 30% off on all onsale proucts.",
-    },
-    {
-      image: "https://htmlcolorcodes.com/assets/images/colors/light-green-color-solid-background-1920x1080.png",
-      heading: "Awesome Gadgets",
-      desc: "Up to 30% off on all onsale proucts.",
-    },
-  ];
+import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { useState } from "react";
+
+
+export function ExportData(){
+  const [document, setDocument] = useState([])
+  const dataBase = getFirestore();
+  // Make collection Reference
+  const collectionRef = doc(dataBase, "slideshow", "slideshow");
+
+
+    function fetchDocument(e){
+      e.preventDefault();
+      getDoc(collectionRef).then((snapshot) => {
+        setDocument(snapshot.data().data)
+      })
+  }
+  fetchDocument()
+  return document
+}
