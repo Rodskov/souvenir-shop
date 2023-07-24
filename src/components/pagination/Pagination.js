@@ -1,4 +1,3 @@
-import { current } from "@reduxjs/toolkit";
 import React, { useState } from "react";
 import styles from "./Pagination.module.scss"
 
