@@ -11,10 +11,10 @@ import { useSelector } from 'react-redux';
 import { selectProducts } from '../../../redux/slice/productSlice';
 
 const categories = [
-  {id: 1, name: "Laptop"},
-  {id: 2, name: "Electronic"},
-  {id: 3, name: "Fashion"},
-  {id: 4, name: "Phone"},
+  {id: 1, name: "Apparel"},
+  {id: 2, name: "Accessories"},
+  {id: 3, name: "Stationary"},
+  {id: 4, name: "Miscellaneous"},
 ]
 
 const initialState = {
@@ -22,14 +22,29 @@ const initialState = {
   imageURL: "",
   price: 0,
   category: "",
-  brand: "",
   desc: "",
 }
 
 const AddProduct = () => {
+  const [val, setVal] = useState([]);
   const {id} = useParams();
   const products = useSelector(selectProducts)
   const productEdit = products.find((item) => item.id === id)
+  const handleAdd = () => {
+    const abc = [...val, []]
+    setVal(abc)
+  }
+  const handleChange = (onChangeValue, i) => {
+    const inputData = [...val]
+    inputData[i]=onChangeValue.target.value
+    setVal(inputData)
+  }
+  const handleDelete = (i) => {
+    const deleteVal = [...val]
+    deleteVal.splice(i,1)
+    setVal(deleteVal)
+  }
+  console.log(val, "data-")
   console.log(productEdit)
 
   const [product, setProduct] = useState(() => {
@@ -91,7 +106,6 @@ const AddProduct = () => {
         imageURL: product.imageURL,
         price: Number(product.price),
         category: product.category,
-        brand: product.brand,
         desc: product.desc,
         createdAt: Timestamp.now().toDate()
       });
@@ -122,7 +136,7 @@ const AddProduct = () => {
         imageURL: product.imageURL,
         price: Number(product.price),
         category: product.category,
-        brand: product.brand,
+
         desc: product.desc,
         createdAt: productEdit.createdAt,
         editedAt: Timestamp.now().toDate(),
@@ -208,14 +222,14 @@ const AddProduct = () => {
               })}
           </select>
           
-          <label>Product Company/Brand:</label>
+          {/* <label>Product Company/Brand:</label>
           <input 
             type='text' 
             placeholder='Product brand' 
             required 
             name='brand' 
             value={product.brand} 
-            onChange={(e) => handleInputChange(e)}/>
+            onChange={(e) => handleInputChange(e)}/> */}
 
           <label>Product Description:</label>
           <textarea 
@@ -227,6 +241,7 @@ const AddProduct = () => {
           </textarea>
           
           <button className='--btn --btn-primary'>{detectForm(id, "Save Product", "Edit Product")}</button>
+          
           </form>
         </Card>
       </div>
