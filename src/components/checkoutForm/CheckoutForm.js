@@ -106,7 +106,6 @@ const CheckoutForm = () => {
                 setIsLoading(false)
                 toast.success("Payment Successful!")
                 saveOrder()
-                confirmPayment()
             }
         }
     });
