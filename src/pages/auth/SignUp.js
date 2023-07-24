@@ -41,50 +41,6 @@ const registerUser = (e) =>{
       });
     }
   
-    // let lowerCase = document.getElementById('lower');
-    // let upperCase = document.getElementById('upper');
-    // let digit = document.getElementById('number');
-    // let specialChar = document.getElementById('special');
-    // let minLength= document.getElementById('length');
-
-    // function checkPassword(data) {
-    //   const lower = new RegExp('(?=.*[a-z])');
-    //   const upper = new RegExp('(?=.*[A-Z])')
-    //   const number = new RegExp('(?=.*[0-9])')
-    //   const special = new RegExp('(?=.*[!@#\$%\^&\*])')
-    //   const length= new RegExp('(?=.{8})')
-
-    //   //Lowercase Validation check
-    //   if(lower.test(data)){
-    //     lowerCase.classList.add("valid");
-    //   }else{
-    //     lowerCase.classList.remove("valid");
-    //   }
-    //   //Uppercase Validation check
-    //   if(upper.test(data)){
-    //     upperCase.classList.add("valid");
-    //   }else{
-    //     upperCase.classList.remove("valid");
-    //   }
-    //   //Number Validation check
-    //   if(number.test(data)){
-    //     digit.classList.add("valid");
-    //   }else{
-    //     digit.classList.remove("valid");
-    //   }
-    //   //Special Charac Validation check
-    //   if(special.test(data)){
-    //     specialChar.classList.add("valid");
-    //   }else{
-    //     specialChar.classList.remove("valid");
-    //   }
-    //   //Length Validation check
-    //   if(length.test(data)){
-    //     minLength.classList.add("valid");
-    //   }else{
-    //     minLength.classList.remove("valid");
-    //   }
-    // }
     //Validation states
     const [visible , setVisible] = useState(false);
     const [lowerValidated, setLowerValidated] = useState(false);
@@ -157,14 +113,14 @@ const registerUser = (e) =>{
               <div className={styles['password-box']}>
               <input type={visible ? "text" : "password"} placeholder='Password' value={password} onChange={(e) => {setPassword(e.target.value); handleChange(e.target.value)}}  required />
               <div onClick={()=> setVisible(!visible)} className={styles.eyePassword}>
-                  {visible ? <BsEye/> : <BsEyeSlash/>}
+                  {visible ? <BsEyeSlash/> :  <BsEye/>}
                 </div>
               </div>
 
               <div className={styles['password-box']}>
               <input type={visible ? "text" : "password"} placeholder='Confirm Password' value={cPassword} onChange={(e) => setCPassword(e.target.value)} required />
               <div onClick={()=> setVisible(!visible)} className={styles.eyePassword}>
-                  {visible ? <BsEye/> : <BsEyeSlash/>}
+                  {visible ? <BsEyeSlash/> :  <BsEye/>}
                 </div>
               </div>
               <button type="submit" className='--btn --btn-primary --btn-block'>Sign Up</button>
