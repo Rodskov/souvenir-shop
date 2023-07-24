@@ -27,9 +27,25 @@ const initialState = {
 }
 
 const AddProduct = () => {
+  const [val, setVal] = useState([]);
   const {id} = useParams();
   const products = useSelector(selectProducts)
   const productEdit = products.find((item) => item.id === id)
+  const handleAdd = () => {
+    const abc = [...val, []]
+    setVal(abc)
+  }
+  const handleChange = (onChangeValue, i) => {
+    const inputData = [...val]
+    inputData[i]=onChangeValue.target.value
+    setVal(inputData)
+  }
+  const handleDelete = (i) => {
+    const deleteVal = [...val]
+    deleteVal.splice(i,1)
+    setVal(deleteVal)
+  }
+  console.log(val, "data-")
   console.log(productEdit)
 
   const [product, setProduct] = useState(() => {
@@ -91,7 +107,7 @@ const AddProduct = () => {
         imageURL: product.imageURL,
         price: Number(product.price),
         category: product.category,
-        brand: product.brand,
+        variation: val,
         desc: product.desc,
         createdAt: Timestamp.now().toDate()
       });
@@ -122,7 +138,7 @@ const AddProduct = () => {
         imageURL: product.imageURL,
         price: Number(product.price),
         category: product.category,
-        brand: product.brand,
+        variation: val,
         desc: product.desc,
         createdAt: productEdit.createdAt,
         editedAt: Timestamp.now().toDate(),
@@ -208,14 +224,23 @@ const AddProduct = () => {
               })}
           </select>
           
-          <label>Product Company/Brand:</label>
-          <input 
+          <label>Variations:</label>
+          <button onClick={()=>handleAdd()}>Add a variation</button>
+          {val.map((data, i) => {
+            return(
+              <div>
+                <input type='text' value={data} onChange={e=>  handleChange(e,i)} required/>
+                <button onClick={()=>handleDelete(i)}>x</button>
+              </div>
+            )
+          })}
+          {/* <input 
             type='text' 
             placeholder='Product brand' 
             required 
             name='brand' 
             value={product.brand} 
-            onChange={(e) => handleInputChange(e)}/>
+            onChange={(e) => handleInputChange(e)}/> */}
 
           <label>Product Description:</label>
           <textarea 

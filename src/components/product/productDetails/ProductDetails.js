@@ -66,7 +66,15 @@ const ProductDetails = () => {
                 <b>SKU</b> {product.id}
               </p>
               <p>
-                <b>Brand</b> {product.brand}
+                <b>Variations</b> {product.variation.map((data, i) => {
+                  return(
+                    <div key={i}>
+                      <input type="radio" name="variation"></input>
+                      <label>{data}</label> 
+                    </div>
+                  )
+                })}
+                {product.brand}
               </p>
 
               <div className={styles.count}>
