@@ -69,8 +69,8 @@ const Pagination = ({
         
         <li 
         onClick={paginateNext}
-        className={currentPage === pageNumbers[pageNumbers.length - 1
-        ? `${styles.hidden}` : null]}>
+        className={currentPage === pageNumbers[pageNumbers.length - 1]
+            ? `${styles.hidden}` : null}>
             Next
         </li>
         <p>
