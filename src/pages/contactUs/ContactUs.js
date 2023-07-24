@@ -13,7 +13,7 @@ const ContactUs = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm('service_zlmxsim', 'template_jcitp0k', form.current, '2e3ng8vS4fOomnpan')
+    emailjs.sendForm(process.env.REACT_APP_EMAILJS_ID , 'template_jcitp0k', form.current, '2e3ng8vS4fOomnpan')
       .then((result) => {
          toast.success("The Message was sent")
       }, (error) => {
@@ -49,19 +49,19 @@ const ContactUs = () => {
               <div className={styles.icons}>
                 <span>
                   <FaPhoneAlt/>
-                  <p>031231312</p>
+                  <p>0970-759-9810</p>
                 </span>
                 <span>
                   <FaEnvelope/>
-                  <p>pupeshop@gmail.com</p>
+                  <p>pupsouvenirshop@gmail.com</p>
                 </span> 
                 <span>
                   <GoLocation />
-                  <p>Main PUP</p>
+                  <p>PUP Sta Mesa Main Campus</p>
                 </span>
                 <span>
                   <FaFacebook/>
-                  <p>PUP SOUVENIR SHOP</p>
+                  <p>PUP Souvenir Shop</p>
                 </span>
               </div>
             </Card>

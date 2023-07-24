@@ -1,10 +1,6 @@
 import styles from "./ProductDetails.module.scss"
-import { async } from '@firebase/util';
-import { doc, getDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import {db} from "../../../firebase/config"
 import loaderImg from "../../../assets/loader.gif"
 import { useDispatch, useSelector } from "react-redux";
 import { ADD_TO_CART, CALCULATE_TOTAL_QUANTITY, DECREASE_CART, selectCartItems } from "../../../redux/slice/cartSlice";

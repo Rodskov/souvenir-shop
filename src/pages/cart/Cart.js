@@ -107,7 +107,7 @@ const Cart = () => {
                   </td>
                 </tr>
               );
-            })};
+            })}
           </tbody>
         </table>
         <div className={styles.summary}>
