@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { STORE_PRODUCTS, selectProducts } from '../../../redux/slice/productSlice';
 import { CALC_TOTAL_ORDER_AMOUNT, STORE_ORDERS, selectOrderHistory, selectTotalOrderAmount } from '../../../redux/slice/orderSlice';
 import useFetchCollection from '../../../customHooks/useFetchCollection';
+import Chart from '../../chart/Chart';
+
 
 
 const earningIcon = <FaPesoSign size={30} color="#b624ff"/>
@@ -32,7 +34,11 @@ const Home = () => {
   },[dispatch, data, fbProducts])
 
   return <div className={styles.home}>
+    
     <h2>Admin Home</h2>
+    <div>
+      <Chart/>
+    </div>
     <div className={styles["info-box"]}>
       <InfoBox cardClass={`${styles.card} ${styles.card1}`}
       title={"Earnings"}
@@ -50,6 +56,7 @@ const Home = () => {
       icon={orderIcon}
       />
     </div>
+    
   </div>;
 };
 
