@@ -64,7 +64,18 @@
       .icon-span{
         cursor: pointer;
       }
-
+      .tracker-box{
+        margin-top: 2em;
+        // opacity: 0;
+        // pointer-events: none;
+        // // transform: translateY(20px);
+        // // transition: .5s ease;
+       
+      }
+      // input[type="password"]:focus .tracker-box{
+      //   opacity: 1;
+      //   transform: translateY(100px);
+      // }
       .tracker-box div{
         margin: 5px 0;
         font-size: 1.3em;

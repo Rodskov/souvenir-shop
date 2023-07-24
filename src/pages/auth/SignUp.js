@@ -181,7 +181,7 @@ const registerUser = (e) =>{
         </div>
       </Card>
       <div className={styles.img}>
-        <img src= {signupBg} alt='Login' width="330px"/>
+        <img src= {signupBg} alt='Login' width="342px"/>
       </div>
       
     </section>
