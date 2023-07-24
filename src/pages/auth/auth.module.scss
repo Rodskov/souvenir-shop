@@ -61,6 +61,23 @@
         font-size: 1.5em;
         
       }
+      .icon-span{
+        cursor: pointer;
+      }
+
+      .tracker-box div{
+        margin: 5px 0;
+        font-size: 1.3em;
+      }
+      .tracker-box .validated{
+        color: #008800;
+      }
+      .list-icon{
+        margin-right: 8px;
+      }
+      .list-icon .green{
+        color: #008800;
+      }
      
     }
     
