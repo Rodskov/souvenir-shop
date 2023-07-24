@@ -10,7 +10,7 @@ export function ExportData(){
 
 
     function fetchDocument(e){
-      e.preventDefault();
+      // e.preventDefault();
       getDoc(collectionRef).then((snapshot) => {
         setDocument(snapshot.data().data)
       })

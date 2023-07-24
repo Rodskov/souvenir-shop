@@ -43,7 +43,7 @@ const Slider = () => {
         { ExportData().map ((slide, index) =>{
             const {image} = slide
             return(
-                //Kapag dynamic william dapat key yung sasabihin lalagyan key yung nasa slider-data.js watch mo tutorial 33
+                
                 <div key={index} className={index === currentSlide ? "slide current" : "slide"}>
                     {index === currentSlide && (
                         <>
