@@ -159,6 +159,9 @@ const AddProduct = () => {
         imageURL: product.imageURL,
         price: Number(product.price),
         category: product.category,
+        color: colorVar,
+        size: sizeVar,
+
 
         desc: product.desc,
         createdAt: productEdit.createdAt,

@@ -76,30 +76,43 @@ const ProductDetails = () => {
             <div className={styles.content}>
               <h3>{product.name}</h3>
               <p className={styles.price}>{`₱${product.price}`}</p>
-              <p>{product.desc}</p>
+              <p>Description: {product.desc}</p>
               <p>
-                <b>SKU</b> {product.id}
-              </p>
-              <p>
-                <b>Colors</b> {product.color.map((data, i) => {
-                  return(
+                <b>Colors:</b>{" "}
+                {product.color ? (
+                  product.color.map((data, i) => (
                     <div key={i}>
-                      <input type="radio" name="color" value={data} onChange={colorRadio}></input>
-                      <label>{data}</label> 
+                      <input
+                        type="radio"
+                        name="color"
+                        value={data}
+                        onChange={colorRadio}
+                      />
+                      <label> {data}</label>
                     </div>
-                  )
-                })}
+                  ))
+                ) : (
+                  <span>No color variation available.</span>
+                )}
               </p>
               <p>
-                <b>Size</b> {product.size.map((data, i) => {
-                  return(
+                <b>Size:</b>{" "}
+                {product.size ? (
+                  product.size.map((data, i) => (
                     <div key={i}>
                       {console.log(data)}
-                      <input type="radio" name="size" value={data} onChange={sizeRadio}></input>
-                      <label>{data}</label> 
+                      <input
+                        type="radio"
+                        name="size"
+                        value={data}
+                        onChange={sizeRadio}
+                      />
+                      <label> {data}</label>
                     </div>
-                  )
-                })}
+                  ))
+                ) : (
+                  <span>No size variation available.</span> 
+                )}
                 {product.brand}
               </p>
 
