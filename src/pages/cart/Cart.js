@@ -67,6 +67,7 @@ const Cart = () => {
             <tr>
               <th>s/n</th>
               <th>Product</th>
+              <th>Variation</th>
               <th>Price</th>
               <th>Quantity</th>
               <th>Total</th>
@@ -75,7 +76,7 @@ const Cart = () => {
           </thead>
           <tbody>
             {cartItems.map((cart, index) => {
-              const {id, name, price, imageURL, cartQuantity} = cart;
+              const {id, name, price, imageURL, cartQuantity, size, color} = cart;
               return (
                 <tr key={id}>
                   <td>{index + 1}</td>
@@ -89,6 +90,7 @@ const Cart = () => {
                       style={{width: "100px"}}
                     />
                   </td>
+                  <td>{size}-{color}</td>
                   <td>{price}</td>
                   <td>
                     <div className={styles.count}>
