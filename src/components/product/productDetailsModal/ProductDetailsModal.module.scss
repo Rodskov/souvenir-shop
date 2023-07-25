@@ -1,0 +1,80 @@
+body.active-modal {
+    overflow-y: hidden;
+}
+
+/* Modal Styles */
+.product {
+    .card {
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+    .review {
+      border-top: 1px solid #ccc;
+    }
+    .details {
+      /* padding-top: 2rem; Remove this line */
+      display: flex;
+    }
+    .img {
+      width: 45%;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      img {
+        width: 100%;
+      }
+    }
+    .content {
+      width: 55%;
+      padding: 0 5px;
+      /* & > * {
+        margin-bottom: 1rem;
+      } Remove this block */
+      .price {
+        color: orangered;
+        font-weight: 500;
+      }
+      .count {
+        display: flex;
+        align-items: center;
+        /* & > * {
+          margin-right: 1rem;
+        } Remove this block */
+      }
+    }
+  }
+  
+  /* Modal Styles */
+  .product-modal-container, .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .product-modal-content {
+    background-color: #fff;
+    padding: 1rem;
+    max-width: 700px;
+    width: 100%;
+    border-radius: 5px;
+  }
+  
+  @media screen and (max-width: 700px) {
+    .product {
+      .details {
+        flex-direction: column;
+      }
+      .img {
+        width: 100%;
+      }
+      .content {
+        width: 100%;
+      }
+    }
+  }
+  
