@@ -66,7 +66,7 @@ const Wishlist = () => {
 
   return (
     <section>
-    <div className={`container ${styles.review}`}>
+    <div className={`container ${styles.wishlist}`}>
       <Card cardClass={styles.card}>
         <form onSubmit={addWishlist}>
           <label>Type your Wishlist:</label>
@@ -82,24 +82,28 @@ const Wishlist = () => {
           </button>
         </form>
       </Card>
-      <Card cardClass={styles.card}>
-        <h2>Wishlist:</h2>
+      
+      
+        
         {loading ? (
           <p>Loading...</p>
         ) : (
           wishlistData.length > 0 ? (
             wishlistData.map((item, index) => (
+           <div className={styles.card}>
               <div key={index}>
                 <p><b>Username:</b> {item.userName}</p>
                 <p><b>Date:</b> {item.wishlistDate}</p>
                 <p> {item.wishlist}</p>
               </div>
+            </div>
+             
             ))
           ) : (
             <p>No wishlist data available.</p>
           )
         )}
-      </Card>
+      
     </div>
   </section>
   )

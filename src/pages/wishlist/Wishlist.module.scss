@@ -1,9 +1,32 @@
-.review {
+.wishlist {
     .card {
-      width: 100%;
-      max-width: 500px;
-      padding: 1rem;
-    }
+        width: 100%;
+        max-width: 500px;
+        padding: 1rem;
+        margin-bottom: 1rem; /* Add margin between wishlist cards */
+        border: 1px solid #ccc; /* Add a border to separate wishlist cards */
+        border-radius: 4px;
+        background-color: #f9f9f9; /* Add background color to wishlist cards */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow for a card-like appearance */
+        transition: box-shadow 0.3s ease;
+    
+        &:hover {
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a slight elevation on hover */
+        }
+    
+        div {
+          margin-bottom: 0.5rem; /* Add some space between each line in the card */
+        }
+    
+        p {
+          font-size: 1.6rem;
+          font-weight: 300;
+    
+          b {
+            font-weight: 500;
+          }
+        }
+      }
     form {
       label {
         display: block;
