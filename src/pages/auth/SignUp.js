@@ -50,10 +50,11 @@ const registerUser = (e) =>{
     const [lengthValidated, setLengthValidated] = useState(false);
 
     const handleChange=(value) =>{
+     
       const lower = new RegExp('(?=.*[a-z])');
       const upper = new RegExp('(?=.*[A-Z])')
       const number = new RegExp('(?=.*[0-9])')
-      const special = new RegExp('(?=.*[!@#\$%\^&\*])')
+      const special = new RegExp('(?=.*[!@#$%^&*-+=])')
       const length= new RegExp('(?=.{8})')
       //Lowercase Validation check
       if(lower.test(value)){
@@ -111,10 +112,10 @@ const registerUser = (e) =>{
           <form onSubmit={registerUser}>
               <input type='text' placeholder='Email' required value={email} onChange={(e) => setEmail(e.target.value)}  />
               <div className={styles['password-box']}>
-              <input type={visible ? "text" : "password"} placeholder='Password' value={password} onChange={(e) => {setPassword(e.target.value); handleChange(e.target.value)}}  required />
-              <div onClick={()=> setVisible(!visible)} className={styles.eyePassword}>
-                  {visible ? <BsEyeSlash/> :  <BsEye/>}
-                </div>
+                <input type={visible ? "text" : "password"} placeholder='Password' value={password} onChange={(e) => {setPassword(e.target.value); handleChange(e.target.value)}}  required />
+                <div onClick={()=> setVisible(!visible)} className={styles.eyePassword}>
+                    {visible ? <BsEyeSlash/> :  <BsEye/>}
+                  </div>
               </div>
 
               <div className={styles['password-box']}>
@@ -130,7 +131,7 @@ const registerUser = (e) =>{
             <p>Already have an account? </p>
             <Link to='/login'>Login</Link>
           </span>
-          <div className={styles["tracker-box"]}>
+          <div className={`${styles['tracker-box']} ${styles[password.length > 0 ? 'show' : 'hide']}`}>
             <div className={lowerValidated? styles.validated: "not-validated"}>{lowerValidated?(
               <span className={styles["list-icon"]}>
                 <BsFillCheckCircleFill/>

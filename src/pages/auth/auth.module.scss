@@ -64,18 +64,27 @@
       .icon-span{
         cursor: pointer;
       }
-      .tracker-box{
+      .tracker-box {
         margin-top: 2em;
-        // opacity: 0;
-        // pointer-events: none;
-        // // transform: translateY(20px);
-        // // transition: .5s ease;
-       
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(20px);
+        transition: 0.5s ease;
+      
+        &.show {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
-      // input[type="password"]:focus .tracker-box{
-      //   opacity: 1;
-      //   transform: translateY(100px);
-      // }
+      .password-box {
+        input:focus + .tracker-box {
+          @extend .show;
+        }
+      
+        input:not(:focus) + .tracker-box.hide {
+          display: none;
+        }
+      }
       .tracker-box div{
         margin: 5px 0;
         font-size: 1.3em;
