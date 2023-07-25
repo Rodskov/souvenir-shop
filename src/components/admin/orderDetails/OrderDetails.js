@@ -28,13 +28,13 @@ return (
       ): (
           <>
           <p>
-              <b>Order ID</b> {order.id}
+              <b>Order ID:</b> {order.id}
           </p>
           <p>
-              <b>Order Amount</b> {order.orderAmount}
+              <b>Order Amount:</b> {order.orderAmount}
           </p>
           <p>
-              <b>Order Status</b> {order.orderStatus}
+              <b>Order Status:</b> {order.orderStatus}
           </p>
           <p>
               <b>Shipping Address</b> 

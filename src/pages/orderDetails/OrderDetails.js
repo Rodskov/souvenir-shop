@@ -27,13 +27,13 @@ const OrderDetails = () => {
         ): (
             <>
             <p>
-                <b>Order ID</b> {order.id}
+                <b>Order ID:</b> {order.id}
             </p>
             <p>
-                <b>Order Amount</b> {order.orderAmount}
+                <b>Order Amount:</b> {order.orderAmount}
             </p>
             <p>
-                <b>Order Status</b> {order.orderStatus}
+                <b>Order Status:</b> {order.orderStatus}
             </p>
             <br/>
             <table>
@@ -67,8 +67,16 @@ const OrderDetails = () => {
                                     {(price * cartQuantity).toFixed(2)}
                                 </td>
                                 <td className={styles.icons}> 
-                                    <button className='--btn --btn-primary'><Link to={`/review-product/${id}`}>Review Product</Link></button>
-                                    <button className='--btn --btn-danger'><Link to="/return-product">Return Product</Link></button>
+                                    <button className='--btn --btn-primary'><Link to={`/review-product/${order.id}`}>Review Product</Link></button>
+                                    <button className='--btn --btn-danger'><Link to={`/return-product/${order.id}`}>Return Product</Link></button>
+                                    <button className="--btn --btn-primary">
+                                    <a
+                                        href="http://www.jtexpress.ph/index/query/gzquery.html"
+                                        target="_blank" 
+                                        rel="noopener noreferrer" >
+                                        Track Order
+                                    </a>
+                                    </button>
                                 </td>
                             </tr>
                         )

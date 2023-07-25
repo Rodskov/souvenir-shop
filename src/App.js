@@ -12,6 +12,7 @@ import History from "./pages/orderHistory/History";
 import OrderDetails from "./pages/orderDetails/OrderDetails";
 import ReviewProducts from "./components/reviewProducts/ReviewProducts";
 import NotFound from "./pages/notFound/NotFound";
+import ReturnProduct from "./components/returnProduct/ReturnProduct";
 
 // Try comment
 function App() {
@@ -45,6 +46,7 @@ function App() {
           <Route path="/order-history" element={ <History/>} />
           <Route path="/order-details/:id" element={ <OrderDetails/>} />
           <Route path="/review-product/:id" element={ <ReviewProducts/>} />
+          <Route path="/return-product/:id" element={ <ReturnProduct/>} />
           <Route path="*" element={ <NotFound/>} />
         </Routes>
       </BrowserRouter>
