@@ -83,6 +83,7 @@ const Slideshow = () => {
       })
       );
       setImageDownloadArray(urls)
+      setConfirmBtnDisplay("block")
     } catch(error) {
       console.error("error", error)
     }
@@ -108,7 +109,7 @@ const Slideshow = () => {
   const handleEventChange = async (event) => {
     console.log(event.target.files)
     if(event.target.files.length != 0){
-      setConfirmBtnDisplay("block")
+      setConfirmBtnDisplay("none")
       setBtnDisplay("block")
       setImageLinksArray([])
       setImageDownloadArray([])
@@ -138,6 +139,7 @@ const Slideshow = () => {
       setImageLinksArray(imageLinks)
     }
     else{
+      setConfirmBtnDisplay("none")
       setBtnDisplay("none")
     }
   }
