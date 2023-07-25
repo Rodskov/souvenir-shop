@@ -13,6 +13,7 @@ import OrderDetails from "./pages/orderDetails/OrderDetails";
 import ReviewProducts from "./components/reviewProducts/ReviewProducts";
 import NotFound from "./pages/notFound/NotFound";
 import ReturnProduct from "./components/returnProduct/ReturnProduct";
+import Wishlist from "./pages/wishlist/Wishlist";
 
 // Try comment
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={ <Home/>} />
           <Route path="/contact" element={ <Contact/>} />
+          <Route path="/wishlist" element={ <Wishlist/>} />
           <Route path="/login" element={ <Login/>} />
           <Route path="/register" element={ <SignUp/>} />
           <Route path="/reset" element={ <Reset/>} />

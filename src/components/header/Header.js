@@ -147,6 +147,9 @@ const Header = () => {
                 <li>
                   <NavLink to= "/contact" className={activeLink}>Contact Us</NavLink>
                 </li>
+                <li>
+                  <NavLink to= "/wishlist" className={activeLink}>Wishlist</NavLink>
+                </li>
               </ul> 
               
               <div className={styles["header-right"]} onClick={hideMenu}>
