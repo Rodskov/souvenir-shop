@@ -222,6 +222,16 @@ const AddProduct = () => {
               })}
           </select>
           
+          <label>Variations:</label>
+          <button type="button" onClick={()=>handleAdd()}>Add a variation</button>
+          {val.map((data, i) => {
+            return(
+              <div>
+                <input type='text' value={data} onChange={e=>  handleChange(e,i)} required/>
+                <button type="button" onClick={()=>handleDelete(i)}>x</button>
+              </div>
+            )
+          })}
           {/* <label>Product Company/Brand:</label>
           <input 
             type='text' 

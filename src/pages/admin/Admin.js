@@ -7,6 +7,7 @@ import ViewProducts from '../../components/admin/viewProducts/ViewProducts';
 import AddProduct from '../../components/admin/addProduct/AddProduct';
 import Orders from '../../components/admin/orders/Orders';
 import OrderDetails from '../../components/admin/orderDetails/OrderDetails';
+import Slideshow from '../../components/admin/slideshow/Slideshow';
 
 
 const Admin = () => {
@@ -25,6 +26,8 @@ const Admin = () => {
           {<Orders />} />
           <Route path="order-details/:id" element=
           {<OrderDetails />} />
+          <Route path="slideshow/" element=
+          {<Slideshow />}/>
         </Routes>
       </div>
     </div>;
