@@ -45,6 +45,7 @@
       //   display: block;
       //   width: 100%;
       // }
+
       .cartIcon {
         position: absolute;
         bottom: 30rem; 
@@ -63,6 +64,7 @@
           
         }
       }
+
       // button cart icon
       button {
         border: none;
@@ -115,36 +117,25 @@
           font-size: 1.8rem;
         }
       }
-      // button {
-      //   position: absolute;
-      //   bottom: 1rem;
-      //   left: 1rem;
-      // }
-      .cartIcon {
-        position: absolute;
-        bottom: 1.5rem; 
-        left: 1.5rem; 
-
-        // Add a small box background for the cart icon
-        display: inline-flex;
+   
+      .cartButton {
+        /* "Add to cart" button in list view */
+        display: flex;
         align-items: center;
         justify-content: center;
-        background-color: orangered; 
-        width: 4rem; // Adjust the width of the box
-        height: 3.5rem; // Adjust the height of the box
-        
-        &:hover {
-          background-color: rgba(135, 55, 29, 0.844); 
-
-        }
-      }
-  
-      button {
+        background-color: orangered;
+        width: 100%; /* width of the button */
+        height: 3.5rem; /* height of the button */
         border: none;
-        background: none;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 1.5rem;
         cursor: pointer;
-        color: #fff; 
-        font-size: 1.5rem; 
+        margin-top: 1rem; /* space between items in list view */
+    
+        &:hover {
+          background-color: rgba(135, 55, 29, 0.844);
+        }
       }
     }
   }
