@@ -22,29 +22,50 @@ const initialState = {
   imageURL: "",
   price: 0,
   category: "",
+  color: "",
+  size: "",
   desc: "",
 }
 
 const AddProduct = () => {
+  const [colorVar, setColorVar] = useState([])
+  const [sizeVar, setSizeVar] = useState([])
   const [val, setVal] = useState([]);
   const {id} = useParams();
   const products = useSelector(selectProducts)
   const productEdit = products.find((item) => item.id === id)
-  const handleAdd = () => {
-    const abc = [...val, []]
-    setVal(abc)
+
+  const colorHandleAdd = () => {
+    const abc = [...colorVar, []]
+    setColorVar(abc)
   }
-  const handleChange = (onChangeValue, i) => {
-    const inputData = [...val]
+  const sizeHandleAdd = () => {
+    const abc = [...sizeVar, []]
+    setSizeVar(abc)
+  }
+
+  const colorHandleChange = (onChangeValue, i) => {
+    const inputData = [...colorVar]
     inputData[i]=onChangeValue.target.value
-    setVal(inputData)
+    setColorVar(inputData)
   }
-  const handleDelete = (i) => {
-    const deleteVal = [...val]
+  const colorHandleDelete = (i) => {
+    const deleteVal = [...colorVar]
     deleteVal.splice(i,1)
-    setVal(deleteVal)
+    setColorVar(deleteVal)
   }
-  console.log(val, "data-")
+
+  const sizeHandleChange = (onChangeValue, i) => {
+    const inputData = [...sizeVar]
+    inputData[i]=onChangeValue.target.value
+    setSizeVar(inputData)
+  }
+  const sizeHandleDelete = (i) => {
+    const deleteVal = [...sizeVar]
+    deleteVal.splice(i,1)
+    setSizeVar(deleteVal)
+  }
+  console.log(colorVar, "data-")
   console.log(productEdit)
 
   const [product, setProduct] = useState(() => {
@@ -106,6 +127,8 @@ const AddProduct = () => {
         imageURL: product.imageURL,
         price: Number(product.price),
         category: product.category,
+        color: colorVar,
+        size: sizeVar,
         desc: product.desc,
         createdAt: Timestamp.now().toDate()
       });
@@ -222,16 +245,30 @@ const AddProduct = () => {
               })}
           </select>
           
-          <label>Variations:</label>
-          <button type="button" onClick={()=>handleAdd()}>Add a variation</button>
-          {val.map((data, i) => {
+          <label>Colors:</label>
+          <Card cardClass={styles.group}>
+          <button type="button" onClick={()=>colorHandleAdd()}>Add color</button>
+          {colorVar.map((data, i) => {
             return(
               <div>
-                <input type='text' value={data} onChange={e=>  handleChange(e,i)} required/>
-                <button type="button" onClick={()=>handleDelete(i)}>x</button>
+                <input type='text' value={data} onChange={e=>  colorHandleChange(e,i)} required/>
+                <button type="button" onClick={()=>colorHandleDelete(i)}>x</button>
               </div>
             )
           })}
+          </Card>
+          <label>Size:</label>
+          <Card cardClass={styles.group}>
+          <button type="button" onClick={()=>sizeHandleAdd()}>Add size</button>
+          {sizeVar.map((data, i) => {
+            return(
+              <div>
+                <input type='text' value={data} onChange={e=>  sizeHandleChange(e,i)} required/>
+                <button type="button" onClick={()=>sizeHandleDelete(i)}>x</button>
+              </div>
+            )
+          })}
+          </Card>
           {/* <label>Product Company/Brand:</label>
           <input 
             type='text' 

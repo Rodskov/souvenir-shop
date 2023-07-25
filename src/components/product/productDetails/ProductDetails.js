@@ -18,18 +18,33 @@ const ProductDetails = () => {
   const { data } = useFetchCollection("reviews")
   const filteredReviews = data.filter((review)=> review.productID === id)
 
+  const [selectedSize, setSelectedSize] = useState("")
+  const [selectedColor, setSelectedColor] = useState("")
+
   const cart = cartItems.find((cart) => cart.id === id);
   const isCartAdded = cartItems.findIndex((cart) => {
     return cart.id === id
   })
 
+  const colorRadio = (e) => {
+    console.log(e.target.value)
+    setSelectedColor(e.target.value)
+  }
+
+  const sizeRadio = (e) => {
+    console.log(e.target.value)
+    setSelectedSize(e.target.value)
+  }
 
   useEffect(() => {
     setProduct(document)
   }, [document]);
 
-  const addToCart = (product) => {
-    dispatch(ADD_TO_CART(product));
+  const addToCart = (product, selectedSize, selectedColor) => {
+    dispatch(ADD_TO_CART({...product,
+      size: selectedSize,
+      color: selectedColor,
+    }));
     dispatch(CALCULATE_TOTAL_QUANTITY());
   };
 
@@ -65,17 +80,29 @@ const ProductDetails = () => {
               <p>
                 <b>SKU</b> {product.id}
               </p>
-              {/* <p>
-                <b>Variations</b> {product.variation.map((data, i) => {
+              <p>
+                <b>Colors</b> {product.color.map((data, i) => {
                   return(
                     <div key={i}>
-                      <input type="radio" name="variation"></input>
+                      <input type="radio" name="color" value={data} onChange={colorRadio}></input>
+                      <label>{data}</label> 
+                    </div>
+                  )
+                })}
+              </p>
+              <p>
+                <b>Size</b> {product.size.map((data, i) => {
+                  return(
+                    <div key={i}>
+                      {console.log(data)}
+                      <input type="radio" name="size" value={data} onChange={sizeRadio}></input>
                       <label>{data}</label> 
                     </div>
                   )
                 })}
                 {product.brand}
-              </p> */}
+              </p>
+
 
               <div className={styles.count}>
                 {isCartAdded < 0 ? null : (
@@ -84,12 +111,12 @@ const ProductDetails = () => {
                   <p>
                     <b>{cart.cartQuantity}</b>
                   </p>
-                  <button className="--btn" onClick={() => addToCart(product)}>+</button>
+                  <button className="--btn" onClick={() => addToCart(product, selectedSize, selectedColor)}>+</button>
                   </>
                 )}
                 
               </div>
-              <button className="--btn --btn-danger" onClick={() => addToCart(product)}>ADD TO CART</button>
+              <button className="--btn --btn-danger" onClick={() => addToCart(product, selectedSize, selectedColor)}>ADD TO CART</button>
             </div>
           </div>
         </>

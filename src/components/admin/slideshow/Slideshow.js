@@ -31,8 +31,6 @@ const Slideshow = () => {
     })
   }, [changeDisplay])
 
-  var urls = []
-
   const textConfirmation = {
     display: confirmText,
   }
