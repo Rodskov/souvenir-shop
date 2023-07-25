@@ -34,24 +34,33 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       
-      // const user = userCredential.user;
-      setIsLoading(false)
-      toast.success("Login Successful")
-      redirectUser()
+      const user = userCredential.user;
+      setIsLoading(false);
+      if (user.emailVerified) {
+        toast.success("Login Successful");
+        redirectUser();
+      } else {
+        toast.error("Please verify your email before logging in.");
+      }
     })
     .catch((error) => {
       setIsLoading(false)
       toast.error(error.message)
     });
   }
+  
   //Login with Google
   const provider = new GoogleAuthProvider();
   const signInWithGoogle = () =>{
     signInWithPopup(auth, provider)
     .then((result) => {
-      // const user = result.user;
-      toast.success("Login Successfully with Google")
-      redirectUser()
+      const user = result.user;
+      if (user.emailVerified) {
+        toast.success("Login Successfully with Google");
+        redirectUser();
+      } else {
+        toast.error("Please verify your email before logging in.");
+      }
     }).catch((error) => {
       toast.error(error.message)
       

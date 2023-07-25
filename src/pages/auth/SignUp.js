@@ -1,10 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styles from "./auth.module.scss"
 import signupBg from '../../assets/signupBg.jpg'
 import { Link, useNavigate } from 'react-router-dom'
 import Card from '../../components/card/Card'
 
-import {createUserWithEmailAndPassword} from 'firebase/auth'
+import {createUserWithEmailAndPassword, sendEmailVerification, signOut} from 'firebase/auth'
 import { auth } from "../../firebase/config"
 import Loader from "../../components/loader/Loader"
 import { toast, ToastContainer } from 'react-toastify'
@@ -17,7 +17,7 @@ const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false)
 
   const navigate = useNavigate()
-
+    
 const registerUser = (e) =>{
       e.preventDefault()
       if (password !== cPassword){
@@ -33,21 +33,31 @@ const registerUser = (e) =>{
       }
       setIsLoading(true)
 
-      createUserWithEmailAndPassword(auth,email, password)
+      createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-          
-          const user = userCredential.user
-          console.log(user)
-          setIsLoading(false)
-          toast.success("Registration Successful")
-          navigate("/login")
+        const user = userCredential.user;
+        signOut(auth);
+        // Send verification email to the user
+        sendEmailVerification(user)
+          .then(() => {
+            setIsLoading(false);
+            toast.success("Registration Successful. Verification email sent!");
+            
+            navigate("/login");
+          })
+          .catch((error) => {
+            toast.error("Error sending verification email.");
+            setIsLoading(false);
+          });
       })
       .catch((error) => {
         toast.error(error.message);
         setIsLoading(false);
-          
       });
+      
+
     }
+    
   
     //Validation states
     const [visible , setVisible] = useState(false);
@@ -62,7 +72,7 @@ const registerUser = (e) =>{
       const lower = new RegExp('(?=.*[a-z])');
       const upper = new RegExp('(?=.*[A-Z])')
       const number = new RegExp('(?=.*[0-9])')
-      const special = new RegExp('(?=.*[!@#$%^&*-+=])')
+      const special = new RegExp('(?=.*[!@#$%^&*-_+=])')
       const length= new RegExp('(?=.{8})')
       //Lowercase Validation check
       if(lower.test(value)){
