@@ -75,8 +75,10 @@ const Cart = () => {
             </tr>
           </thead>
           <tbody>
-            {cartItems.map((cart, index) => {
-              const {id, name, price, imageURL, cartQuantity, size, color} = cart;
+          {cartItems.map((cart, index) => {
+              const { id, name, price, imageURL, cartQuantity, size, color } = cart;
+              const [selectedSize, selectedColor] = id.split("-").slice(1);
+              
               return (
                 <tr key={id}>
                   <td>{index + 1}</td>

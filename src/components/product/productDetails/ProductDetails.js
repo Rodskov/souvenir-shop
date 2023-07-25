@@ -41,10 +41,23 @@ const ProductDetails = () => {
   }, [document]);
 
   const addToCart = (product, selectedSize, selectedColor) => {
-    dispatch(ADD_TO_CART({...product,
-      size: selectedSize,
-      color: selectedColor,
-    }));
+    const variationID = `${product.id}-${selectedSize}-${selectedColor}`;
+    const cartVariation = cartItems.find((item) => item.id === variationID);
+
+    if (cartVariation) {
+      dispatch(ADD_TO_CART({ 
+        ...cartVariation, 
+        cartQuantity: 
+        cartVariation.cartQuantity + 1 }));
+    } else {
+      dispatch(ADD_TO_CART({
+        ...product,
+        id: variationID,
+        size: selectedSize,
+        color: selectedColor,
+        cartQuantity: 1,
+      }));
+    }
     dispatch(CALCULATE_TOTAL_QUANTITY());
   };
 
