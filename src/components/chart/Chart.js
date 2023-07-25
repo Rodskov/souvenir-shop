@@ -34,9 +34,18 @@ export const options = {
       display: false,
       text: 'Chart.js Bar Chart',
     },
-
+  },
+  scales: {
+    y: {
+      ticks: {
+        
+        stepSize: 1,
+          
+      },
+    },
   },
 };
+
 
 const Chart = () => {
 
@@ -74,7 +83,7 @@ const Chart = () => {
     <div className={styles.charts}>
       <Card cardClass={styles.card}>
           <h3>Order Status Chart</h3>
-          <Bar options={options} data={data} />;
+          <Bar options={options} data={data} />
       </Card>
     </div>
   )
