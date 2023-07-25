@@ -22,6 +22,14 @@ const registerUser = (e) =>{
       e.preventDefault()
       if (password !== cPassword){
           toast.error("Passwords do not match.")
+      } else if(
+        !lowerValidated ||
+        !upperValidated ||
+        !numberValidated ||
+        !specialValidated ||
+        !lengthValidated
+      ){
+        toast.error("Password does not meet the required criteria.");
       }
       setIsLoading(true)
 
