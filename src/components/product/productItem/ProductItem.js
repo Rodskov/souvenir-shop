@@ -37,7 +37,7 @@ const ProductItem = ({product, grid, id, name, price, desc, imageURL}) => {
       </div>
       {!grid && <p className={styles.desc}>{shortenText(desc, 200)}</p>}
 
-{     grid ? (
+{/* {     grid ? (
         <button className={styles.cartIcon} onClick={() => addToCart(product)}>
           <FaShoppingCart size={20} />
         </button>
@@ -45,7 +45,7 @@ const ProductItem = ({product, grid, id, name, price, desc, imageURL}) => {
         <div className={styles.cartButton} onClick={() => addToCart(product)}>
           Add to cart
         </div>
-      )}
+      )} */}
     </div>
   </Card>
   );
