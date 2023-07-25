@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { ADD_TO_CART, CALCULATE_TOTAL_QUANTITY } from '../../../redux/slice/cartSlice';
 import { FaShoppingCart } from "react-icons/fa";
 
-const ProductItem = ({product, grid, id, name, price, desc, imageURL}) => {
+const ProductItem = ({product, id, name, price, desc, imageURL}) => {
   const dispatch = useDispatch();
 
   const shortenText = (text, n) => {
@@ -23,7 +23,7 @@ const ProductItem = ({product, grid, id, name, price, desc, imageURL}) => {
   };
 
   return (
-  <Card cardClass={grid ? `${styles.grid}` : `${styles.list}`}>
+  <Card cardClass={styles.grid}>
     <Link to={`/product-details/${id}`}>
     <div className={styles.img}>
       <img src={imageURL} alt={name} />
@@ -35,9 +35,12 @@ const ProductItem = ({product, grid, id, name, price, desc, imageURL}) => {
         <p>{`₱${price}`}</p>
         <h4>{shortenText(name, 18)}</h4>
       </div>
-      {!grid && <p className={styles.desc}>{shortenText(desc, 200)}</p>}
+      <p className={styles.desc}>{shortenText(desc, 200)}</p>
 
-{     grid ? (
+      <button className={styles.cartIcon} onClick={() => addToCart(product)}>
+          <FaShoppingCart size={20} />
+      </button>
+      {/* {grid ? (
         <button className={styles.cartIcon} onClick={() => addToCart(product)}>
           <FaShoppingCart size={20} />
         </button>
@@ -45,7 +48,7 @@ const ProductItem = ({product, grid, id, name, price, desc, imageURL}) => {
         <div className={styles.cartButton} onClick={() => addToCart(product)}>
           Add to cart
         </div>
-      )}
+      )} */}
     </div>
   </Card>
   );

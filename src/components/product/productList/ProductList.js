@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./ProductList.module.scss";
-import {BsFillGridFill} from "react-icons/bs";
-import {FaListAlt} from "react-icons/fa";
+// import {BsFillGridFill} from "react-icons/bs";
+// import {FaListAlt} from "react-icons/fa";
 import Search from '../../search/Search';
 import ProductItem from '../productItem/ProductItem';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,7 +11,7 @@ import Pagination from '../../pagination/Pagination';
 
 const ProductList = ({products}) => {
   console.log(products);
-  const [grid, setGrid] = useState(true);
+  // const [grid, setGrid] = useState(true);   *For grid and list*
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("latest");
   const filteredProducts = useSelector(selectFilteredProducts)
@@ -37,7 +37,9 @@ const ProductList = ({products}) => {
   return (
     <div className={styles["product-list"]} id="product">
       <div className={styles.top}>
-        <div className={styles.icons}>
+
+        {/* GRID & LIST */}
+        {/* <div className={styles.icons}>
           <BsFillGridFill size={22} color='orangered'
           onClick={() => setGrid(true)}/>
 
@@ -47,7 +49,7 @@ const ProductList = ({products}) => {
           <p>
             <b>{filteredProducts.length}</b> Products found
           </p>
-        </div>
+        </div> */}
 
         {/* Search Icon */}
         <div>
@@ -67,7 +69,7 @@ const ProductList = ({products}) => {
         </div>
       </div>
 
-      <div className={grid ? `  ${styles.grid}` : `${styles.list}`}>
+      <div className={styles.grid}>
         {products.length === 0 ? (
           <p>No products found.</p>
         ) : (
@@ -75,7 +77,7 @@ const ProductList = ({products}) => {
           {currentProducts.map((product) => {
             return (
               <div key={product.id}>
-                <ProductItem {...product} grid={grid} product={product} />
+                <ProductItem {...product} grid={true} product={product} />
               </div>
             )
           })}
