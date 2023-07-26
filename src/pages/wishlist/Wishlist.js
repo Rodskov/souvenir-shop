@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from "./Wishlist.module.scss"
 import { useSelector } from 'react-redux'
 import { selectProducts } from '../../redux/slice/productSlice'
-import { selectUserID, selectUserName } from '../../redux/slice/authSlice'
+import { selectIsLoggedIn, selectUserID, selectUserName } from '../../redux/slice/authSlice'
 import { useParams } from 'react-router-dom'
 
 import { toast } from 'react-toastify'
@@ -17,7 +17,7 @@ const Wishlist = () => {
     const [wishlistData, setWishlistData] = useState("")
     const [newWishlist, setNewWishlist] = useState("")
 
-    const { id } = useParams();
+    const isLoggedIn = useSelector(selectIsLoggedIn); 
     const userID = useSelector(selectUserID)
     const userName = useSelector(selectUserName)
     const [loading, setLoading] = useState(true);
@@ -37,7 +37,11 @@ const Wishlist = () => {
         wishlistDate: date,
         createdAt: Timestamp.now().toDate()
       }
-  
+      if (!isLoggedIn) {
+        toast.error("Please log in to make a wishlist.");
+        return;
+    }
+
       try {
         addDoc(collection(db, "wishlist"), wishlistConfig);
         toast.success("Wishlist Submitted");
@@ -63,7 +67,7 @@ const Wishlist = () => {
         fetchWishlist();
       }, [eventChanger]);
     
-
+     
   return (
     <section>
     <div className={`container ${styles.wishlist}`}>
