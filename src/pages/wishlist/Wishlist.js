@@ -66,7 +66,7 @@ const Wishlist = () => {
         };
         fetchWishlist();
       }, [eventChanger]);
-    
+
      
   return (
     <section>
