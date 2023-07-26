@@ -66,8 +66,7 @@ const Wishlist = () => {
         };
         fetchWishlist();
       }, [eventChanger]);
-
-     
+           
   return (
     <section>
     <div className={`container ${styles.wishlist}`}>
