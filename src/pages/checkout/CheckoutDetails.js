@@ -6,6 +6,9 @@ import { useDispatch } from 'react-redux';
 import { SAVE_BILLING_ADDRESS, SAVE_SHIPPING_ADDRESS } from '../../redux/slice/checkoutSlice';
 import { useNavigate } from 'react-router-dom';
 import CheckoutSummary from '../../components/checkoutSummary/CheckoutSummary';
+import { toast } from 'react-toastify';
+
+//const [provinces, setProvinces] = useState([]);
 
 const initialAddressState = {
     name: "",
@@ -18,11 +21,114 @@ const initialAddressState = {
     phone: "",
 }
 
+const province = [
+    "-- Select Province --",
+    "Abra",
+    "Agusan del Norte",
+    "Agusan del Sur",
+    "Aklan",
+    "Albay",
+    "Antique",
+    "Apayao",
+    "Aurora",
+  ]
+
+  const provinceFee = [
+    {
+        "province": "-- Select Province --",
+        "shipFee": 0
+    },
+    {
+        "province": "Abra",
+        "shipFee": 165
+    },
+    {
+        "province": "Agusan del Norte",
+        "shipFee": 195
+    },
+    {
+        "province": "Agusan del Sur",
+        "shipFee": 195
+    },
+    {
+        "province": "Aklan",
+        "shipFee": 180
+    },
+    {
+        "province": "Albay",
+        "shipFee": 165
+    },
+    {
+        "province": "Antique",
+        "shipFee": 180
+    },
+    {
+        "province": "Apayao",
+        "shipFee": 205
+    },
+    {
+        "Dito nagstop": ""
+    },
+    {
+        "province": "Aurora",
+        "shipFee": 205
+    },
+    {
+        "province": "Basilan",
+        "shipFee": 205
+    },
+    {
+        "province": "Bataan",
+        "shipFee": 205
+    },
+    {
+        "province": "Batanes",
+        "shipFee": 205
+    },
+    {
+        "province": "Batangas",
+        "shipFee": 205
+    },
+    {
+        "province": "Zamboanga Sibugay",
+        "shipFee": 195
+    }
+]
+
+
+
 const CheckoutDetails = () => {
     const [shippingAddress, setShippingAddress] = useState({...initialAddressState});
     const [billingAddress, setBillingAddress] = useState({...initialAddressState});
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    const [shipAmount, setShipAmount] = useState(0)
+    var shippingFee = 0;
+
+    function shipFeeValue(){
+        if(shipAmount != 0) {
+            return shipAmount
+        }
+        else{
+            return 0;
+        }
+    }
+
+function ProvinceChange(e){
+    shippingFee = 0
+    for(var i=0; i < provinceFee.length; i++){
+        if(e.target.value === provinceFee[i].province){
+            shippingFee = provinceFee[i].shipFee
+            setShipAmount(province[i].shipFee)
+            toast.success(shippingFee)
+            toast.success("Shipping fee: "+provinceFee[i].shipFee)
+        }
+    }
+    toast.success(e.target.value)
+    toast.success(shippingFee)
+    return shippingFee
+}
 
 const handleShipping = (e) => {
     const {name, value} = e.target
@@ -50,7 +156,7 @@ const handleSubmit = (e) => {
   return (
     <section>
         <div className={`container ${styles.checkout}`}>
-            <h2>CheckoutDetails</h2>
+            <h2>Checkout Details</h2>
             <form onSubmit={handleSubmit}>
                 <div>
                     <Card cardClass={styles.card}>
@@ -104,7 +210,15 @@ const handleSubmit = (e) => {
                         onChange={(e) => handleShipping(e)}
                         />
                         {/* COUNTRY INPUT */}
-                        <CountryDropdown
+                        <label>Name of Province</label>
+                        <select id="City" name="city" onChange={ProvinceChange} required>
+                            {province.map((data, i) => {
+                                return(
+                                    <option value={data}>{data}</option>
+                                )
+                            })}
+                        </select>
+                        {/* <CountryDropdown
                             valueType='short'
                             className={styles.select}
                             value={shippingAddress.country}
@@ -115,7 +229,7 @@ const handleSubmit = (e) => {
                                     value: val,
                                 }
                             })}
-                        />
+                        /> */}
                         <label>Phone</label>
                         <input type='text' 
                         placeholder='Phone'
@@ -124,10 +238,13 @@ const handleSubmit = (e) => {
                         value={shippingAddress.phone}
                         onChange={(e) => handleShipping(e)}
                         />
-
+                        <button type='submit'
+                        className='--btn --btn-primary'>
+                            Proceed to Checkout
+                        </button>   
                     </Card>
 
-                    {/* BILLING ADDRESS */}
+                    {/* BILLING ADDRESS
                     <Card cardClass={styles.card}>
                         <h3>Billing Address</h3>
                         <label>Recipient Name</label>
@@ -179,7 +296,7 @@ const handleSubmit = (e) => {
                         onChange={(e) => handleBilling(e)}
                         />
                         {/* COUNTRY INPUT */}
-                        <CountryDropdown
+                        {/* <CountryDropdown
                             valueType='short'
                             className={styles.select}
                             value={billingAddress.country}
@@ -199,15 +316,11 @@ const handleSubmit = (e) => {
                         value={shippingAddress.phone}
                         onChange={(e) => handleShipping(e)}
                         />
-                        <button type='submit'
-                        className='--btn --btn-primary'>
-                            Proceed to Checkout
-                        </button>
-                    </Card>
+                    </Card> */}
                 </div>
                 <div>
                     <Card cardClass={styles.card}>
-                            <CheckoutSummary />
+                            <CheckoutSummary shippingFee={shipAmount}/>
                     </Card>
                 </div>
             </form>
