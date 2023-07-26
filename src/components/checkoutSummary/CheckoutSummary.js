@@ -1,26 +1,92 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { shipFeeValue } from "../../pages/checkout/CheckoutDetails";
 import { selectCartItems, selectCartTotalAmount, selectCartTotalQuantity } from "../../redux/slice/cartSlice";
 import Card from "../card/Card";
 import styles from "./CheckoutSummary.module.scss"
+import { toast } from "react-toastify";
 
-const CheckoutSummary = ({ shippingFee }) => {
+const CheckoutSummary = ({ selectedProvince }) => {
     const cartItems = useSelector(selectCartItems);
     const cartTotalAmount = useSelector(selectCartTotalAmount);
     const cartTotalQuantity = useSelector(selectCartTotalQuantity);
 
-    // Use the shippingFee prop directly
-    // const [shippingFee, setShippingFee] = useState(0); // No need for local state
+    const provinceFee = [
+        {
+            "province": "-- Select Province --",
+            "shipFee": 0
+        },
+        {
+            "province": "Abra",
+            "shipFee": 165
+        },
+        {
+            "province": "Agusan del Norte",
+            "shipFee": 195
+        },
+        {
+            "province": "Agusan del Sur",
+            "shipFee": 195
+        },
+        {
+            "province": "Aklan",
+            "shipFee": 180
+        },
+        {
+            "province": "Albay",
+            "shipFee": 165
+        },
+        {
+            "province": "Antique",
+            "shipFee": 180
+        },
+        {
+            "province": "Apayao",
+            "shipFee": 205
+        },
+        {
+            "province": "Aurora",
+            "shipFee": 205
+        },
+        {
+            "province": "Basilan",
+            "shipFee": 205
+        },
+        {
+            "province": "Bataan",
+            "shipFee": 205
+        },
+        {
+            "province": "Batanes",
+            "shipFee": 205
+        },
+        {
+            "province": "Batangas",
+            "shipFee": 205
+        },
+        {
+            "province": "Zamboanga Sibugay",
+            "shipFee": 195
+        }
+    ]
 
-    useEffect(() => {
-        // Update the shippingFee state with the dynamically calculated shipping fee
-        // setShippingFee(shipFeeValue());
-    }, [shippingFee]); // Use the prop as a dependency, so the effect runs when shippingFee changes
+    // useEffect(() => {
+    //     console.log(shippingFee)
+    // }, [shippingFee])
+    
+    const getShippingFee = () => {
+        for (const fee of provinceFee) {
+            if (selectedProvince === fee.province) {
+                return fee.shipFee;
+            }
+        }
+        return 0;
+    };
 
-    // Rest of the component code
+    const updatedShippingFee = getShippingFee();
 
+    const newTotalAmount = cartTotalAmount + updatedShippingFee
+    console.log(newTotalAmount)
     
     return <div>
         <h3>Checkout Summary</h3>
@@ -39,8 +105,9 @@ const CheckoutSummary = ({ shippingFee }) => {
                     </p>
                     <div className={styles.text}>
                         <h4>Subtotal: </h4>
-                        <h3>{cartTotalAmount.toFixed(2)}</h3>
-                        <h3>+ {shippingFee  }</h3>
+                        <h3>{newTotalAmount.toFixed(2)}</h3>
+                        <div></div>
+                        <p>Shipping Fee: {updatedShippingFee}</p>
                     </div>
                     {cartItems.map((item, index) => {
                         const {id, name, price, cartQuantity} = item
@@ -50,7 +117,8 @@ const CheckoutSummary = ({ shippingFee }) => {
                                 <p>Quantity: {cartQuantity}</p>
                                 <p>Unit Price: {price}</p>
                                 <p>Set Price: {price * cartQuantity}</p>
-                                <p>Shipping Fee: {shippingFee}</p>
+                                
+                                <p>Selected Province: {selectedProvince}</p>
                             </Card>
                         )
                     })}
@@ -60,4 +128,4 @@ const CheckoutSummary = ({ shippingFee }) => {
     </div>;
 };
 
-export default CheckoutSummary
+export default CheckoutSummary;

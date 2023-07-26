@@ -33,67 +33,7 @@ const province = [
     "Aurora",
   ]
 
-  const provinceFee = [
-    {
-        "province": "-- Select Province --",
-        "shipFee": 0
-    },
-    {
-        "province": "Abra",
-        "shipFee": 165
-    },
-    {
-        "province": "Agusan del Norte",
-        "shipFee": 195
-    },
-    {
-        "province": "Agusan del Sur",
-        "shipFee": 195
-    },
-    {
-        "province": "Aklan",
-        "shipFee": 180
-    },
-    {
-        "province": "Albay",
-        "shipFee": 165
-    },
-    {
-        "province": "Antique",
-        "shipFee": 180
-    },
-    {
-        "province": "Apayao",
-        "shipFee": 205
-    },
-    {
-        "Dito nagstop": ""
-    },
-    {
-        "province": "Aurora",
-        "shipFee": 205
-    },
-    {
-        "province": "Basilan",
-        "shipFee": 205
-    },
-    {
-        "province": "Bataan",
-        "shipFee": 205
-    },
-    {
-        "province": "Batanes",
-        "shipFee": 205
-    },
-    {
-        "province": "Batangas",
-        "shipFee": 205
-    },
-    {
-        "province": "Zamboanga Sibugay",
-        "shipFee": 195
-    }
-]
+ 
 
 
 
@@ -103,32 +43,13 @@ const CheckoutDetails = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const [shipAmount, setShipAmount] = useState(0)
-    var shippingFee = 0;
+    const [selectedProvince, setSelectedProvince] = useState("");
 
-    function shipFeeValue(){
-        if(shipAmount != 0) {
-            return shipAmount
-        }
-        else{
-            return 0;
-        }
-    }
 
-function ProvinceChange(e){
-    shippingFee = 0
-    for(var i=0; i < provinceFee.length; i++){
-        if(e.target.value === provinceFee[i].province){
-            shippingFee = provinceFee[i].shipFee
-            setShipAmount(province[i].shipFee)
-            toast.success(shippingFee)
-            toast.success("Shipping fee: "+provinceFee[i].shipFee)
-        }
+    function ProvinceChange(e){
+        console.log(e.target.value)
+        setSelectedProvince(e.target.value)
     }
-    toast.success(e.target.value)
-    toast.success(shippingFee)
-    return shippingFee
-}
 
 const handleShipping = (e) => {
     const {name, value} = e.target
@@ -147,10 +68,16 @@ const handleBilling = (e) => {
 };
 
 const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(SAVE_SHIPPING_ADDRESS(shippingAddress))
-    dispatch(SAVE_BILLING_ADDRESS(billingAddress))
-    navigate("/checkout")
+    if(selectedProvince != "-- Select Province --"){
+        e.preventDefault();
+        dispatch(SAVE_SHIPPING_ADDRESS(shippingAddress))
+        dispatch(SAVE_BILLING_ADDRESS(billingAddress))
+        navigate("/checkout")
+    }
+    else{
+        e.preventDefault();
+        toast.error("Select province")
+    }
 };
 
   return (
@@ -214,7 +141,7 @@ const handleSubmit = (e) => {
                         <select id="City" name="city" onChange={ProvinceChange} required>
                             {province.map((data, i) => {
                                 return(
-                                    <option value={data}>{data}</option>
+                                    <option key={i} value={data}>{data}</option>
                                 )
                             })}
                         </select>
@@ -320,7 +247,7 @@ const handleSubmit = (e) => {
                 </div>
                 <div>
                     <Card cardClass={styles.card}>
-                            <CheckoutSummary shippingFee={shipAmount}/>
+                            <CheckoutSummary selectedProvince={selectedProvince} />
                     </Card>
                 </div>
             </form>
