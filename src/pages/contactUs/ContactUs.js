@@ -38,30 +38,30 @@ const ContactUs = () => {
               <input type='text' name='subject' placeholder='Subject' required/>
               <label>Message</label>
               <textarea name= "message" cols="30" rows="10"></textarea>
-              <button className='--btn --btn-primary'>Send Message</button>
+              <button className='--btn --btn-primary3'>Send Message</button>
             </Card>
           </form>
           <div className={styles.details}>
             <Card cardClass={styles.card2}>
               <h3>Our Contact Information</h3>
-              <p>Fill the form or contact us via other details listed below </p>
+              <p>The trendsetter clothing brand for every PUPian, <br/>because great minds deserve great styles.</p>
 
               <div className={styles.icons}>
                 <span>
-                  <FaPhoneAlt/>
-                  <p>0970-759-9810</p>
+                  <FaPhoneAlt size={"15px"}/>
+                  <p>0931-106-6088</p>
                 </span>
                 <span>
-                  <FaEnvelope/>
-                  <p>pupsouvenirshop@gmail.com</p>
+                  <FaEnvelope size={"15px"}/>
+                  <p>tanglawclothing@gmail.com</p>
                 </span> 
                 <span>
-                  <GoLocation />
-                  <p>PUP Sta Mesa Main Campus</p>
+                  <GoLocation size={"15px"}/>
+                  <p>247 Teresa St. Sta. Mesa, Manila</p>
                 </span>
                 <span>
-                  <FaFacebook/>
-                  <p>PUP Souvenir Shop</p>
+                  <FaFacebook size={"15px"}/>
+                  <p>Tanglaw Clothing</p>
                 </span>
               </div>
             </Card>

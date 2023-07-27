@@ -135,7 +135,7 @@ const Header = () => {
                 <li>
                   <AdminOnlyLink>
                     <Link to="/admin/home">
-                    <button className='--btn --btn-primary1'>Admin</button>
+                    <button className={'--btn --btn-primary2'}>Admin</button>
                     </Link>
                   </AdminOnlyLink>
                 </li>
@@ -155,7 +155,7 @@ const Header = () => {
               <div className={styles["header-right"]} onClick={hideMenu}>
                   <span className={styles.links}>
                     <ShowOnLogout><NavLink to='/login' className={activeLink}>Login</NavLink></ShowOnLogout>
-                    <ShowOnLogin><a href='#home' style={{color: "#ff7722"}}>
+                    <ShowOnLogin><a href='#home' style={{color: "#fdca0f"}}>
                       <FaUserCircle size={16}/>
                       Hi, {displayName}
                     </a></ShowOnLogin>

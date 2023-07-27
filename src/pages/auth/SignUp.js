@@ -142,7 +142,7 @@ const registerUser = (e) =>{
                   {visible ? <BsEye/> :  <BsEyeSlash/>}
                 </div>
               </div>
-              <button type="submit" className='--btn --btn-primary --btn-block'>Sign Up</button>
+              <button type="submit" className='--btn --btn-primary3 --btn-block'>Sign Up</button>
               
           </form>
           <span className={styles.register}>

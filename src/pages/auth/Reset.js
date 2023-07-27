@@ -48,7 +48,7 @@ const resetPassword = (e) =>{
           
           <form onSubmit={resetPassword}>
               <input type='text' placeholder='Email' required value={email} onChange={(e) => setEmail(e.target.value)} />
-              <button type= 'submit' className='--btn --btn-primary --btn-block'>Reset Password</button>
+              <button type= 'submit' className='--btn --btn-primary3 --btn-block'>Reset Password</button>
               <div className={styles.links}>
                 <p>
                 <Link to ='/login'>--Login</Link>

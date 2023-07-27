@@ -1,6 +1,7 @@
 .filter {
     h4 {
       margin-top: 1rem;
+      font-weight: 600;
     }
     .category button {
       display: block;
@@ -8,25 +9,27 @@
       width: 80%;
       height: 3rem;
       font-size: 1.5rem;
+      font-weight: 500;
       border: none;
       background-color: transparent;
       cursor: pointer;
       // margin-bottom: 5px;
       border-bottom: 1px solid #777;
     }
+    
   
-    .brand {
-      select {
-        font-size: 1.6rem;
-        font-weight: 300;
-        padding: 5px;
+    // .brand {
+    //   select {
+    //     font-size: 1.6rem;
+    //     font-weight: 500;
+    //     padding: 5px;
   
-        width: 80%;
-        border: 1px solid #777;
-        border-radius: 3px;
-        outline: none;
-      }
-    }
+    //     width: 80%;
+    //     border: 1px solid #777;
+    //     border-radius: 3px;
+    //     outline: none;
+    //   }
+    // }
   }
   
   @media screen and (max-width: 700px) {
@@ -53,7 +56,7 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 2px;
+    width: 3px;
     height: 100%;
-    background-color: #760700;
+    background-color: #dc0000;
   }

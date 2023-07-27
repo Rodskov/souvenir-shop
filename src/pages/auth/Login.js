@@ -98,7 +98,7 @@ const Login = () => {
                   {visible ? <BsEye/>:   <BsEyeSlash/>}
                 </div>
               </div>
-              <button type='submit' className='--btn --btn-primary --btn-block'>Login</button>
+              <button type='submit' className='--btn --btn-primary3 --btn-block'>Login</button>
               <div className={styles.links}>
                 <Link to ='/reset'>Reset Password</Link>
               </div>

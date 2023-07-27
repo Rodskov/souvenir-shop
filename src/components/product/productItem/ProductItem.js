@@ -31,15 +31,15 @@ const ProductItem = ({product, id, name, price, desc, imageURL}) => {
 
     </Link>
     <div className={styles.content}>
-      <div className={styles.details}>
-        <p>{`₱${price}`}</p>
+      <div className={styles.details}>    
         <h4>{shortenText(name, 42)}</h4>
+        <p>{`₱${price}`}</p>
       </div>
       {/* <p className={styles.desc}>{shortenText(desc, 200)}</p> */}
 
-      <button className={styles.cartIcon} onClick={() => addToCart(product)}>
+      {/* <button className={styles.cartIcon} onClick={() => addToCart(product)}>
           <FaShoppingCart size={20} />
-      </button>
+      </button> */}
       {/* {grid ? (
         <button className={styles.cartIcon} onClick={() => addToCart(product)}>
           <FaShoppingCart size={20} />

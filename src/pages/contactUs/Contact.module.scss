@@ -1,16 +1,30 @@
 .contact {
+ .card, .card2 {
+    width: 100%;
+    max-width: 500px; 
+    margin-bottom: 1rem;
+    box-sizing: border-box; 
+}
     .card {
       padding: 1rem;
       border: 1px solid #ccc;
     }
-    textarea{
-      resize: none;
+    
+    h2{
+      font-weight: 700;
     }
   
     .card2 {
       padding: 2rem;
       background-color: #760700;
       color: #fff;
+      h3{
+        font-weight: 700;
+      }
+      p{
+        font-size: 1.3rem;
+      }
+      
       h3,
       p {
         color: #fff;
@@ -24,10 +38,12 @@
           margin-bottom: 1rem;
           a,
           p {
-            margin-left: 5px;
+            font-size: 1.5rem;
+            margin-left: 2rem;
           }
         }
       }
+      
       
     }
   
@@ -43,7 +59,7 @@
         label {
           display: block;
           font-size: 1.4rem;
-          font-weight: 500;
+          font-weight: 600;
           color: #760700;
         }
         input[type="text"],
@@ -68,9 +84,17 @@
   }
   
   @media screen and (max-width: 700px) {
-    .contact {
-      .section {
-        flex-direction: column;
-      }
+    .contact .section {
+      flex-direction: column;
+      align-items: center; 
+    }
+  
+    .contact .card,
+    .contact .card2 {
+      margin-right: 0; 
+    }
+  
+    .contact .details {
+      width: 100%; 
     }
   }

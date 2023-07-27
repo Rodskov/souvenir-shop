@@ -80,7 +80,7 @@ const Wishlist = () => {
             cols='30'
             rows='10'
           ></textarea>
-          <button type='submit' className='--btn --btn-primary'>
+          <button type='submit' className='--btn --btn-primary3'>
             Submit Wishlist
           </button>
         </form>

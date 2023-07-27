@@ -45,7 +45,14 @@ section {
   margin: 0 auto;
   padding: 0 20px;
 }
+textarea{
+  resize: none;
 
+  font-family: var(--font-family);  
+
+  font-size: 10px;   
+
+}
 /* UTILITY CLASSES */
 
 /* Flex */
@@ -274,11 +281,11 @@ p {
 
 .--btn {
   font-size: 1.6rem;
-  font-weight: 400;
-  padding: 6px 8px;
+  font-weight: 600;
+  padding: 8px 12px;
   margin: 0 5px 0 0;
   border: 1px solid transparent;
-  border-radius: 3px;
+  border-radius: 30px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -307,6 +314,14 @@ p {
   color: #000000;
   background: #ffca00;
 }
+.--btn-primary2 {
+  color: #760700;
+  background: #ffca00;
+}
+.--btn-primary3 {
+  color: white;
+  background: #760700;
+}
 
 .--btn-secondary {
   color: #fff;
@@ -315,7 +330,7 @@ p {
 }
 .--btn-danger {
   color: #fff;
-  background: #a20b00;
+  background: #dc0000;
 }
 
 .--btn-success {

@@ -2,8 +2,10 @@
     width: 24rem;
     background-color: #fff;
     margin: 5px;
-    height: 36rem;
+    height: 32rem;
     position: relative;
+    border-radius: 15px;
+    box-shadow: 0px 5px 6px 3px #c1c1c1 ;
     .img {
       padding: 1rem;
       width: 100%;
@@ -21,24 +23,26 @@
     .content {
       text-align: center;
       position: absolute;
-      bottom: 0.4rem;
+      bottom: 0.2rem;
       left: 0;
       width: 100%;
   
       .details {
-        // display: flex;
-        // justify-content: space-between;
-        // align-items: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2em;
         padding: 1rem;
         h4 {
-          font-weight: 400;
-          font-size: 2rem;
-          font-weight: 300;
+          text-align: left;
+          font-weight: 600;
+          font-size: 1.4rem;
+          
         }
         p {
-          font-weight: 500;
-          color: #760700;
-          font-size: 1.8rem;
+          font-weight: 600;
+          color: #dc0000;
+          font-size: 1.6rem;
         }
       }
       // button {
@@ -46,24 +50,24 @@
       //   width: 100%;
       // }
 
-      .cartIcon {
-        position: absolute;
-        bottom: 30rem; 
-        right: 1rem; 
+      // .cartIcon {
+      //   position: absolute;
+      //   bottom: 30rem; 
+      //   right: 1rem; 
 
-        // Add a small box background for the cart icon
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #760700; 
-        width: 4rem; // Adjust the width of the box
-        height: 3.5rem; // Adjust the height of the box
+      //   // Add a small box background for the cart icon
+      //   display: inline-flex;
+      //   align-items: center;
+      //   justify-content: center;
+      //   background-color: #760700; 
+      //   width: 4rem; // Adjust the width of the box
+      //   height: 3.5rem; // Adjust the height of the box
 
-        &:hover {
-          background-color: rgba(206, 52, 0, 0.844)
-          // #fdcd0b 
-        }
-      }
+      //   &:hover {
+      //     background-color: rgba(206, 52, 0, 0.844)
+      //     // #fdcd0b 
+      //   }
+      // }
 
       // button cart icon
       button {

@@ -13,7 +13,7 @@
       padding: 1.5rem;
       animation: slide-up 0.5s ease;
       h2 {
-        color: var(--color-danger);
+        color: #dc0000;
         text-align: center;
       }
       form {
@@ -28,7 +28,7 @@
           margin: 1rem auto;
           width: 100%;
           border: 1px solid #777;
-          border-radius:5px;
+          border-radius:15px;
           outline: none;
         }
         .links {
@@ -59,6 +59,7 @@
         position: absolute;
         right: 3%;
         font-size: 1.5em;
+        color: #dc0000;
         
       }
       .icon-span{
