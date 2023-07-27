@@ -2,7 +2,7 @@
 
 :root {
   --font-family: "Poppins", sans-serif;
-  --dark-blue: #0a1930;
+  --dark-blue: #760700;
   --light-blue: #1f93ff;
 
   --color-white: #fff;
@@ -16,7 +16,7 @@
 
   --color-primary: #007bff;
   --color-success: #28a745;
-  --color-danger: orangered;
+  --color-danger: rgb(255, 118, 68);
 }
 
 * {
@@ -32,6 +32,7 @@ html {
 
 body {
   font-family: var(--font-family);
+  color: #ff7722;
 }
 
 section {

@@ -21,7 +21,7 @@
     .content {
       text-align: center;
       position: absolute;
-      bottom: 0;
+      bottom: 1.2rem;
       left: 0;
       width: 100%;
   
@@ -37,7 +37,7 @@
         }
         p {
           font-weight: 500;
-          color: orangered;
+          color: #760700;
           font-size: 1.8rem;
         }
       }
@@ -55,13 +55,13 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background-color: orangered; 
+        background-color: #760700; 
         width: 4rem; // Adjust the width of the box
         height: 3.5rem; // Adjust the height of the box
 
         &:hover {
-          background-color: rgba(135, 55, 29, 0.844); 
-          
+          background-color: rgba(206, 52, 0, 0.844)
+          // #fdcd0b 
         }
       }
 

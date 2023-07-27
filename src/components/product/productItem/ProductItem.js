@@ -35,7 +35,7 @@ const ProductItem = ({product, id, name, price, desc, imageURL}) => {
         <p>{`₱${price}`}</p>
         <h4>{shortenText(name, 18)}</h4>
       </div>
-      <p className={styles.desc}>{shortenText(desc, 200)}</p>
+      {/* <p className={styles.desc}>{shortenText(desc, 200)}</p> */}
 
       <button className={styles.cartIcon} onClick={() => addToCart(product)}>
           <FaShoppingCart size={20} />

@@ -1,4 +1,4 @@
-import mainLogo from "./shop-logo.png";
+import mainLogo from "./logo.jpg";
 
 
 

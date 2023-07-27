@@ -23,7 +23,7 @@
       position: relative;
     }
     .logo img {
-      width: 35%;
+      width: 20%;
       height: auto;
       object-fit: contain;
       cursor: pointer;
@@ -32,7 +32,7 @@
     
   
     nav {
-      width: 75%;
+      width: 160%;
       display: flex;
       justify-content: space-between;
       ul {
@@ -49,7 +49,7 @@
           a {
             color: #fff;
             &:hover {
-              color: orangered;
+              color: #fdca0f;
             }
           }
         }
@@ -64,7 +64,7 @@
         color: #fff;
         position: relative;
         &:hover {
-          color: orangered;
+          color: #fdca0f;
         }
         &.active {
           color: var(--color-danger);
@@ -103,6 +103,13 @@
     }
   
     @media screen and (max-width: 800px) {
+      .logo img{
+        width: 25%;
+        height: auto;
+        object-fit: contain;
+        cursor: pointer;
+      }
+
       nav {
         display: block;
         position: absolute;

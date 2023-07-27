@@ -11,10 +11,13 @@ import { useSelector } from 'react-redux';
 import { selectProducts } from '../../../redux/slice/productSlice';
 
 const categories = [
-  {id: 1, name: "Apparel"},
-  {id: 2, name: "Accessories"},
-  {id: 3, name: "Stationary"},
-  {id: 4, name: "Miscellaneous"},
+  {id: 1, name: "Activewear"},
+  {id: 2, name: "Casual Polo"},
+  {id: 3, name: "Drift Collection"},
+  {id: 4, name: "Hoodies"},
+  {id: 5, name: "Klasika Collection"},
+  {id: 6, name: "Klasika Minimalista Collection"},
+  {id: 7, name: "Special and Limited Collection"},
 ]
 
 const initialState = {
