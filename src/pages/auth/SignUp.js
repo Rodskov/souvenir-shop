@@ -132,14 +132,14 @@ const registerUser = (e) =>{
               <div className={styles['password-box']}>
                 <input type={visible ? "text" : "password"} placeholder='Password' value={password} onChange={(e) => {setPassword(e.target.value); handleChange(e.target.value)}}  required />
                 <div onClick={()=> setVisible(!visible)} className={styles.eyePassword}>
-                    {visible ? <BsEyeSlash/> :  <BsEye/>}
+                    {visible ? <BsEye/>  :  <BsEyeSlash/>}
                   </div>
               </div>
 
               <div className={styles['password-box']}>
               <input type={visible ? "text" : "password"} placeholder='Confirm Password' value={cPassword} onChange={(e) => setCPassword(e.target.value)} required />
               <div onClick={()=> setVisible(!visible)} className={styles.eyePassword}>
-                  {visible ? <BsEyeSlash/> :  <BsEye/>}
+                  {visible ? <BsEye/> :  <BsEyeSlash/>}
                 </div>
               </div>
               <button type="submit" className='--btn --btn-primary --btn-block'>Sign Up</button>

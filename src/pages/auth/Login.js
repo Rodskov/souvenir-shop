@@ -95,7 +95,7 @@ const Login = () => {
               <div className={styles['password-box']}>
                 <input type={visible ? "text" : "password"} placeholder='Password' required value={password} onChange={(e) => setPassword(e.target.value)} />
                 <div onClick={()=> setVisible(!visible)} className={styles.eyePassword}>
-                  {visible ? <BsEyeSlash/> :  <BsEye/>}
+                  {visible ? <BsEye/>:   <BsEyeSlash/>}
                 </div>
               </div>
               <button type='submit' className='--btn --btn-primary --btn-block'>Login</button>
