@@ -299,9 +299,15 @@ p {
 }
 
 .--btn-primary {
-  color: #fff;
-  background: #007bff;
+  color: #ffca00;
+  background: #760700;
 }
+
+.--btn-primary1 {
+  color: #000000;
+  background: #ffca00;
+}
+
 .--btn-secondary {
   color: #fff;
   border: 1px solid #fff;
@@ -309,7 +315,7 @@ p {
 }
 .--btn-danger {
   color: #fff;
-  background: orangered;
+  background: #a20b00;
 }
 
 .--btn-success {

@@ -107,7 +107,7 @@ const Cart = () => {
                     {(price * cartQuantity).toFixed(2)}
                   </td>
                   <td className={styles.icons}>
-                    <FaTrashAlt size={19} color='red' onClick={() => removeFromCart(cart)}/>
+                    <FaTrashAlt size={19} color='#760700' onClick={() => removeFromCart(cart)}/>
                   </td>
                 </tr>
               );

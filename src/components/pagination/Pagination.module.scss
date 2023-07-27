@@ -7,11 +7,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  
+    color: black;
+    
     .hidden {
       display: none;
     }
-  
+    
     li {
       font-size: 1.4rem;
       border: 1px solid #ccc;
@@ -22,15 +23,20 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
+      // color: #d7a900;
+      
     }
     p {
       margin-left: 1rem;
+    
       .page {
-        color: var(--color-danger);
+        color: #760700;
       }
     }
   }
   .active {
-    background-color: var(--color-danger);
-    color: #fff;
+    background-color: #760700;
+    // color: #fff;
+    color: #d7a900;
+    
   }

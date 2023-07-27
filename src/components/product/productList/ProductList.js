@@ -52,7 +52,7 @@ const ProductList = ({products}) => {
         </div> */}
 
         {/* Search Icon */}
-        <div>
+        <div className={styles.icons}>
           <Search value={search} onChange={(e) => setSearch(e.target.value)}/>
         </div>
 

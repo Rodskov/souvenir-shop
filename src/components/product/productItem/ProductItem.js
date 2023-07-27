@@ -33,7 +33,7 @@ const ProductItem = ({product, id, name, price, desc, imageURL}) => {
     <div className={styles.content}>
       <div className={styles.details}>
         <p>{`₱${price}`}</p>
-        <h4>{shortenText(name, 18)}</h4>
+        <h4>{shortenText(name, 42)}</h4>
       </div>
       {/* <p className={styles.desc}>{shortenText(desc, 200)}</p> */}
 

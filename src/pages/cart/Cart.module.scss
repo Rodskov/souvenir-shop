@@ -9,8 +9,8 @@
       font-size: 1.4rem;
   
       thead {
-        border-top: 2px solid var(--light-blue);
-        border-bottom: 2px solid var(--light-blue);
+        border-top: 2px solid #760700;
+        border-bottom: 2px solid #760700;
       }
   
       th {
@@ -22,6 +22,8 @@
         vertical-align: top;
         text-align: left;
         padding: 8px;
+        
+        
         &.icons {
           > * {
             margin-right: 5px;
@@ -32,6 +34,7 @@
   
       tr {
         border-bottom: 1px solid #ccc;
+        color: #760700;
       }
   
       tr:nth-child(even) {
@@ -51,11 +54,12 @@
           justify-content: space-between;
           align-items: center;
           h3 {
-            color: var(--color-danger);
+            color: #760700;
           }
         }
         button {
           margin-top: 5px;
+          // color: #ffca00;
         }
       }
     }
@@ -64,7 +68,7 @@
     display: flex;
     align-items: center;
     button {
-      border: 1px solid var(--darkblue);
+      border: 1px solid #7608004a;
     }
     & > * {
       margin-right: 1rem;
