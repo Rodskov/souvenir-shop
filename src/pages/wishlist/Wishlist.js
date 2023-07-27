@@ -11,11 +11,15 @@ import { db } from '../../firebase/config'
 
 import spinnerImg from "../../assets/spinner.jpg"
 import Card from '../../components/card/Card'
+import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage'
 
 const Wishlist = () => {
     
     const [wishlistData, setWishlistData] = useState("")
     const [newWishlist, setNewWishlist] = useState("")
+    const [imageArray, setImageArray] = useState([])
+    const [imageLinkArray, setImageLinkArray] = useState([])
+    const [imageDownloadArray, setImageDownloadArray] = useState([])
 
     const isLoggedIn = useSelector(selectIsLoggedIn); 
     const userID = useSelector(selectUserID)
@@ -23,7 +27,56 @@ const Wishlist = () => {
     const [loading, setLoading] = useState(true);
   
     const  [eventChanger, setEventChanger] = useState(0);
+
+    const storage = getStorage()
+
+    const imageStyle = {
+    //display: imageDisplay,
+    height: "108px",
+    width: "192px"
+    }
+
+    const linkFetcher = async () => {
+      console.log("LinkFetcher called")
+      try{
+        const urls = await Promise.all(imageLinkArray.map((URLs) => {
+          const imageRef = ref(storage, URLs);
+          return getDownloadURL (imageRef);
+        })
+        );
+          setImageDownloadArray(urls)
+          console.log(imageDownloadArray)
+      } catch(error) {
+        console.error("error", error)
+      }
+    }
+
+    const fileReceiver = async (e) => {
+      console.log(e.target.files);
+      const arrayImage = e.target.files
+      setImageLinkArray([])
+      setImageDownloadArray([])
+      console.log(typeof arrayImage)
+      console.log(arrayImage)
+      const imageLinks = []
+      setImageArray(e.target.files);
+      for(var i=0; i < arrayImage.length; i++){
+        const fileName = arrayImage[i].name
+        console.log(fileName)
+        imageLinks.push("gs://pup-souvenir-shop.appspot.com/wishlist/"+fileName)
+        const imageRef = ref(storage, "wishlist/"+fileName)
+        await uploadBytes(imageRef, arrayImage[i]).then((snapshot) => {
+          console.log(fileName+" uploaded")
+        })
+      }
+        setImageLinkArray(imageLinks)
+        console.log(imageLinks)
+        console.log(imageLinkArray)
+        linkFetcher()
+    };
+
     
+  
   
     const addWishlist = (e) =>{
       e.preventDefault()
@@ -35,6 +88,7 @@ const Wishlist = () => {
         userName,
         wishlist: newWishlist,
         wishlistDate: date,
+        images: "",
         createdAt: Timestamp.now().toDate()
       }
       if (!isLoggedIn) {
@@ -80,6 +134,15 @@ const Wishlist = () => {
             cols='30'
             rows='10'
           ></textarea>
+          <h5>Choose your image/s:</h5>
+          <input type="file" onChange={fileReceiver} multiple/>
+          <div>
+            {imageDownloadArray.map((data, i) => {
+              return(
+                <img style={imageStyle} src={data}></img>
+              )
+            })}
+          </div>
           <button type='submit' className='--btn --btn-primary3'>
             Submit Wishlist
           </button>
