@@ -1,5 +1,5 @@
 .navbar {
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #7608003e;
     min-height: 80vh;
   
     .user {
@@ -8,16 +8,16 @@
       align-items: center;
       flex-direction: column;
       padding: 4rem;
-      background-color: var(--light-blue);
+      background-color: #f6c500;
   
       h4 {
-        color: #fff;
+        color: #000000;
       }
     }
   
     nav ul {
       li {
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #7608003e;
         padding: 1rem;
         position: relative;
         a {
@@ -39,5 +39,5 @@
     top: 0;
     width: 4px;
     height: 100%;
-    background-color: orangered;
+    background-color: #760700;
   }

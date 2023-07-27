@@ -130,7 +130,7 @@ const ViewProducts = () => {
                   <FaEdit size={20} color='green'/>
                   </Link>
                   &nbsp;
-                  <FaTrashAlt size={18} color='red'
+                  <FaTrashAlt size={18} color='#760700'
                   onClick={() => confirmDelete(id, imageURL)}/>
                 </td>
               </tr>

@@ -9,6 +9,7 @@
         display: block;
         font-size: 1.4rem;
         font-weight: 500;
+        color: #760700;
       }
       input[type="text"],
       input[type="number"],
@@ -33,11 +34,11 @@
       // }
   
       .progress {
-        background-color: #aaa;
+        background-color: #ffca00;
         border: 1px solid transparent;
         border-radius: 10px;
         .progress-bar {
-          background-color: var(--light-blue);
+          background-color: #760700;
           border: 1px solid transparent;
           border-radius: 10px;
           color: #fff;
@@ -52,4 +53,5 @@
   .group {
     border: 1px solid var(--dark-blue);
     padding: 5px;
+    color: #760700;
   }
