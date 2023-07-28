@@ -26,15 +26,39 @@ const ProductDetails = () => {
     return cart.id === id
   })
 
-  const colorRadio = (e) => {
-    console.log(e.target.value)
-    setSelectedColor(e.target.value)
-  }
+  // const colorRadio = (e) => {
+  //   console.log(e.target.value)
+  //   setSelectedColor(e.target.value)
+  // }
 
-  const sizeRadio = (e) => {
-    console.log(e.target.value)
-    setSelectedSize(e.target.value)
-  }
+  // const sizeRadio = (e) => {
+  //   console.log(e.target.value)
+  //   setSelectedSize(e.target.value)
+  // }
+
+  const colorButton = (data, i) => (
+    <button
+      key={i}
+      className={`${styles.colorButton} ${
+        selectedColor === data ? styles.active : ""
+      }`}
+      onClick={() => setSelectedColor(data)}
+    >
+      {data}
+    </button>
+  );
+
+  const sizeButton = (data, i) => (
+    <button
+      key={i}
+      className={`${styles.sizeButton} ${
+        selectedSize === data ? styles.active : ""
+      }`}
+      onClick={() => setSelectedSize(data)}
+    >
+      {data}
+    </button>
+  );
 
   useEffect(() => {
     setProduct(document)
@@ -92,7 +116,7 @@ const ProductDetails = () => {
               <p>Description: {product.desc}</p>
               <p>
                 <b>Colors:</b>{" "}
-                {product.color ? (
+                {/* {product.color ? (
                   product.color.map((data, i) => (
                     <div key={i}>
                       <input
@@ -103,14 +127,20 @@ const ProductDetails = () => {
                       />
                       <label> {data}</label>
                     </div>
-                  ))
+                  )) */}
+
+                  {product.color ? (
+                    <div className={styles.colorButtons}>
+                      {product.color.map((data, i) =>
+                      colorButton(data, i))}
+                    </div>
                 ) : (
                   <span>No color variation available.</span>
                 )}
               </p>
               <p>
                 <b>Size:</b>{" "}
-                {product.size ? (
+                {/* {product.size ? (
                   product.size.map((data, i) => (
                     <div key={i}>
                       {console.log(data)}
@@ -122,7 +152,12 @@ const ProductDetails = () => {
                       />
                       <label> {data}</label>
                     </div>
-                  ))
+                  )) */}
+
+                {product.size ? (
+                  <div className={styles.sizeButtons}>
+                    {product.size.map((data, i) => sizeButton(data, i))}
+                  </div>
                 ) : (
                   <span>No size variation available.</span> 
                 )}
@@ -142,7 +177,7 @@ const ProductDetails = () => {
                 )}
                 
               </div>
-              <button className="--btn --btn-danger" onClick={() => addToCart(product, selectedSize, selectedColor)}>ADD TO CART</button>
+              <button className="--btn --btn-primary4" onClick={() => addToCart(product, selectedSize, selectedColor)}>ADD TO CART</button>
             </div>
           </div>
         </>
