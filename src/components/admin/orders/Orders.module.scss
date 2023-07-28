@@ -2,6 +2,7 @@
     padding: 5px;
     width: 100%;
     overflow-x: auto;
+    color: #000000;
   
     table {
       border-collapse: collapse;
@@ -9,8 +10,8 @@
       font-size: 1.4rem;
   
       thead {
-        border-top: 2px solid var(--light-blue);
-        border-bottom: 2px solid var(--light-blue);
+        border-top: 2px solid #760700;
+        border-bottom: 2px solid #760700;
       }
   
       th {
@@ -32,14 +33,15 @@
   
       tr {
         border-bottom: 1px solid #ccc;
-        cursor: pointer;
+        // cursor: pointer;
+        // color: #000000;
       }
   
       tr:nth-child(even) {
         background-color: #eee;
       }
       .pending {
-        color: orangered;
+        color: #760700;
         font-weight: 500;
       }
       .delivered {

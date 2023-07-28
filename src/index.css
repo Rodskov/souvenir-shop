@@ -306,7 +306,7 @@ p {
 }
 
 .--btn-primary {
-  color: #ffca00;
+  color: #fff;
   background: #760700;
 }
 
@@ -322,6 +322,13 @@ p {
   color: white;
   background: #760700;
 }
+
+.--btn-primary4 {
+  color: #fff;
+  background: #760700;
+  font-weight: 600;
+  font-size: 16px;
+};
 
 .--btn-secondary {
   color: #fff;
