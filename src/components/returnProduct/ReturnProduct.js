@@ -13,39 +13,38 @@ import spinnerImg from "../../assets/spinner.jpg"
 
 
 const ReturnProduct = () => {
-  const [rate, setRate] = useState(0)
   const [review, setReview] = useState("")
-  const [product, setProduct] = useState(null)
-  const {id} = useParams()
-  const { document } = useFetchDocuments("products", id)
-  const products = useSelector(selectProducts)
+  const orders = useSelector(selectProducts)
   const userID = useSelector(selectUserID)
   const userName = useSelector(selectUserName)
+  const [order, setOrder] = useState(null)
+  const [product, setProduct] = useState(null);
+  const {id} = useParams()
+  const { document: orderDocument } = useFetchDocuments("orders", id);
+  const { document: productDocument } = useFetchDocuments("products", id);
 
   useEffect(() => {
-    setProduct(document)
-  }, [document])
-  
+    setOrder(orderDocument);
+    setProduct(productDocument);
+  }, [orderDocument, productDocument]);
 
-  const submitReview = (e) =>{
+  const returnProduct = (e) =>{
     e.preventDefault()
     const today = new Date();
     const date =  today.toDateString();
 
-    const reviewConfig = {
+    const returnConfig = {
       userID,
       userName,
       productID: id,
-      rate,
       review,
       reviewDate: date,
       createdAt: Timestamp.now().toDate()
     }
 
     try {
-      addDoc(collection(db, "reviews"), reviewConfig);
+      addDoc(collection(db, "reviews"), returnConfig);
       toast.success("Return Form Submitted");
-      setRate(0)
       setReview("")
     } catch(error) {
       toast.error(error.message);
@@ -56,17 +55,17 @@ const ReturnProduct = () => {
     <section>
       <div className={`container ${styles.review}`}>
         <h2>Product Return Form</h2>
-        {product === null ? (
+        {order === null ? (
           <img src={spinnerImg} alt='Loading...' style={{width: "60px"}}/>
         ):(
           <>
-            <p><b>Product Name </b> {product.name}</p>
+            <p><b>Product Name </b> {order.name}</p>
           <img src={product.imageURL} alt={product.name} style={{width:"250px"}} />
         </>
         )}
         
         <Card cardClass={styles.card}>
-          <form onSubmit={(e)=> submitReview(e)}>
+          <form onSubmit={(e)=> returnProduct(e)}>
             <label>Return Details:</label>
             <textarea value= {review} required onChange= {(e)=> setReview(e.target.value)}cols="30" rows="10"></textarea>
             <button type='submit' className='--btn --btn-primary'>Submit Request</button>

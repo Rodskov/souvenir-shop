@@ -3,7 +3,7 @@ import styles from "./ReviewProducts.module.scss"
 import { useSelector } from 'react-redux'
 import { selectProducts } from '../../redux/slice/productSlice'
 import { selectUserID, selectUserName } from '../../redux/slice/authSlice'
-import { useParams } from 'react-router-dom'
+import { useParams} from 'react-router-dom'
 import Card from '../card/Card'
 import StarsRating from 'react-star-rate'
 import { toast } from 'react-toastify'
@@ -62,7 +62,7 @@ const ReviewProducts = () => {
         ):(
           <>
             <p><b>Product Name </b> {product.name}</p>
-          <img src={product.imageURL} alt={product.name} style={{width:"250px"}} />
+          <img src={product.imageURL} alt={product.name} style={{ width: "250px" }} />
         </>
         )}
         
