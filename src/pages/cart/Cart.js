@@ -52,13 +52,13 @@ const Cart = () => {
   return <section>
     <div className={`container ${styles.table}`}>
       <h2>Shopping Cart</h2>
+       <div className={styles.continue}>
+        
+        <Link to="/#products">&larr; Continue Shopping</Link>
+      </div>
       {cartItems.length === 0 ? (
         <>
           <p>Your cart is currently empty.</p>
-          <br />
-          <div>
-            <Link to="/#products">&larr; Continue Shopping</Link>
-          </div>
         </>
       ) : (
         <>
@@ -117,10 +117,7 @@ const Cart = () => {
         <div className={styles.summary}>
           <button className='--btn --btn-danger' onClick={clearCart}>Clear Cart</button>
           <div className={styles.checkout}>
-            <div>
-              <Link to="/#products">&larr; Continue Shopping</Link>
-            </div>
-            <br />
+    
             <Card cardClass={styles.card}>
               <p><b>{`Cart item(s): ${cartTotalQuantity}`}</b></p>
               <div className={styles.text}>

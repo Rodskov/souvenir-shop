@@ -2,7 +2,11 @@
     padding: 5px;
     width: 100%;
     overflow-x: auto;
-  
+
+    .continue{
+      margin: 2em 0;
+    }
+
     table {
       border-collapse: collapse;
       width: 100%;
@@ -73,4 +77,15 @@
     & > * {
       margin-right: 1rem;
     }
+  }
+  @media screen and (max-width: 600px) {
+    /* Adjust table appearance for smaller screens */
+    .table table {
+      font-size: 1.2rem;
+    }
+    .count button {
+      font-size: 1.2em;
+      padding: 5px 8px;
+    }
+    
   }
