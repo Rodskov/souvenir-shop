@@ -3,7 +3,7 @@ import styles from "./ReturnProduct.module.scss"
 import { useSelector } from 'react-redux'
 import { selectProducts } from '../../redux/slice/productSlice'
 import { selectUserID, selectUserName } from '../../redux/slice/authSlice'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Card from '../card/Card'
 import { toast } from 'react-toastify'
 import { Timestamp, addDoc, collection } from 'firebase/firestore'
@@ -11,22 +11,18 @@ import { db } from '../../firebase/config'
 import useFetchDocuments from '../../customHooks/useFetchDocuments'
 import spinnerImg from "../../assets/spinner.jpg"
 
-
 const ReturnProduct = () => {
   const [review, setReview] = useState("")
-  const orders = useSelector(selectProducts)
+  const [order, setOrder] = useState(null)
+  const {id} = useParams()
+  const { document } = useFetchDocuments("orders", id)
+  const products = useSelector(selectProducts)
   const userID = useSelector(selectUserID)
   const userName = useSelector(selectUserName)
-  const [order, setOrder] = useState(null)
-  const [product, setProduct] = useState(null);
-  const {id} = useParams()
-  const { document: orderDocument } = useFetchDocuments("orders", id);
-  const { document: productDocument } = useFetchDocuments("products", id);
 
   useEffect(() => {
-    setOrder(orderDocument);
-    setProduct(productDocument);
-  }, [orderDocument, productDocument]);
+    setOrder(document)
+  }, [document])
 
   const returnProduct = (e) =>{
     e.preventDefault()
@@ -53,14 +49,17 @@ const ReturnProduct = () => {
 
   return (
     <section>
+      <div className={styles.continue}>
+        <Link to={`/order-details/${id}`}>&larr; Continue Shopping</Link>
+      </div>
       <div className={`container ${styles.review}`}>
         <h2>Product Return Form</h2>
         {order === null ? (
           <img src={spinnerImg} alt='Loading...' style={{width: "60px"}}/>
         ):(
           <>
-            <p><b>Product Name </b> {order.name}</p>
-          <img src={product.imageURL} alt={product.name} style={{width:"250px"}} />
+            <p><b>Product Name: </b> {order.name}</p>
+          <img src={order.imageURL} alt={order.name} style={{width:"250px"}} />
         </>
         )}
         
