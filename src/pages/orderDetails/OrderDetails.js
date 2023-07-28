@@ -41,6 +41,7 @@ const OrderDetails = () => {
                     <tr>
                         <th>S/N</th>
                         <th>Product</th>
+                        <th>Variation</th>
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Total</th>
@@ -49,7 +50,7 @@ const OrderDetails = () => {
                 </thead>
                 <tbody>
                     {order.cartItems.map((cart, index)=>{
-                        const{id, name, price, imageURL, cartQuantity} = cart
+                        const{id, name, price, imageURL, cartQuantity, size, color } = cart
                         return(
                             <tr key ={id}>
                                 <td>
@@ -61,13 +62,14 @@ const OrderDetails = () => {
                                     </p>
                                     <img src = {imageURL} alt={name} style={{width: "100px"}} />
                                 </td>
-                                <td>{price}</td>
+                                <td>{size}-{color}</td>
+                                <td>₱{price}</td>
                                 <td>{cartQuantity}</td>
                                 <td>
-                                    {(price * cartQuantity).toFixed(2)}
+                                    ₱{(price * cartQuantity).toFixed(2)}
                                 </td>
                                 <td className={styles.icons}> 
-                                    <button className='--btn --btn-primary'><Link to={`/review-product/${order.id}`}>Review Product</Link></button>
+                                    <button className='--btn --btn-primary'><Link to={`/review-product/${id}`}>Review Product</Link></button>
                                     <button className='--btn --btn-danger'><Link to={`/return-product/${order.id}`}>Return Product</Link></button>
                                     <button className="--btn --btn-primary">
                                     <a
