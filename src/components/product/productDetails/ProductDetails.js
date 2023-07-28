@@ -65,7 +65,7 @@ const ProductDetails = () => {
   }, [document]);
 
   const addToCart = (product, selectedSize, selectedColor) => {
-    const variationID = `${product.id}-${selectedSize}-${selectedColor}`;
+    const variationID = product.id;
     const cartVariation = cartItems.find((item) => item.id === variationID);
 
     if (cartVariation) {
