@@ -152,6 +152,7 @@ const Header = () => {
                 </li>
               </ul> 
               
+              {/* <div className={styles["header-right"]} onClick={hideMenu}> */}
               <div className={styles["header-right"]} onClick={hideMenu}>
                   <span className={styles.links}>
                     <ShowOnLogout><NavLink to='/login' className={activeLink}>Login</NavLink></ShowOnLogout>
