@@ -54,6 +54,16 @@ const Slider = () => {
                 </div>
             )
         })}
+
+        <div className="slide-nav">
+            {Array.from({ length: slideLength }).map((_, index) => (
+            <div
+                key={index}
+                className={index === currentSlide ? "circle active" : "circle"}
+                onClick={() => setCurrentSlide(index)}
+            ></div>
+            ))}
+        </div>
     </div>
   )
 }
