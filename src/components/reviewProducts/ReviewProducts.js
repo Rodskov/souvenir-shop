@@ -3,7 +3,7 @@ import styles from "./ReviewProducts.module.scss"
 import { useSelector } from 'react-redux'
 import { selectProducts } from '../../redux/slice/productSlice'
 import { selectUserID, selectUserName } from '../../redux/slice/authSlice'
-import { useParams} from 'react-router-dom'
+import { Link, useParams, useNavigate} from 'react-router-dom'
 import Card from '../card/Card'
 import StarsRating from 'react-star-rate'
 import { toast } from 'react-toastify'
@@ -22,6 +22,8 @@ const ReviewProducts = () => {
   const products = useSelector(selectProducts)
   const userID = useSelector(selectUserID)
   const userName = useSelector(selectUserName)
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     setProduct(document)
@@ -55,6 +57,9 @@ const ReviewProducts = () => {
 
   return (
     <section>
+      <div className={styles.continue}>
+        <Link to={navigate(-1)}>&larr; Back to Order Details</Link>
+      </div>
       <div className={`container ${styles.review}`}>
         <h2>Review Products</h2>
         {product === null ? (

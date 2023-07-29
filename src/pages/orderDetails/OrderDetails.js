@@ -12,6 +12,14 @@ const OrderDetails = () => {
         setOrder(document)
     }, [document])
 
+    const extractProductIDFromVariationID = (variationID) => {
+        const index = variationID.indexOf("-");
+        if (index !== -1) {
+          return variationID.substring(0, index);
+        }
+        return variationID; // Return the same ID if no "-" is found
+      };
+
   return (
     <section>
         <div className={`container ${styles.table}`}>
@@ -68,7 +76,7 @@ const OrderDetails = () => {
                                 <td className={styles.icons}> 
                                     <div className={styles.actionButtons}>
                                         <button className={`${styles.reviewButton} --btn --btn-primary`}>
-                                            <Link to={`/review-product/${order.cartItems[0].id}`}>Review Product</Link>
+                                            <Link to={`/review-product/${extractProductIDFromVariationID(order.cartItems[0].id)}`}>Review Product</Link>
                                         </button>
                                         <button className={`${styles.returnButton} --btn --btn-danger`}>
                                             <Link to={`/return-product/${order.id}`}>Return Product</Link>

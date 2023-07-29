@@ -49,7 +49,7 @@ const ReturnProduct = () => {
   return (
     <section>
       <div className={styles.continue}>
-        <Link to={`/order-details/${id}`}>&larr; Continue Shopping</Link>
+        <Link to={`/order-details/${id}`}>&larr; Back to Order Details</Link>
       </div>
       <div className={`container ${styles.review}`}>
         <h2>Product Return Form</h2>
