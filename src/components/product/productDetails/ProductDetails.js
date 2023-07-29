@@ -9,6 +9,7 @@ import useFetchCollection from "../../../customHooks/useFetchCollection";
 import Card from "../../card/Card";
 import StarsRating from "react-star-rate";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
 
 const ProductDetails = () => {
   const {id} = useParams();
@@ -78,7 +79,7 @@ const ProductDetails = () => {
     console.log("Selected Size:", selectedSize);
 
     if (!selectedSize || !selectedColor) {
-      toast.error("Please select from the variations before adding to cart");
+      toast.error("Please select from the variations before adding to cart")
       return; // Do not add to cart if selectedSize is empty
     }
 
@@ -127,6 +128,7 @@ const ProductDetails = () => {
         />
       ) : (
         <>
+        <Card cardClass={styles.prod_det}>
           <div className={styles.details}>
             <div className={styles.img}>
               <img src={product.imageURL} alt={product.name} />
@@ -134,7 +136,7 @@ const ProductDetails = () => {
             <div className={styles.content}>
               <h3>{product.name}</h3>
               <p className={styles.price}>{`₱${product.price}`}</p>
-              <p>Description: {product.desc}</p>
+              {/* <p>Description: {product.desc}</p> */}
               <p>
                 <b>Colors:</b>{" "}
                 {/* {product.color ? (
@@ -150,7 +152,7 @@ const ProductDetails = () => {
                     </div>
                   )) */}
 
-                  {product.color ? (
+                  {product.color && product.color.length > 0 ? (
                     <div className={styles.colorButtons}>
                       {product.color.map((data, i) =>
                       colorButton(data, i))}
@@ -160,7 +162,6 @@ const ProductDetails = () => {
                 )}
               </p>
               <p>
-                <b>Size:</b>{" "}
                 {/* {product.size ? (
                   product.size.map((data, i) => (
                     <div key={i}>
@@ -174,8 +175,8 @@ const ProductDetails = () => {
                       <label> {data}</label>
                     </div>
                   )) */}
-
-                {product.size ? (
+                <b>Sizes:</b>{" "}
+                {product.size && product.size.length > 0 ? (
                   <div className={styles.sizeButtons}>
                     {product.size.map((data, i) => sizeButton(data, i))}
                   </div>
@@ -201,8 +202,25 @@ const ProductDetails = () => {
               <button className="--btn --btn-primary4" onClick={() => addToCart(product, selectedSize, selectedColor)}>ADD TO CART</button>
             </div>
           </div>
+          </Card>
+
+          
+
+          <Card cardClass={styles.card_desc}>
+              <h3>Product Description</h3>     
+              <p>Description: {product.desc}</p>
+          </Card>
+          
         </>
       )}
+      
+      {/* <Card>
+        <div className={styles.desc}>
+          <h3>Product Description</h3>     
+          <p>Description: {product.desc}</p>
+        </div>
+      </Card> */}
+      
       <Card cardClass={styles.card}>
         <h3>Product Reviews</h3>
         <div>
