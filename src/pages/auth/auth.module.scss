@@ -293,7 +293,7 @@
   }
   
   @media screen and (max-width: 700px) {
-    img {
+    .imgSignUp, .imgLogin , .imgReset {
       display: none;
     }
 
