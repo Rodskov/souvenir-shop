@@ -3,14 +3,15 @@ import styles from "./auth.module.scss"
 import loginBg from '../../assets/loginBg.jpg'
 import { Link, useNavigate } from 'react-router-dom'
 import Card from '../../components/card/Card'
-import { FaGoogle } from "react-icons/fa"
+import { FcGoogle } from "react-icons/fc"
 import { toast, ToastContainer } from 'react-toastify'
 import {GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup} from 'firebase/auth'
 import { auth } from "../../firebase/config"
 import Loader from "../../components/loader/Loader"
 import { useSelector } from 'react-redux'
 import { selectPreviousURL } from '../../redux/slice/cartSlice'
-import { BsEye, BsEyeSlash } from "react-icons/bs"
+import { BsEnvelope, BsEye, BsEyeSlash } from "react-icons/bs"
+import { BiLock } from "react-icons/bi"
 
 const Login = () => {
   const [email, setEmail] = useState("")
@@ -82,32 +83,58 @@ const Login = () => {
             theme= "dark"/>
     {isLoading && <Loader/>}
     <section className={`container ${styles.auth}`}>
-      <div className={styles.img}>
-        <img src= {loginBg} alt='Login' width="250px"/>
+      <div className={styles.imgLogin}>
+        <img src= {loginBg} alt='Login' width="600px"/>
       </div>
 
+      
       <Card>
         <div className={styles.form}>
           <h2>Login</h2>
           
           <form onSubmit={loginUser}>
-              <input type='text' placeholder='Email' required value={email} onChange={(e) => setEmail(e.target.value)} />
-              <div className={styles['password-box']}>
-                <input type={visible ? "text" : "password"} placeholder='Password' required value={password} onChange={(e) => setPassword(e.target.value)} />
-                <div onClick={()=> setVisible(!visible)} className={styles.eyePassword}>
-                  {visible ? <BsEye/>:   <BsEyeSlash/>}
-                </div>
+          <div className={styles['input-box']}>
+              <div className={styles['input-background']}>
+                <BsEnvelope className={styles['input-icon']} />
               </div>
-              <button type='submit' className='--btn --btn-primary3 --btn-block'>Login</button>
+              <input
+                type="text"
+                placeholder="Email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className={styles['input-box']}>
+              <div className={styles['input-background']}>
+                <BiLock className={styles['input-icon']} />
+              </div>
+              <input
+                type={visible ? 'text' : 'password'}
+                placeholder="Password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <div onClick={() => setVisible(!visible)} className={styles.eyePassword}>
+                {visible ? <BsEye /> : <BsEyeSlash />}
+              </div>
+            </div>
+              <button type='submit' className='--btn --btn-Login --btn-block'>Login</button>
               <div className={styles.links}>
-                <Link to ='/reset'>Reset Password</Link>
+                <Link to ='/reset'>Forgot Password?</Link>
               </div>
             <p>-- or --</p>
           </form>
-          <button className='--btn --btn-danger --btn-block' onClick={signInWithGoogle}><FaGoogle color='#fff'/> Login With Google</button>
+          <div className={styles.googleButton}>
+            <button className="--btn --btn-google --btn-block" onClick={signInWithGoogle}>
+                <FcGoogle className={styles.googleIcon} />
+                <span>Login With Google</span>
+            </button>
+          </div>
           <span className={styles.register}>
             <p>Don't have an account? </p>
-            <Link to='/register'>Register</Link>
+            <Link to='/register'>SignUp</Link>
           </span>
           
         </div>
