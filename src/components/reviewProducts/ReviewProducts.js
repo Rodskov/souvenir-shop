@@ -57,8 +57,11 @@ const ReviewProducts = () => {
 
   return (
     <section>
-      <div className={styles.continue}>
+      {/* <div className={styles.continue}>
         <Link to={navigate(-1)}>&larr; Back to Order Details</Link>
+      </div> */}
+      <div className={styles.continue}>
+        <button onClick={() => navigate(-1)}>&larr; Back to Order Details</button>
       </div>
       <div className={`container ${styles.review}`}>
         <h2>Review Products</h2>
