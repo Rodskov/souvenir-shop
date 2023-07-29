@@ -8,6 +8,7 @@ import useFetchDocuments from "../../../customHooks/useFetchDocuments";
 import useFetchCollection from "../../../customHooks/useFetchCollection";
 import Card from "../../card/Card";
 import StarsRating from "react-star-rate";
+import { toast } from "react-toastify";
 
 const ProductDetails = () => {
   const {id} = useParams();
@@ -67,6 +68,14 @@ const ProductDetails = () => {
   const addToCart = (product, selectedSize, selectedColor) => {
     const variationID = product.id;
     const cartVariation = cartItems.find((item) => item.id === variationID);
+
+    console.log("Selected Color:", selectedColor);
+    console.log("Selected Size:", selectedSize);
+
+    if (!selectedSize || !selectedColor) {
+      toast.error("Please select from the variations before adding to cart");
+      return; // Do not add to cart if selectedSize is empty
+    }
 
     if (cartVariation) {
       dispatch(ADD_TO_CART({ 
