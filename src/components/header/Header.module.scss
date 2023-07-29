@@ -68,6 +68,48 @@
           }
         }
       }
+
+      .displayNameWrapper {
+        position: absolute;
+        bottom: 10px;
+        left: 20px; 
+        display: flex;
+        align-items: center;
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      // .displayNameWrapperMediaScreen {
+      //   // Add your styles for the media screen here
+      //   // For example:
+      //   position: absolute;
+      //   top: 10px;
+      //   left: 20px;
+      //   align-items: center;
+      //   color: #fff;
+      //   font-size: 14px;
+      //   font-weight: bold;
+      // }
+
+      // .hideOnMediaScreen {
+      //   display: none;
+      // }
+
+      .displayNameWrapperMediaScreen {
+        display: none; // Hides it by default
+      }
+    
+      .show-nav {
+        .displayNameWrapperMediaScreen {
+          display: flex;
+        }
+      }
+    
+      .hideOnMediaScreen {
+        display: none;
+      }
+
     }
   
     .header-right {
@@ -115,12 +157,97 @@
       cursor: pointer;
       display: none;
     }
-  
+
+    // .displayNameWrapper {
+    //   position: absolute;
+    //   bottom: 10px;
+    //   left: 20px; /* Adjust the left position as needed */
+    //   display: flex;
+    //   align-items: center;
+    //   color: #fff;
+    //   font-size: 14px;
+    //   font-weight: bold;
+    
+    //   /* Hide displayNameWrapper on media screen */
+    //   @media screen and (max-width: 800px) {
+    //     display: none;
+    //     }
+    //   }
+    
+    //   .displayNameWrapperMediaScreen {
+    //     display: none; /* Hide it by default */
+      
+    //     /* Show displayNameWrapperMediaScreen on media screen */
+    //     @media screen and (max-width: 800px) {
+    //       position: absolute;
+    //       bottom: 10px;
+    //       left: 20px; /* Adjust the left position as needed */
+    //       display: flex;
+    //       align-items: center;
+    //       color: #fff;
+    //       font-size: 14px;
+    //       font-weight: bold;
+    //     }
+    //   }
+    
+
+    .displayNameWrapper {
+      position: absolute;
+      bottom: 10px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      /* Hides the displayNameWrapper on media screen */
+      @media screen and (max-width: 800px) {
+        display: none;
+      }
+    }
+    
+    .displayNameWrapperMediaScreen {
+      position: absolute;
+      bottom: 10px; 
+      left: 20px; 
+      display: flex;
+      align-items: center;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+    
+      /* Shows the displayNameWrapperMediaScreen on media screen */
+      @media screen and (max-width: 800px) {
+        display: flex;
+      }
+    }
+
     @media screen and (max-width: 800px) {
       .logo img {
         max-height: 60px; 
       }
 
+      .show-nav {
+        transform: translateX(0);
+    
+        .displayNameWrapperMediaScreen {
+          position: absolute;
+          bottom: 10px;
+          left: 20px; /* Adjust the left position as needed */
+          display: flex;
+          align-items: center;
+          color: #fff;
+          font-size: 14px;
+          font-weight: bold;
+        }
+    
+        // Hide the displayNameWrapper when in media screen state
+        .displayNameWrapper {
+          display: none;
+        }
+        
+      }
+      
       nav {
         display: block;
         position: absolute;
@@ -183,6 +310,10 @@
                 font-weight: 500;
               }
             }
+
+          .displayNameWrapper{
+            display: none;
+          }
           }
   
           .links {

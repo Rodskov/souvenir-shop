@@ -30,6 +30,7 @@ const Header = () => {
   const [showMenu, setShowMenu] = useState(false)
   const [displayName, setdisplayName] = useState("")
   const [scrollPage, setScrollPage] = useState(false)
+  const [isMediaScreen, setIsMediaScreen] = useState(false); // Add this state variable
   const cartTotalQuantity = useSelector(selectCartTotalQuantity)
 
   useEffect(() => {
@@ -81,6 +82,7 @@ const Header = () => {
 
   const toggleMenu = () =>{
     setShowMenu (!showMenu)
+    setIsMediaScreen(!isMediaScreen); // Toggle the state for media screen
   };
 
   const hideMenu = () =>{
@@ -168,6 +170,33 @@ const Header = () => {
                   
               </div>
               
+
+              {/* Render displayNameWrapper only in normal state */}
+              {!isMediaScreen && ( // Update the condition to check isMediaScreen
+                <div className={styles.displayNameWrapper}>
+                  <ShowOnLogin>
+                    <a href="#home" style={{ color: "#fdca0f" }}>
+                      <FaUserCircle size={16} />
+                      Hi, {displayName}
+                    </a>
+                  </ShowOnLogin>
+                </div>
+              )}
+
+              {/* Render displayNameWrapperMediaScreen only in media screen state */}
+              {isMediaScreen && ( // Update the condition to check isMediaScreen
+                <div className={styles.displayNameWrapperMediaScreen}>
+                  <ShowOnLogin>
+                    <a href="#home" style={{ color: "#fdca0f" }}>
+                      <FaUserCircle size={16} />
+                      Hi, {displayName}
+                    </a>
+                  </ShowOnLogin>
+                </div>
+              )}
+
+
+
             </nav>
             
             <div className={styles["menu-icon"]}>
