@@ -24,6 +24,7 @@ const Wishlist = () => {
     const [uploadedFiles, setUploadedFiles] = useState(0)
 
     const [uploadState, setUploadState] = useState("none")
+    const [divDisplay, setDivDisplay] = useState("none")
 
     const isLoggedIn = useSelector(selectIsLoggedIn); 
     const userID = useSelector(selectUserID)
@@ -38,6 +39,10 @@ const Wishlist = () => {
     //display: imageDisplay,
     height: "108px",
     width: "192px"
+    }
+
+    const divStyle = {
+      display: divDisplay,
     }
 
     const textStyle = {
@@ -83,6 +88,7 @@ const Wishlist = () => {
 
     const fileReceiver = async (e) => {
       if(e.target.files.length != 0){
+        setUploadedFiles(0)
         setUploadState("block")
         setNumOfFiles(e.target.files.length)
         console.log(e.target.files);
@@ -104,6 +110,7 @@ const Wishlist = () => {
             console.log(uploaded+"/"+numOfFiles+": uploaded")
           })
         }
+          setDivDisplay("block")
           setUploadedFiles(uploaded)
           console.log(uploadedFiles)
           console.log(numOfFiles)
@@ -112,6 +119,7 @@ const Wishlist = () => {
           linkFetcher()
       }
       else{
+        setDivDisplay("none")
         setNumOfFiles(e.target.files.length)
         setAuthenticator(false)
         setUploadState("none")
@@ -217,6 +225,13 @@ const Wishlist = () => {
           ></textarea>
           <h5>Choose your image/s:</h5>
           <input type="file" onChange={fileReceiver} multiple/>
+          <div style={divStyle}>
+            {imageArray.map((links, index) => {
+              return(
+                <img style={imageStyle} src={links}/>
+              )
+            })}
+          </div>
           <div>
             <p style={textStyle}>{uploadedFiles}/{numOfFiles} Uploaded</p>
           </div>
