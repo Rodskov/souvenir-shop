@@ -43,7 +43,7 @@ const ProductDetails = () => {
       className={`${styles.colorButton} ${
         selectedColor === data ? styles.active : ""
       }`}
-      onClick={() => setSelectedColor(data)}
+      onClick={() => setSelectedColor(prevColor => prevColor === data ? "" : data)}
     >
       {data}
     </button>
@@ -55,7 +55,7 @@ const ProductDetails = () => {
       className={`${styles.sizeButton} ${
         selectedSize === data ? styles.active : ""
       }`}
-      onClick={() => setSelectedSize(data)}
+      onClick={() => setSelectedSize(prevSize => prevSize === data ? "" : data)}
     >
       {data}
     </button>
@@ -66,8 +66,13 @@ const ProductDetails = () => {
   }, [document]);
 
   const addToCart = (product, selectedSize, selectedColor) => {
-    const variationID = product.id;
-    const cartVariation = cartItems.find((item) => item.id === variationID);
+    const variationID = `${product.id}-${selectedSize}-${selectedColor}`
+    const cartVariation = cartItems.find(
+      (item) =>
+        item.id === variationID &&
+        item.size === selectedSize &&
+        item.color === selectedColor
+    );
 
     console.log("Selected Color:", selectedColor);
     console.log("Selected Size:", selectedSize);
@@ -78,19 +83,26 @@ const ProductDetails = () => {
     }
 
     if (cartVariation) {
-      dispatch(ADD_TO_CART({ 
-        ...cartVariation, 
-        cartQuantity: 
-        cartVariation.cartQuantity + 1 }));
+      // Increase quantity of the existing cart item with the same variation
+      dispatch(
+        ADD_TO_CART({
+          ...cartVariation,
+          cartQuantity: cartVariation.cartQuantity + 1,
+        })
+      );
     } else {
-      dispatch(ADD_TO_CART({
-        ...product,
-        id: variationID,
-        size: selectedSize,
-        color: selectedColor,
-        cartQuantity: 1,
-      }));
+      // Add a new cart item with the selected variation
+      dispatch(
+        ADD_TO_CART({
+          ...product,
+          id: variationID,
+          size: selectedSize,
+          color: selectedColor,
+          cartQuantity: 1,
+        })
+      );
     }
+    console.log(variationID)
     dispatch(CALCULATE_TOTAL_QUANTITY());
   };
 
