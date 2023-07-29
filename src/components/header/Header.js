@@ -171,8 +171,8 @@ const Header = () => {
               </div>
               
 
-              {/* Render displayNameWrapper only in normal state */}
-              {!isMediaScreen && ( // Update the condition to check isMediaScreen
+              {/* For Side Navbar */}
+              {/* {!isMediaScreen && (
                 <div className={styles.displayNameWrapper}>
                   <ShowOnLogin>
                     <a href="#home" style={{ color: "#fdca0f" }}>
@@ -183,8 +183,7 @@ const Header = () => {
                 </div>
               )}
 
-              {/* Render displayNameWrapperMediaScreen only in media screen state */}
-              {isMediaScreen && ( // Update the condition to check isMediaScreen
+              {isMediaScreen && ( 
                 <div className={styles.displayNameWrapperMediaScreen}>
                   <ShowOnLogin>
                     <a href="#home" style={{ color: "#fdca0f" }}>
@@ -193,7 +192,7 @@ const Header = () => {
                     </a>
                   </ShowOnLogin>
                 </div>
-              )}
+              )} */}
 
 
 
