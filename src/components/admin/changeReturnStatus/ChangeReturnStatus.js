@@ -53,7 +53,7 @@ const ChangeReturnStatus = ({order, id}) => {
             <select value = {status} onChange={(e)=> setStatus(e.target.value)}>
               <option value= "" disabled>--Choose Status--</option>
               <option value= "For Return">For Return</option>
-              <option value= "Return Rejected">Return Rejected</option>
+              <option value= "Request Rejected">Request Rejected</option>
               <option value= "Follow-up Required">Follow-up Required</option>
             </select>
           </span>

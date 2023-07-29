@@ -15,6 +15,7 @@ const ReturnProduct = () => {
   const [order, setOrder] = useState(null)
   const {id} = useParams()
   const { document } = useFetchDocuments("orders", id)
+  const { returnDocument } = useFetchDocuments("returns", id)
   const userID = useSelector(selectUserID)
   const userName = useSelector(selectUserName)
 
@@ -31,7 +32,7 @@ const ReturnProduct = () => {
     const returnConfig = {
       userID,
       userName,
-      productID: id,
+      productID: order.id,
       review,
       reviewDate: date,
       createdAt: Timestamp.now().toDate()
