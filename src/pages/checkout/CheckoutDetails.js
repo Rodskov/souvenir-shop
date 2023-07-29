@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from "./CheckoutDetails.module.scss";
 import Card from '../../components/card/Card';
 import { CountryDropdown } from 'react-country-region-selector';
-import { useDispatch } from 'react-redux';
-import { SAVE_BILLING_ADDRESS, SAVE_SHIPPING_ADDRESS } from '../../redux/slice/checkoutSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { SAVE_BILLING_ADDRESS, SAVE_SHIPPING_ADDRESS, SAVE_SHIPPING_FEE } from '../../redux/slice/checkoutSlice';
 import { useNavigate } from 'react-router-dom';
 import CheckoutSummary from '../../components/checkoutSummary/CheckoutSummary';
 import { toast } from 'react-toastify';
@@ -33,7 +33,6 @@ const province = [
     "Aurora",
   ]
 
- 
 
 
 
@@ -43,10 +42,16 @@ const CheckoutDetails = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    const shipFee = useSelector(state => state.checkout.shippingFee)
     const [selectedProvince, setSelectedProvince] = useState("");
 
-
+    
+    useEffect(() => {
+        dispatch(SAVE_SHIPPING_FEE(0))
+    }, [])
+    
     function ProvinceChange(e){
+        dispatch(SAVE_SHIPPING_FEE(e.target.value))
         console.log(e.target.value)
         setSelectedProvince(e.target.value)
     }
