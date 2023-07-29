@@ -241,6 +241,13 @@ const Wishlist = () => {
                 multiple
                 className={styles.fileInput}
               />
+              <div style={divStyle}>
+                {imageArray.map((links, i) => {
+                  return(
+                    <img style={imageStyle} src={links}/>
+                  )
+                })}
+              </div>
                 <p style={textStyle}>{uploadedFiles}/{numOfFiles} Uploaded</p>
             </div>
             <button type='submit' className='--btn --btn-primary3'>
