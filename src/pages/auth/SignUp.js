@@ -142,7 +142,7 @@ const registerUser = (e) =>{
                   {visible ? <BsEye/> :  <BsEyeSlash/>}
                 </div>
               </div>
-              <button type="submit" className='--btn --btn-primary3 --btn-block'>Sign Up</button>
+              <button type="submit" className='--btn --btn-signUp --btn-block'>Sign Up</button>
               
           </form>
           <span className={styles.register}>
@@ -199,8 +199,8 @@ const registerUser = (e) =>{
           
         </div>
       </Card>
-      <div className={styles.img}>
-        <img src= {signupBg} alt='Login' width="342px"/>
+      <div className={styles.imgSignUp}>
+        <img src= {signupBg} alt='SignUp' width="470px"/>
       </div>
       
     </section>

@@ -43,18 +43,18 @@ const resetPassword = (e) =>{
     <section className={`container ${styles.auth}`}>
       
       <Card>
-        <div className={styles.form}>
+        <div className={`${styles.reset}`}>
           <h2>Reset Password</h2>
           
           <form onSubmit={resetPassword}>
               <input type='text' placeholder='Email' required value={email} onChange={(e) => setEmail(e.target.value)} />
-              <button type= 'submit' className='--btn --btn-primary3 --btn-block'>Reset Password</button>
+              <button type= 'submit' className='--btn --btn-reset --btn-block'>Reset Password</button>
               <div className={styles.links}>
                 <p>
-                <Link to ='/login'>--Login</Link>
+                <Link to ='/login'>Login</Link>
                 </p>
                 <p>
-                <Link to ='/register'>SignUp--</Link>
+                <Link to ='/register'>SignUp</Link>
                 </p>
                 
               </div>
@@ -67,8 +67,8 @@ const resetPassword = (e) =>{
           
         </div>
       </Card>
-      <div className={styles.img}>
-        <img src= {resetBg} alt='Login' width="420px"/>
+      <div className={styles.imgReset}>
+        <img src= {resetBg} alt='Login' width="570px"/>
       </div>
 
     </section>

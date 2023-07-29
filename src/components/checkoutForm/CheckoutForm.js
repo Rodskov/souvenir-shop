@@ -121,7 +121,7 @@ const CheckoutForm = () => {
     <section>
         <div className={`container ${styles.checkout}`}>
             <h2>Checkout</h2>
-            <form onSubmit={handleSubmit}>
+            <form className={styles.checkoutForm} onSubmit={handleSubmit}>
                 <div>
                     <Card cardClass={styles.card}>
                         <CheckoutSummary/>

@@ -5,6 +5,7 @@ import { selectProducts } from '../../redux/slice/productSlice'
 import { selectIsLoggedIn, selectUserID, selectUserName } from '../../redux/slice/authSlice'
 import { useParams } from 'react-router-dom'
 
+import { IoIosImage } from 'react-icons/io';
 import { toast } from 'react-toastify'
 import { Timestamp, addDoc, collection, getDocs } from 'firebase/firestore'
 import { db } from '../../firebase/config'
@@ -220,24 +221,33 @@ const Wishlist = () => {
             value={newWishlist}
             required
             onChange={(e) => setNewWishlist(e.target.value)}
-            cols='30'
-            rows='10'
+            cols='10'
+            rows='5'
+            placeholder={
+              isLoggedIn
+                ? `What do you want to suggest ${userName}?`
+                : 'Login first to post'
+            }
           ></textarea>
-          <h5>Choose your image/s:</h5>
-          <input type="file" onChange={fileReceiver} multiple/>
-          <div style={divStyle}>
-            {imageArray.map((links, index) => {
-              return(
-                <img style={imageStyle} src={links}/>
-              )
-            })}
-          </div>
-          <div>
-            <p style={textStyle}>{uploadedFiles}/{numOfFiles} Uploaded</p>
-          </div>
-          <button type='submit' className='--btn --btn-primary3'>
+          <div className={styles.uploadContainer}>
+            <div className={styles.uploadImageContainer}> 
+              <label htmlFor="fileInput" className={styles.uploadButton}>
+                <IoIosImage className={styles.imageIcon} />
+              </label>
+              <input
+                type="file"
+                id="fileInput"
+                onChange={fileReceiver}
+                multiple
+                className={styles.fileInput}
+              />
+                <p style={textStyle}>{uploadedFiles}/{numOfFiles} Uploaded</p>
+            </div>
+            <button type='submit' className='--btn --btn-primary3'>
             Submit Wishlist
           </button>
+          </div>
+          
         </form>
       </Card>
       
@@ -253,13 +263,13 @@ const Wishlist = () => {
                 <p><b>Username:</b> {item.userName}</p>
                 <p><b>Date:</b> {item.wishlistDate}</p>
                 <p> {item.wishlist}</p>
-                <Card>
+                <div className={styles.wishlistImage}>
                   {item.images.map((imageSource, i) => {
                     return(
                       <img key={i} style={imageStyle} src={imageSource}/>
                     )
                   })}
-                </Card>
+                </div>
               </div>
             </div>
              

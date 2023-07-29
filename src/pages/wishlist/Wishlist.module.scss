@@ -1,14 +1,19 @@
+section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .wishlist {
     .card {
-        width: 100%;
-        max-width: 500px;
-        padding: 1rem;
-        margin-bottom: 1rem; /* Add margin between wishlist cards */
-        border: 1px solid #ccc; /* Add a border to separate wishlist cards */
-        border-radius: 4px;
-        background-color: #f9f9f9; /* Add background color to wishlist cards */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow for a card-like appearance */
-        transition: box-shadow 0.3s ease;
+      width: 100%;
+      max-width: 500px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #f9f9f9;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
     
         &:hover {
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a slight elevation on hover */
@@ -26,10 +31,43 @@
             font-weight: 500;
           }
         }
+        .uploadContainer {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 1rem; /* Add margin between the container and the button */
+        }
+        .uploadImageContainer{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 2em;
+        }
+
+        .uploadButton {
+          display: inline-block;
+          cursor: pointer;
+          
+          
+        }
+        .uploadedText {
+            font-size: 1.6rem;
+            font-weight: 300;
+            margin-right: 0.5rem; /* Add spacing between the text and the button */
+        }
+        .imageIcon {
+          margin-top: 0.2rem;
+          font-size: 3rem;
+        }
+        
+        .fileInput {
+          display: none;
+        }
       }
       textarea {
         resize: none; 
       }
+      
     form {
       label {
         display: block;
