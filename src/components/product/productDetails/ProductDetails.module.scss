@@ -1,14 +1,60 @@
+// .custom-toast {
+//   font-size: 12px;
+// }
+
 .product {
+    .desc {
+      padding-top: 2rem;
+      & > p {
+        margin-bottom: 1rem;
+      }
+    }
+    
+    .prod_det {
+      padding: 0.5px;
+      margin-top: 2rem;
+      .details {
+        justify-content: center;
+        align-items: center;
+        .content {
+          margin-left: 1.8rem;
+          // right: 150rem;
+          h3 {
+            font-size: 25px;
+            font-weight: 600;
+          }
+          .price {
+            font-size: 30px;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    .card_desc {
+      padding: 1rem;
+      margin-top: 2rem;
+      h3 {
+        font-size: 20px;
+      }
+      
+    }
+
     .card {
       padding: 1rem;
-      margin-top: 1rem;
+      margin-top: 2rem;
+      h3 {
+        font-size: 20px;
+      }
     }
     .review {
       border-top: 1px solid #ccc;
     }
     .details {
-      padding-top: 2rem;
+      // padding-top: 2rem;
       display: flex;
+      // padding-bottom: 2rem;
+      padding: 2rem;
   
       .img {
         width: 45%;
