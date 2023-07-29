@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from "./ReturnProduct.module.scss"
 import { useSelector } from 'react-redux'
-import { selectProducts } from '../../redux/slice/productSlice'
 import { selectUserID, selectUserName } from '../../redux/slice/authSlice'
 import { Link, useParams } from 'react-router-dom'
 import Card from '../card/Card'
@@ -16,13 +15,13 @@ const ReturnProduct = () => {
   const [order, setOrder] = useState(null)
   const {id} = useParams()
   const { document } = useFetchDocuments("orders", id)
-  const products = useSelector(selectProducts)
   const userID = useSelector(selectUserID)
   const userName = useSelector(selectUserName)
 
   useEffect(() => {
-    setOrder(document)
-  }, [document])
+    console.log("Order Document:", document);
+    setOrder(document);
+  }, [document]);
 
   const returnProduct = (e) =>{
     e.preventDefault()
@@ -58,8 +57,8 @@ const ReturnProduct = () => {
           <img src={spinnerImg} alt='Loading...' style={{width: "60px"}}/>
         ):(
           <>
-            <p><b>Product Name: </b> {order.name}</p>
-          <img src={order.imageURL} alt={order.name} style={{width:"250px"}} />
+            <p><b>Product Name: </b> {order.cartItems[0].name}</p>
+          <img src={order.cartItems[0].imageURL} alt={order.cartItems[0].name} style={{width:"250px"}} />
         </>
         )}
         
