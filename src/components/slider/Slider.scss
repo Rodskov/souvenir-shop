@@ -26,6 +26,29 @@
       
     }
   }
+  
+  .slide-nav {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    z-index: 1;
+
+    .circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin: 0 5px;
+      background-color: #ffffff6f;
+      cursor: pointer;
+    }
+
+    .active {
+      background-color: #fff;
+    }
+  }
+
 }
 
   
@@ -93,8 +116,8 @@
     border-radius: 50%;
     background: transparent;
     color: #fff;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3rem;
+    height: 3rem;
     cursor: pointer;
     position: absolute;
     top: 50%;
@@ -109,11 +132,11 @@
   
   .next {
     right: 1.5rem;
-    color: #760700;
+    color: orangered;
   }
   .prev {
     left: 1.5rem;
-    color: #760700;
+    color: orangered;
   }
   
   hr {
