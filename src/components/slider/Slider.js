@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {AiOutlineArrowLeft, AiOutlineArrowRight} from "react-icons/ai"
+import {MdKeyboardArrowLeft, MdKeyboardArrowRight} from "react-icons/md"
 //import { sliderData } from './Slider-data'
 import {ExportData} from './Slider-data'
 import './Slider.scss'
@@ -38,8 +38,8 @@ const Slider = () => {
   return (
     
     <div className='slider'>
-        <AiOutlineArrowLeft className = 'arrow prev' onClick={prevSlide}/>
-        <AiOutlineArrowRight className = 'arrow next' onClick={nextSlide}/>
+        <MdKeyboardArrowLeft className = 'arrow prev' onClick={prevSlide}/>
+        <MdKeyboardArrowRight className = 'arrow next' onClick={nextSlide}/>
         { ExportData().map ((slide, index) =>{
             const {image} = slide
             return(
