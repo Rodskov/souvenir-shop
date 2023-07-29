@@ -38,7 +38,7 @@ const ReturnProduct = () => {
     }
 
     try {
-      addDoc(collection(db, "reviews"), returnConfig);
+      addDoc(collection(db, "returns"), returnConfig);
       toast.success("Return Form Submitted");
       setReview("")
     } catch(error) {

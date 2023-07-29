@@ -1,18 +1,66 @@
 import React, { useEffect, useState } from 'react'
-import styles from './OrderDetails.module.scss'
+import styles from './ReturnProductDetails.module.scss'
 import { Link, useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import useFetchDocuments from '../../../customHooks/useFetchDocuments'
 import spinnerImg from "../../../assets/spinner.jpg"
-import ChangeOrderStatus from '../changeOrderStatus/ChangeOrderStatus'
+import ChangeReturnStatus from '../changeReturnStatus/ChangeReturnStatus'
+import { toast } from 'react-toastify'
+import { Timestamp, addDoc, collection, getDocs } from 'firebase/firestore'
+import { db } from '../../../firebase/config'
 
-const OrderDetails = () => {
+const fetchReturn = async () => {
+    try {
+        const querySnapshot = await getDocs(collection(db, "returns"));
+        const returnData = querySnapshot.docs.map((doc) => doc.data());
+        console.log(returnData);
+        return returnData;
+      } catch (error) {
+        toast.error(error.message);
+        return [];
+      }
+    };
+
+const ReturnProductDetails = () => {
   const [order, setOrder] = useState(null)
   const {id} = useParams()
   const { document } = useFetchDocuments("orders", id)
-  useEffect(()=>{
-      setOrder(document)
-  }, [document])
+  const [loading, setLoading] = useState(true);
+  const [returnData, setReturnData] = useState("")
+  const [newReturn, setNewReturn] = useState("")
 
+//   useEffect(()=>{
+//       setOrder(document)
+//   }, [document])
+
+//   const addWishlist = (e) =>{
+//     e.preventDefault()
+
+//     const today = new Date();
+//     const date =  today.toDateString();
+
+//     const returnConfig = {
+//         return: newReturn,
+//         returnDate: date,
+//         createdAt: Timestamp.now().toDate()
+//       }
+  
+//     try {
+//         addDoc(collection(db, "returns"), returnConfig);
+//         toast.success("Return Request Submitted");
+//         setNewReturn("");
+//       } catch (error) {
+//         toast.error(error.message);
+//       }
+//     };
+  
+//     useEffect(() => {
+//         fetchReturn().then((returnData) => {
+//           setReturnData(returnData);
+//           setLoading(false);
+//         });
+//       }, []);
+        
 
 return (
   <>
@@ -83,11 +131,11 @@ return (
           </table>
           </>
       )}
-      <ChangeOrderStatus order={order} id={id}/>
+      <ChangeReturnStatus order={order} id={id}/>
       </div>
 
   </>
 )
 }
 
-export default OrderDetails
+export default ReturnProductDetails

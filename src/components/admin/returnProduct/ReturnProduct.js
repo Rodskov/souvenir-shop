@@ -1,14 +1,3 @@
-// import React from 'react'
-// import styles from "./ReturnProduct.module.scss"
-
-// const ReturnProduct = () => {
-//   return (
-//     <div>ReturnProduct</div>
-//   )
-// }
-
-// export default 
-
 import React, { useEffect } from 'react'
 import styles from "./ReturnProduct.module.scss"
 import useFetchCollection from '../../../customHooks/useFetchCollection'
@@ -32,7 +21,7 @@ const ReturnProduct = () => {
   }, [dispatch, data])
 
   const handleClick = (id) =>{
-    navigate(`/admin/order-details/${id}`);
+    navigate(`/admin/return-product/${id}`);
   }
 
 

@@ -6,6 +6,7 @@ import Home from '../../components/admin/home/Home';
 import ViewProducts from '../../components/admin/viewProducts/ViewProducts';
 import AddProduct from '../../components/admin/addProduct/AddProduct';
 import ReturnProduct from '../../components/admin/returnProduct/ReturnProduct';
+import ReturnProductDetails from '../../components/admin/returnProductDetails/ReturnProductDetails';
 import Orders from '../../components/admin/orders/Orders';
 import OrderDetails from '../../components/admin/orderDetails/OrderDetails';
 import Slideshow from '../../components/admin/slideshow/Slideshow';
@@ -23,9 +24,11 @@ const Admin = () => {
           {<ViewProducts/>} />
           <Route path="add-product/:id" element=
           {<AddProduct />} />
-          <Route path="orders" element=
-          {<ReturnProduct />} />
           <Route path="return-product" element=
+          {<ReturnProduct />} />
+          <Route path="return-product/:id" element=
+          {<ReturnProductDetails />} />
+          <Route path="orders" element=
           {<Orders />} />
           <Route path="order-details/:id" element=
           {<OrderDetails />} />
