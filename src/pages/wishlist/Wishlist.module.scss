@@ -70,22 +70,42 @@ section{
           margin-top: 0.2rem;
           font-size: 3rem;
         }
-        
+        .profileInfo {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+        .iconTextContainer {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .wishlist-user-name{
+          font-weight: 700;
+          font-size: 18px;
+        }
+        .wishlist-date{
+          font-weight: 400;
+          font-size: 12px;
+        }
         .fileInput {
           display: none;
         }
         .wishlistImage {
           /* Your image grid styles here */
           /* ... */
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 10px;
+          align-items: center;
         
           div {
             /* Adjust the size of the image containers here */
-            width: 108px;
-            height: 108px;
-            margin: 4px;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16/9;
+            overflow: hidden
           }
         
           img {

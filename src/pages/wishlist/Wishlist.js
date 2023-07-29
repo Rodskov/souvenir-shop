@@ -9,7 +9,7 @@ import { IoIosImage } from 'react-icons/io';
 import { toast } from 'react-toastify'
 import { Timestamp, addDoc, collection, getDocs } from 'firebase/firestore'
 import { db } from '../../firebase/config'
-
+import { BsPersonFill } from "react-icons/bs"
 import spinnerImg from "../../assets/spinner.jpg"
 import Card from '../../components/card/Card'
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage'
@@ -34,6 +34,12 @@ const Wishlist = () => {
   
     const  [eventChanger, setEventChanger] = useState(0);
 
+    const numImages = imageArray.length;
+    let numRows = Math.ceil(numImages / 2);
+    numRows = Math.max(numRows, 2); // Ensure a minimum of 2 rows for two images
+    numRows = Math.min(numRows, 3); // Ensure a maximum of 3 rows for odd numbers of images
+    const numColumns = Math.ceil(numImages / numRows);
+    
     const storage = getStorage()
 
     const imageStyle = {
@@ -260,26 +266,39 @@ const Wishlist = () => {
       
       
         
-        {loading ? (
+      {loading ? (
           <p>Loading...</p>
         ) : (
           wishlistData.length > 0 ? (
             wishlistData.map((item, index) => (
-           <div className={styles.card}>
-              <div key={index}>
-                <p><b>Username:</b> {item.userName}</p>
-                <p><b>Date:</b> {item.wishlistDate}</p>
-                <p> {item.wishlist}</p>
-                <div className={styles.wishlistImage}>
-                  {item.images.map((imageSource, i) => {
-                    return(
-                      <img key={i} style={imageStyle} src={imageSource}/>
-                    )
-                  })}
+              <div className={styles.card} key={index}>
+                <div>
+                <div className={styles.profileInfo}>
+                  <div className={styles.iconTextContainer}>
+                 
+                    <p className={styles["wishlist-user-name"]}>{item.userName}</p>
+                    <p className={styles["wishlist-date"]}>{item.wishlistDate}</p>
+                  </div>
+                  <p className={styles["wishlist-status"]}>{item.wishlist}</p>
+                </div>
+                  {/* Check if there's only one image */}
+                  {item.images.length === 1 && (
+                    <div className={styles.centeredImage}>
+                      <img src={item.images[0]} alt={`Wishlist ${index + 1}`} />
+                    </div>
+                  )}
+                  {/* Check if there are multiple images */}
+                  {item.images.length > 1 && (
+                    <div className={styles.wishlistImage} style={{ gridTemplateColumns: `repeat(${numColumns}, 1fr)` }}>
+                      {item.images.map((imageSource, i) => (
+                        <div key={i}>
+                          <img style={imageStyle} src={imageSource} alt={`Wishlist ${index + 1} - Image ${i + 1}`} />
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
-            </div>
-             
             ))
           ) : (
             <p>No wishlist data available.</p>
