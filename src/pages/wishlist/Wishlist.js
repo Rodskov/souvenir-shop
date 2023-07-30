@@ -277,7 +277,7 @@ const Wishlist = () => {
                   multiple
                   className={styles.fileInput}
                 />
-                <p style={textStyle}>{uploadedFiles}/{numOfFiles} Uploaded</p>
+                 <p style={textStyle}>{uploadedFiles}/{numOfFiles} Uploaded</p>
               
                 <button type='submit' className='--btn --btn-primary3'>
                 Submit Wishlist</button>
@@ -326,7 +326,7 @@ const Wishlist = () => {
                      }`}
                    >
                      {item.images.map((imageSource, i) => (
-                       <div key={i} onClick={() => handleImageClick(item.images[0])}>
+                       <div key={i} onClick={() => handleImageClick(imageSource)}>
                          <img
                            style={imageStyle}
                            src={imageSource}

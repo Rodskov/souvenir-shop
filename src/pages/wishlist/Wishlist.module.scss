@@ -67,21 +67,19 @@ section{
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: 2em;
-          overflow-x: auto;
-          overflow-y: hidden;
           width: 100%;
-
+          
           .uploadedImageRow {
             display: flex;
             align-items: center;
+            flex-direction: row;
             justify-content: flex-start;
             gap: 1rem;
-            max-height: 300px;
-      
+            width:100% ;
+            overflow-x: auto;
+            overflow-y: hidden;
           }
-       
-        
+
           .uploadedImageContainer {
             position: relative;
             img {
@@ -89,7 +87,8 @@ section{
               width: 200px; /* Set the width of the images */
               height: 150px; /* Set the height of the images */
               object-fit: cover; /* Resize the image to cover the entire container while preserving aspect ratio */
-              display: block;
+             
+              
             }
           }
         
