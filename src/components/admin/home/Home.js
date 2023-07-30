@@ -35,7 +35,7 @@ const Home = () => {
 
   return <div className={styles.home}>
     
-    <h2>Admin Home</h2>
+    <h2>DashBoard</h2>
     <div>
       <Chart/>
     </div>
