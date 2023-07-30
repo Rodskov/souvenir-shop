@@ -275,6 +275,7 @@ const Wishlist = () => {
                   id="fileInput"
                   onChange={fileReceiver}
                   multiple
+                  accept="image/png, image/gif, image/jpeg"
                   className={styles.fileInput}
                 />
                  <p style={textStyle}>{uploadedFiles}/{numOfFiles} Uploaded</p>
