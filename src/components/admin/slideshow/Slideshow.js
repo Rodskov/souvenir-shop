@@ -177,26 +177,26 @@ const Slideshow = () => {
       <Card cardClass={styles.group}>
         <div>
             <form onSubmit={submissionHandler}>
-            <label>
+            <label className={styles.choose}>
               Choose your images:
             </label>
-            <Card cardClass={styles.group}>
+            <div className={styles.card_custom}>
             <div>
               <input onChange={handleEventChange} id="imageFiles" type="file" multiple/>
             </div>
-            <div>
-              <button style={confirmButtonStyle}>Confirm New Slideshow</button>
-              <button type="button" style={confirmButtonStyle} onClick={cancel}>Cancel</button>
+            <div className={styles.newslideshow_confirmcancel}>
+              <button className={styles.confirm_ns} style={confirmButtonStyle}>Confirm New Slideshow</button>
+              <button className={styles.cancel} type="button" style={confirmButtonStyle} onClick={cancel}>Cancel</button>
             </div>
-            </Card>
+            </div>
           </form>
-          <div>
+          <div className={styles.uploaded}>
             <p style={statusText}>{status}/{numFiles} file(s) uploaded</p>
           </div>
-          <div>
+          <div className={styles.btn_confirm}>
             <button onClick={confirmImages} style={buttonStyle}>Confirm Images</button>
           </div>
-          <h3 style={textConfirmation}>Below are the Images to be included in the slideshow. Please check:</h3>
+          <h3 className={styles.check_text} style={textConfirmation}>Below are the Images to be included in the slideshow. Please check:</h3>
           <div>
             {imageDownloadArray.map((data, i) => {
               return(
@@ -204,7 +204,7 @@ const Slideshow = () => {
               )
             })}
           </div>
-          <h3 className={styles.text_ss}>Current slideshow:</h3>
+          <h3 className={styles.text_ss}><b>Current slideshow:</b></h3>
           <div>
             {imageFromDatabase.map((data, i) => {
               console.log(data.image)

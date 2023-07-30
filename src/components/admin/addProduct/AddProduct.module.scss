@@ -27,6 +27,35 @@
         border: 1px solid #777;
         border-radius: 3px;
         outline: none;
+
+        &[type="file"] {
+          display: inline-block;
+          // background-color: green;
+          color: transparent;
+          padding: 0.1rem 1rem;
+          border: none;
+          // font-size: 12px;
+          // visibility: hidden;
+
+          &::-webkit-file-upload-button {
+            visibility: hidden;
+          }
+  
+          &::before {
+            content: "Choose File";
+            display: inline-block;
+            background-color: #760700;
+            color: #ffffff;
+            padding: 0.7rem 1.2rem;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+          }
+  
+          &::before:hover {
+            background-color: #fff;
+          }
+        }
       }
   
       // textarea {
@@ -49,7 +78,19 @@
       }
     }
   }
+
+  .price_label {
+    padding-top: 10px;
+  }
+
+  .size_label {
+    padding-top: 10px;
+  }
   
+  .prod_desclabel {
+    padding-top: 10px;
+  }
+
   .group {
     border: 1px solid var(--dark-blue);
     padding: 5px;
@@ -72,4 +113,31 @@
       }
     }
     
+  }
+
+  .card_custom {
+    border: 1px solid #777;
+    border-radius: 5px;
+    // box-shadow: var(--box-shadow);
+    overflow: hidden;
+    border: 1px solid var(--dark-blue);
+    padding: 5px;
+    color: #000000;
+
+    button{
+      flex-shrink: 0;
+      background-color: #760700;
+      color: #ffffff;
+      border: 1px solid #760700;
+      padding: 0.5rem 1rem;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 1.4rem;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+      &:hover {
+        background-color: #97180f;
+        color: #ffca00;
+      }
+    }
   }
