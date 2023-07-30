@@ -1,9 +1,33 @@
+.title {
+  font-size: 24px;
+  font-weight: 500;
+  // color: #760700;
+}
+
+.checkout_prodList {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 2rem;
+  h4 {
+    padding-top: 8px;
+    word-wrap: break-word;
+    // margin-top: -5px;
+  }
+  p {
+    padding-bottom: 5px;
+  }
+  .title {
+    color: #760700;
+  }
+}
+
 .card {
     width: 100%;
     max-width: 500px;
     padding: 1rem;
     border: 1px solid #760700;
     margin-bottom: 5px;
+    box-shadow: none;
   }
   h3 {
     font-weight: 300;
@@ -16,4 +40,22 @@
     h3 {
       color: #ddb412;
     }
+    h4 {
+      color: #760700;
+    }
+    .subtotal1 {
+      font-size: 25px;
+    }
+  
+}
+
+.subtotal {
+  margin-top: 0.7rem;
+  margin-left: 0rem;
+  .ship {
+    padding-bottom: 10px;
   }
+  .cartItems {
+    padding-bottom: 2px;
+  }
+}

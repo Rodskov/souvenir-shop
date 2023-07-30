@@ -353,7 +353,7 @@ const handleSubmit = (e) => {
                     </Card> */}
                 </div>
                 <div>
-                    <Card cardClass={styles.card}>
+                    <Card cardClass={styles.card2}>
                         <CheckoutSummary shipFee={shipFee} />
                     </Card>
                 </div>
