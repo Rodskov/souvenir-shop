@@ -266,4 +266,28 @@ section{
       }
     }
   }
+.scrollToTopButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #760700;
+  color: #ffffff;
+  padding: 10px;
+  border: none;
+  z-index: 999;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    background-color: #ffca00;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .icon {
+    font-size: 24px;
+  }
+}
   

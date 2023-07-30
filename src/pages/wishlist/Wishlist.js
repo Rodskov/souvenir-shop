@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import styles from "./Wishlist.module.scss"
 import { useSelector } from 'react-redux'
-import { selectProducts } from '../../redux/slice/productSlice'
-import { selectIsLoggedIn, selectUserID, selectUserName } from '../../redux/slice/authSlice'
-import { useParams } from 'react-router-dom'
 
-import { IoIosImage } from 'react-icons/io';
+import { selectIsLoggedIn, selectUserID, selectUserName } from '../../redux/slice/authSlice'
+
+
+import { IoIosArrowUp, IoIosImage } from 'react-icons/io';
 import { toast } from 'react-toastify'
 import { Timestamp, addDoc, collection, getDocs } from 'firebase/firestore'
 import { db } from '../../firebase/config'
-import { BsPersonFill } from "react-icons/bs"
-import spinnerImg from "../../assets/spinner.jpg"
+
+
 import Card from '../../components/card/Card'
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage'
 import ImageModal from './modalWishlist';
@@ -52,6 +52,14 @@ const Wishlist = () => {
       newImageArray.splice(index, 1);
       setImageArray(newImageArray);
     };
+    const handleScrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
+
+    
 
     const storage = getStorage()
 
@@ -230,8 +238,17 @@ const Wishlist = () => {
       }, []);
            
   return (
+    
     <section>
+      
     <div className={`container ${styles.wishlist}`}>
+        <button
+          className={styles.scrollToTopButton}
+          onClick={handleScrollToTop}
+          title="Scroll to Top"
+        >
+          <IoIosArrowUp className={styles.icon} />
+        </button>
       <Card cardClass={styles.card}>
         <form onSubmit={addWishlist}>
           <label>Type your Wishlist:</label>
