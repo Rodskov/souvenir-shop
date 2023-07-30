@@ -37,7 +37,7 @@ const OrderDetails = () => {
                 <b>Order ID:</b> {order.id}
             </p>
             <p>
-                <b>Order Amount:</b> {order.orderAmount}
+                <b>Order Amount:</b> {order.orderAmount+order.shippingFee}
             </p>
             <p>
                 <b>Order Status:</b> {order.orderStatus}

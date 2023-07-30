@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import useFetchCollection from "../../customHooks/useFetchCollection"
 import styles from "./History.module.scss"
 import { useDispatch, useSelector } from 'react-redux'
-import { STORE_ORDERS, selectOrderHistory } from '../../redux/slice/orderSlice'
+import { STORE_ORDERS, selectOrderHistory, selectTotalOrderAmount } from '../../redux/slice/orderSlice'
 import { selectUserID } from '../../redux/slice/authSlice'
 import Loader from '../../components/loader/Loader'
 import { useNavigate } from 'react-router-dom'
@@ -12,6 +12,7 @@ const History = () => {
   const {data, isLoading} = useFetchCollection("orders")
   const orders = useSelector(selectOrderHistory)
   const userID = useSelector(selectUserID)
+  const totalAmount = useSelector(selectTotalOrderAmount)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -52,13 +53,13 @@ const History = () => {
               </thead>
               <tbody>
                 {filteredOrders.map((order, index)=>{
-                  const {id, orderDate, orderTime, orderAmount, orderStatus} = order
+                  const {id, orderDate, orderTime, orderAmount, shippingFee, orderStatus} = order
                   return(
                     <tr key ={id} onClick={() => handleClick(id)}>
                       <td>{index + 1}</td>
                       <td>{orderDate} at {orderTime}</td>
                       <td>{id}</td>
-                      <td>{"₱"}{orderAmount}</td>
+                      <td>{"₱"}{orderAmount+shippingFee}</td>
                       <td>
                         <p className= {orderStatus !== "Delivered" ? `${styles.pending}` : `${styles.delivered}`}>
                           {orderStatus}

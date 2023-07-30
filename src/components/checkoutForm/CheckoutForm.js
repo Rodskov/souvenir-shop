@@ -16,7 +16,7 @@ import { db } from "../../firebase/config";
 import { useDispatch, useSelector } from "react-redux";
 import { CLEAR_CART, selectCartItems, selectCartTotalAmount } from "../../redux/slice/cartSlice";
 import { selectEmail, selectUserID } from "../../redux/slice/authSlice";
-import { selectShippingAddress } from "../../redux/slice/checkoutSlice";
+import { selectShippingAddress, shippingFeeAmount } from "../../redux/slice/checkoutSlice";
 
 
 const CheckoutForm = () => {
@@ -27,6 +27,8 @@ const CheckoutForm = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const shipFee = useSelector(shippingFeeAmount)
 
   const userID = useSelector(selectUserID)
   const userEmail= useSelector(selectEmail)
@@ -59,6 +61,7 @@ const CheckoutForm = () => {
       userEmail,
       orderDate: date,
       orderTime: time,
+      shippingFee: shipFee,
       orderAmount: cartTotalAmount,
       orderStatus: "Order Placed...",
       cartItems,

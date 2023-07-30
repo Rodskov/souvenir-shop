@@ -3,12 +3,11 @@ import styles from "./CheckoutDetails.module.scss";
 import Card from '../../components/card/Card';
 import { CountryDropdown } from 'react-country-region-selector';
 import { useDispatch, useSelector } from 'react-redux';
-import { SAVE_BILLING_ADDRESS, SAVE_SHIPPING_ADDRESS, SAVE_SHIPPING_FEE } from '../../redux/slice/checkoutSlice';
+import { SAVE_BILLING_ADDRESS, SAVE_SHIPPING_ADDRESS, SAVE_SHIPPING_FEE, shippingFeeAmount } from '../../redux/slice/checkoutSlice';
 import { useNavigate } from 'react-router-dom';
 import CheckoutSummary from '../../components/checkoutSummary/CheckoutSummary';
 import { toast } from 'react-toastify';
 
-//const [provinces, setProvinces] = useState([]);
 
 const initialAddressState = {
     name: "",
@@ -33,6 +32,64 @@ const province = [
     "Aurora",
   ]
 
+  const provinceFee = [
+    {
+        "province": "-- Select Province --",
+        "shipFee": 0
+    },
+    {
+        "province": "Abra",
+        "shipFee": 165
+    },
+    {
+        "province": "Agusan del Norte",
+        "shipFee": 195
+    },
+    {
+        "province": "Agusan del Sur",
+        "shipFee": 195
+    },
+    {
+        "province": "Aklan",
+        "shipFee": 180
+    },
+    {
+        "province": "Albay",
+        "shipFee": 165
+    },
+    {
+        "province": "Antique",
+        "shipFee": 180
+    },
+    {
+        "province": "Apayao",
+        "shipFee": 205
+    },
+    {
+        "province": "Aurora",
+        "shipFee": 205
+    },
+    {
+        "province": "Basilan",
+        "shipFee": 205
+    },
+    {
+        "province": "Bataan",
+        "shipFee": 205
+    },
+    {
+        "province": "Batanes",
+        "shipFee": 205
+    },
+    {
+        "province": "Batangas",
+        "shipFee": 205
+    },
+    {
+        "province": "Zamboanga Sibugay",
+        "shipFee": 195
+    }
+]
 
 
 
@@ -42,22 +99,40 @@ const CheckoutDetails = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const shipFee = useSelector(state => state.checkout.shippingFee)
-    const [selectedProvince, setSelectedProvince] = useState("");
+    const shipFee = useSelector(shippingFeeAmount)
+    const [selectedProvince, setSelectedProvince] = useState("-- Select Province --");
+    const [shipFeeValue, setShipFeeValue] = useState(0)
+
+
+    // useEffect(() => {
+    //     setShippingAddress((prevAddress)=>({
+    //         ...prevAddress,
+    //         shippingFee: shipFee,
+    //     }))
+    //     console.log(shipFee)
+    // }, [shipFee])
+
 
     
     useEffect(() => {
         dispatch(SAVE_SHIPPING_FEE(0))
     }, [])
-    
-    function ProvinceChange(e){
-        dispatch(SAVE_SHIPPING_FEE(e.target.value))
-        console.log(e.target.value)
-        setSelectedProvince(e.target.value)
-    }
+ 
+    var valueFee = 0;
 
 const handleShipping = (e) => {
     const {name, value} = e.target
+    if(name === "province"){
+        for(const fee of provinceFee){
+            if(value === fee.province){
+                valueFee = fee.shipFee
+                setSelectedProvince(value)
+                setShipFeeValue(fee.shipFee)
+                console.log(valueFee)
+                dispatch(SAVE_SHIPPING_FEE(fee.shipFee))
+            }
+        }
+    }
     setShippingAddress({
         ...shippingAddress,
         [name]: value,
@@ -143,7 +218,7 @@ const handleSubmit = (e) => {
                         />
                         {/* COUNTRY INPUT */}
                         <label>Name of Province</label>
-                        <select id="City" name="city" onChange={ProvinceChange} required>
+                        <select id="City" name="province" onChange={(e) => handleShipping(e)} required>
                             {province.map((data, i) => {
                                 return(
                                     <option key={i} value={data}>{data}</option>
@@ -252,7 +327,7 @@ const handleSubmit = (e) => {
                 </div>
                 <div>
                     <Card cardClass={styles.card}>
-                            <CheckoutSummary selectedProvince={selectedProvince} />
+                            <CheckoutSummary/>
                     </Card>
                 </div>
             </form>

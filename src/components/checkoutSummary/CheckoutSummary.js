@@ -8,7 +8,7 @@ import styles from "./CheckoutSummary.module.scss"
 import { toast } from "react-toastify";
 import { shippingFeeAmount } from "../../redux/slice/checkoutSlice";
 
-const CheckoutSummary = ({ shippingFee, selectedProvince }) => {
+const CheckoutSummary = () => {
     const cartItems = useSelector(selectCartItems);
     const shipFee = useSelector(shippingFeeAmount)
     const cartTotalAmount = useSelector(selectCartTotalAmount);
@@ -16,82 +16,11 @@ const CheckoutSummary = ({ shippingFee, selectedProvince }) => {
 
     const [totalAmount, setTotalAmount] = useState(0)
 
-    const provinceFee = [
-        {
-            "province": "-- Select Province --",
-            "shipFee": 0
-        },
-        {
-            "province": "Abra",
-            "shipFee": 165
-        },
-        {
-            "province": "Agusan del Norte",
-            "shipFee": 195
-        },
-        {
-            "province": "Agusan del Sur",
-            "shipFee": 195
-        },
-        {
-            "province": "Aklan",
-            "shipFee": 180
-        },
-        {
-            "province": "Albay",
-            "shipFee": 165
-        },
-        {
-            "province": "Antique",
-            "shipFee": 180
-        },
-        {
-            "province": "Apayao",
-            "shipFee": 205
-        },
-        {
-            "province": "Aurora",
-            "shipFee": 205
-        },
-        {
-            "province": "Basilan",
-            "shipFee": 205
-        },
-        {
-            "province": "Bataan",
-            "shipFee": 205
-        },
-        {
-            "province": "Batanes",
-            "shipFee": 205
-        },
-        {
-            "province": "Batangas",
-            "shipFee": 205
-        },
-        {
-            "province": "Zamboanga Sibugay",
-            "shipFee": 195
-        }
-    ]
-
-    useEffect(() => {
-        console.log(totalAmount)
-        const getShippingFee = () => {
-            for (const fee of provinceFee) {
-                if (shipFee=== fee.province) {
-                    return fee.shipFee;
-                }
-            }
-            return 0;
-        };
-        const updatedShippingFee = getShippingFee();
-        const newTotalAmount = cartTotalAmount + updatedShippingFee
-        setTotalAmount(newTotalAmount)
-        //const newTotalAmount = cartTotalAmount
-        console.log(newTotalAmount)
-    }, [cartTotalAmount, selectedProvince, provinceFee])
     
+    console.log(shipFee)
+    useEffect(() => {
+        setTotalAmount(cartTotalAmount+shipFee)
+    }, [shipFee])
     
     return <div>
         <h3>Checkout Summary</h3>
