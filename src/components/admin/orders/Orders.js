@@ -58,9 +58,17 @@ const Orders = () => {
                       <td>{id}</td>
                       <td>{"₱"}{orderAmount+shippingFee}</td>
                       <td>
-                        <p className= {orderStatus !== "Delivered" ? `${styles.pending}` : `${styles.delivered}`}>
-                          {orderStatus}
-                        </p>
+                      <p className={
+                        orderStatus === "Order Placed" ? styles.pending :
+                        orderStatus === "Processing" ? styles.processing :
+                        orderStatus === "Shipped" ? styles.shipped :
+                        orderStatus === "Delivered" ? styles.delivered :
+                        orderStatus === "For Return" ? styles.return :
+                        orderStatus === "Request Rejected" ? styles['request-rejected'] :
+                        orderStatus === "Follow-up Required" ? styles['follow-up-required'] : ''
+                      }>
+                        {orderStatus}
+                      </p>
                       </td>
                     </tr>
                   )

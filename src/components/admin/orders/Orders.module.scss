@@ -41,11 +41,38 @@
         background-color: #eee;
       }
       .pending {
-        color: #760700;
+        color: gray;
         font-weight: 500;
       }
+  
       .delivered {
         color: green;
+        font-weight: 500;
+      }
+  
+      /* Additional colors for new order statuses */
+      .processing {
+        color: yellow;
+        font-weight: 500;
+      }
+  
+      .shipped {
+        color: orange;
+        font-weight: 500;
+      }
+  
+      .return {
+        color: green;
+        font-weight: 500;
+      }
+  
+      .request-rejected {
+        color: red;
+        font-weight: 500;
+      }
+  
+      .follow-up-required {
+        color: yellow;
         font-weight: 500;
       }
     }

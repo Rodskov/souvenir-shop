@@ -12,12 +12,54 @@ const OrderDetails = () => {
         setOrder(document)
     }, [document])
 
-    const extractProductIDFromVariationID = (variationID) => {
-        const index = variationID.indexOf("-");
+      const extractProductIDFromVariationID = (variationID) => {
+        const index = variationID.indexOf('-');
         if (index !== -1) {
           return variationID.substring(0, index);
         }
         return variationID; // Return the same ID if no "-" is found
+      };
+    
+      const renderActionButtons = () => {
+        const { orderStatus } = order;
+        const reviewButton = (
+          <button className={`${styles.reviewButton} --btn --btn-primary`}>
+            <Link to={`/review-product/${extractProductIDFromVariationID(order.cartItems[0].id)}`}>
+              Review Product
+            </Link>
+          </button>
+        );
+    
+        if (orderStatus === 'Order Placed' || orderStatus === 'Processing') {
+          return reviewButton;
+        } else if (orderStatus === 'Shipped') {
+          return (
+            <>
+              {reviewButton}
+              <button className={`${styles.trackButton} --btn --btn-primary`}>
+                <a href="http://www.jtexpress.ph/index/query/gzquery.html" target="_blank" rel="noopener noreferrer">
+                  Track Order
+                </a>
+              </button>
+            </>
+          );
+        } else if (orderStatus === 'Delivered') {
+          return (
+            <>
+              {reviewButton}
+              <button className={`${styles.trackButton} --btn --btn-primary`}>
+                <a href="http://www.jtexpress.ph/index/query/gzquery.html" target="_blank" rel="noopener noreferrer">
+                  Track Order
+                </a>
+              </button>
+              <button className={`${styles.returnButton} --btn --btn-danger`}>
+                <Link to={`/return-product/${order.id}`}>Return Product</Link>
+              </button>
+            </>
+          );
+        }
+    
+        return null;
       };
 
   return (
@@ -74,23 +116,9 @@ const OrderDetails = () => {
                                     {(price * cartQuantity).toFixed(2)}
                                 </td>
                                 <td className={styles.icons}> 
-                                    <div className={styles.actionButtons}>
-                                        <button className={`${styles.reviewButton} --btn --btn-primary`}>
-                                            <Link to={`/review-product/${extractProductIDFromVariationID(order.cartItems[0].id)}`}>Review Product</Link>
-                                        </button>
-                                        <button className={`${styles.returnButton} --btn --btn-danger`}>
-                                            <Link to={`/return-product/${order.id}`}>Return Product</Link>
-                                        </button>
-                                        <button className={`${styles.trackButton} --btn --btn-primary`}>
-                                        <a
-                                            href="http://www.jtexpress.ph/index/query/gzquery.html"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            Track Order
-                                        </a>
-                                        </button>
-                                    </div>
+                                <div className={styles.actionButtons}>
+                                    {renderActionButtons()}
+                                </div>
                                 </td>
                             </tr>
                         )

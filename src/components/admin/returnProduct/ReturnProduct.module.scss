@@ -40,12 +40,18 @@
       tr:nth-child(even) {
         background-color: #eee;
       }
-      .pending {
-        color: #760700;
+      .return {
+        color: green;
         font-weight: 500;
       }
-      .delivered {
-        color: green;
+  
+      .request-rejected {
+        color: red;
+        font-weight: 500;
+      }
+  
+      .follow-up-required {
+        color: yellow;
         font-weight: 500;
       }
     }

@@ -8,6 +8,21 @@ import { useNavigate } from 'react-router-dom';
 import CheckoutSummary from '../../components/checkoutSummary/CheckoutSummary';
 import { toast } from 'react-toastify';
 
+const formatPhoneNumber = (phoneNumber) => {
+    // Remove all non-digit characters from the phone number
+    const cleanedPhoneNumber = phoneNumber.replace(/\D/g, "");
+  
+    // Insert dashes at specific positions to format the phone number
+    let formattedPhoneNumber = cleanedPhoneNumber.slice(0, 4);
+    if (cleanedPhoneNumber.length > 4) {
+      formattedPhoneNumber += "-" + cleanedPhoneNumber.slice(4, 7);
+    }
+    if (cleanedPhoneNumber.length > 7) {
+      formattedPhoneNumber += "-" + cleanedPhoneNumber.slice(7, 12);
+    }
+  
+    return formattedPhoneNumber;
+  };
 
 const initialAddressState = {
     name: "",
@@ -133,10 +148,21 @@ const handleShipping = (e) => {
             }
         }
     }
-    setShippingAddress({
-        ...shippingAddress,
-        [name]: value,
-    });
+    if (name === "phone") {
+        // Format the phone number and validate its length
+        const formattedPhoneNumber = formatPhoneNumber(value);
+        if (formattedPhoneNumber.length <= 13) {
+          setShippingAddress({
+            ...shippingAddress,
+            [name]: formattedPhoneNumber,
+          });
+        }
+      } else {
+        setShippingAddress({
+          ...shippingAddress,
+          [name]: value,
+        });
+      }
 };
 
 const handleBilling = (e) => {
@@ -238,10 +264,11 @@ const handleSubmit = (e) => {
                             })}
                         /> */}
                         <label>Phone</label>
-                        <input type='text' 
-                        placeholder='Phone'
+                       <input
+                        type="text"
+                        placeholder="Phone"
                         required
-                        name='phone'
+                        name="phone"
                         value={shippingAddress.phone}
                         onChange={(e) => handleShipping(e)}
                         />
