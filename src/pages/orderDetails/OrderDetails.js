@@ -84,6 +84,9 @@ const OrderDetails = () => {
             <p>
                 <b>Order Status:</b> {order.orderStatus}
             </p>
+            <p>
+            <b>Address: </b>{order.shippingAddress.line1}, {order.shippingAddress.line2}, {order.shippingAddress.city}
+            </p>
             <br/>
             <table>
                 <thead>

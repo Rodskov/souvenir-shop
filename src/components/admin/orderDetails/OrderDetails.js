@@ -37,11 +37,11 @@ return (
               <b>Order Status:</b> {order.orderStatus}
           </p>
           <p>
-              <b>Shipping Address</b> 
-              <br/> 
-              Address: {order.shippingAddress.line1}, {order.shippingAddress.line2}, {order.shippingAddress.city}
-              <br/> 
-              State: {order.shippingAddress.state}
+              {/* <b>Shipping Address</b> 
+              <br/>  */}
+              <b>Address: </b>{order.shippingAddress.line1}, {order.shippingAddress.line2}, {order.shippingAddress.city}
+              {/* <br/>  */}
+              {/* <b>State: </b>{order.shippingAddress.state} */}
           </p>
           <br/>
           <table>
