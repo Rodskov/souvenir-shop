@@ -30,10 +30,16 @@
       width: 35rem;
       padding: 1rem;
       height: 38rem;
+      
       animation: slide-up 0.5s ease;
+      .resetWrapper{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      }
       h2 {
         color: #dc0000;
-        margin: 4rem 0;
+        margin-top: 5rem ;
         text-align: center;
       }
       form {
@@ -62,9 +68,14 @@
           justify-content: space-between;
           margin-top: 3.5rem;
         }
-      
+        .resetIcon{
+          margin: 0 0.5em;
+          position: relative;
+          top: 5px;
+          font-size: 1.4em;
+        }
         a {
-
+          
           color: #dc0000;
           text-decoration: none;
 

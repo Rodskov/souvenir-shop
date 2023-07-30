@@ -7,7 +7,7 @@ import { sendPasswordResetEmail } from 'firebase/auth'
 import { auth } from '../../firebase/config'
 import { ToastContainer, toast } from 'react-toastify'
 import Loader from '../../components/loader/Loader'
-
+import  {BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs"
 
 const Reset = () => {
   const [email, setEmail] = useState("")
@@ -44,27 +44,25 @@ const resetPassword = (e) =>{
       
       <Card>
         <div className={`${styles.reset}`}>
+          <div className={`${styles.resetWrapper}`}>
           <h2>Reset Password</h2>
           
-          <form onSubmit={resetPassword}>
-              <input type='text' placeholder='Email' required value={email} onChange={(e) => setEmail(e.target.value)} />
-              <button type= 'submit' className='--btn --btn-reset --btn-block'>Reset Password</button>
-              <div className={styles.links}>
-                <p>
-                <Link to ='/login'>Login</Link>
-                </p>
-                <p>
-                <Link to ='/register'>SignUp</Link>
-                </p>
+            <form onSubmit={resetPassword}>
+                <input type='text' placeholder='Email' required value={email} onChange={(e) => setEmail(e.target.value)} />
+                <button type= 'submit' className='--btn --btn-reset --btn-block'>Reset Password</button>
+                <div className={styles.links}>
+                  <p>
+                  <Link to ='/login'><BsFillArrowLeftCircleFill className={styles.resetIcon}/>Login</Link>
+                  </p>
+                  <p>
+                  <Link to ='/register'>SignUp<BsFillArrowRightCircleFill className={styles.resetIcon}/></Link>
+                  </p>
+                  
+                </div>
                 
-              </div>
-              
-          </form>
-          <span className={styles.register}>
-            <p>Already have an account? </p>
-            <Link to='/login'>Login</Link>
-          </span>
+            </form>
           
+          </div>
         </div>
       </Card>
       <div className={styles.imgReset}>
