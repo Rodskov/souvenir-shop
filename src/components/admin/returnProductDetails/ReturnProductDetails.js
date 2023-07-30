@@ -75,7 +75,7 @@ return (
       <div className={`${styles.table}`}>
           <h2>Return Order Details</h2>
           <div>
-              <Link to ="/admin/orders">&larr; Back To Orders</Link>
+              <Link to ="/admin/return-product">&larr; Back To Orders</Link>
           </div>
       
       <br />

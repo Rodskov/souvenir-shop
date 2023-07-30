@@ -4,22 +4,20 @@ import Card from '../../card/Card'
 import spinnerImg from "../../../assets/spinner.jpg"
 import useFetchDocuments from '../../../customHooks/useFetchDocuments'
 import { useParams } from 'react-router-dom'
-import { doc, getDoc, getDocs } from 'firebase/firestore'
+import { doc, documentId, getDoc, getDocs } from 'firebase/firestore'
 import { db } from '../../../firebase/config'
 import useFetchCollection from '../../../customHooks/useFetchCollection'
 
 const ReturnMessage = () => {
-  const [returns, setReturns] = useState()
-  const [order, setOrder] = useState()
-  const [loading, setLoading] = useState()
-  const {id} = useParams()
-  const { data } = useFetchCollection("returns")
-  const { document } = useFetchDocuments('order', id);
+  const [returns, setReturns] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const {id, productID} = useParams()
+  const { data } = useFetchCollection('returns')
 
   useEffect(() => {
     const fetchReturnsData = async () => {
       try {
-        const documentRef = doc(db, "returns", "xovdwMAXSCiqkJNCYQL8");
+        const documentRef = doc(db, 'returns', id);
         const snapshot = await getDoc(documentRef);
         console.log(snapshot.data());
         setReturns(snapshot.data());
@@ -33,6 +31,9 @@ const ReturnMessage = () => {
     fetchReturnsData();
   }, []);
 
+  useEffect(() => {
+    console.log(returns?.productID);
+  }, [returns]);
 //   useEffect(() => {
 //       console.log(returns)
 //     const fetchReturnsData = async () => {
@@ -79,7 +80,8 @@ const ReturnMessage = () => {
                 <Card cardClass={styles.card}>
                   <h4>Reason for Return Request:</h4>
                   <p>
-                  {returns.review}
+                  {returns.returns}
+                  {returns.productID}
                   </p>
                 </Card>
               ) : (

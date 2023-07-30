@@ -5,47 +5,80 @@ import { selectUserID, selectUserName } from '../../redux/slice/authSlice'
 import { Link, useParams } from 'react-router-dom'
 import Card from '../card/Card'
 import { toast } from 'react-toastify'
-import { Timestamp, addDoc, collection } from 'firebase/firestore'
+import { Timestamp, addDoc, collection, doc, setDoc, getDoc } from 'firebase/firestore'
 import { db } from '../../firebase/config'
 import useFetchDocuments from '../../customHooks/useFetchDocuments'
 import spinnerImg from "../../assets/spinner.jpg"
 
 const ReturnProduct = () => {
-  const [review, setReview] = useState("")
-  const [order, setOrder] = useState(null)
-  const {id} = useParams()
-  const { document } = useFetchDocuments("orders", id)
-  const { returnDocument } = useFetchDocuments("returns", id)
-  const userID = useSelector(selectUserID)
-  const userName = useSelector(selectUserName)
+  const [returns, setReturns] = useState("");
+  const [order, setOrder] = useState(null);
+  const { id } = useParams();
+  const userID = useSelector(selectUserID);
+  const userName = useSelector(selectUserName);
 
   useEffect(() => {
-    console.log("Order Document:", document);
-    setOrder(document);
-  }, [document]);
+    const fetchOrderData = async () => {
+      try {
+        const orderRef = doc(db, 'orders', id);
+        const orderSnapshot = await getDoc(orderRef);
+        if (orderSnapshot.exists()) {
+          setOrder(orderSnapshot.data());
+        } else {
+          // Handle case where the order does not exist
+          console.log("Order does not exist.");
+        }
+      } catch (error) {
+        console.error("Error fetching order:", error);
+      }
+    };
 
-  const returnProduct = (e) =>{
-    e.preventDefault()
+    fetchOrderData();
+  }, [id]);
+
+  useEffect(() => {
+    // Assuming you have a 'returns' collection in Firestore and 'id' is the document ID
+    const fetchReturnsData = async () => {
+      try {
+        const returnsRef = doc(db, 'returns', id);
+        const returnsSnapshot = await getDoc(returnsRef);
+        if (returnsSnapshot.exists()) {
+          setReturns(returnsSnapshot.data().returns || "");
+        } else {
+          // Handle case where the returns document does not exist
+          console.log("Returns document does not exist.");
+        }
+      } catch (error) {
+        console.error("Error fetching returns:", error);
+      }
+    };
+
+    fetchReturnsData();
+  }, [id]);
+
+  const returnProduct = async (e) => {
+    e.preventDefault();
     const today = new Date();
-    const date =  today.toDateString();
+    const date = today.toDateString();
 
     const returnConfig = {
       userID,
       userName,
-      productID: order.id,
-      review,
-      reviewDate: date,
+      id: id,
+      returns,
+      returnDate: date,
       createdAt: Timestamp.now().toDate()
-    }
+    };
 
     try {
-      addDoc(collection(db, "returns"), returnConfig);
+      const newItemRef = doc(db, "returns", id);
+      await setDoc(newItemRef, returnConfig, { merge: true });
       toast.success("Return Form Submitted");
-      setReview("")
-    } catch(error) {
+      setReturns("");
+    } catch (error) {
       toast.error(error.message);
     }
-  }
+  };
 
   return (
     <section>
@@ -66,7 +99,7 @@ const ReturnProduct = () => {
         <Card cardClass={styles.card}>
           <form onSubmit={(e)=> returnProduct(e)}>
             <label>Return Details:</label>
-            <textarea value= {review} required onChange= {(e)=> setReview(e.target.value)}cols="30" rows="10"></textarea>
+            <textarea value= {returns} required onChange= {(e)=> setReturns(e.target.value)}cols="30" rows="10"></textarea>
             <button type='submit' className='--btn --btn-primary'>Submit Request</button>
           </form>
         </Card>

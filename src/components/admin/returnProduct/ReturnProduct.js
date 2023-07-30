@@ -1,26 +1,54 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from "./ReturnProduct.module.scss"
 import useFetchCollection from '../../../customHooks/useFetchCollection'
 import { useDispatch, useSelector } from 'react-redux'
 import { STORE_ORDERS, selectOrderHistory } from '../../../redux/slice/orderSlice'
 import { selectUserID } from '../../../redux/slice/authSlice'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Loader from '../../loader/Loader'
-
+import { doc, getDoc } from 'firebase/firestore'
+import { db } from '../../../firebase/config'
+import useFetchReturnsDocuments from '../../../customHooks/useFetchReturnsDocuments'
 
 const ReturnProduct = () => {
   const {data, isLoading} = useFetchCollection("orders")
   const orders = useSelector(selectOrderHistory)
   const userID = useSelector(selectUserID)
+  const {id} = useParams()
+  const [productID, setProductID] = useState(null)
+  const [returns, setReturns] = useState(null);
+  const [loading, setLoading] = useState(true)
+  const { document } = useFetchReturnsDocuments('returns', productID)
+
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const fetchReturnsData = async () => {
+      try {
+        const documentRef = doc(db, 'returns', productID);
+        const snapshot = await getDoc(documentRef);
+        console.log(snapshot.data());
+        setReturns(snapshot.data());
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+        setLoading(false);
+      }
+    };
+
+    fetchReturnsData();
+  }, [productID]);
+
+  console.log(`This is ${productID}`)
+  console.log(`This is ${id}`)
 
   useEffect(()=>{
     dispatch(STORE_ORDERS(data))
   }, [dispatch, data])
 
-  const handleClick = (id) =>{
+  const handleClick = (id, productID) =>{
     navigate(`/admin/return-product/${id}`);
   }
 
