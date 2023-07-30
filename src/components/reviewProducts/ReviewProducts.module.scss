@@ -4,6 +4,13 @@
     background-color: transparent;
     border-style: none;
     cursor: pointer;
+    font-size: 1.4em;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .continue:hover {
+   
+    font-size: 1.5rem;
   }
   .card_img {
     width: 100%;

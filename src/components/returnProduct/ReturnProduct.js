@@ -83,10 +83,11 @@ const ReturnProduct = () => {
   return (
     <section>
       <div className={`container ${styles.review}`}>
-      <Link to={`/order-details/${id}`}>
+      
+        <h2>Product Return Form</h2>
+        <Link to={`/order-details/${id}`}>
         &larr; Back to Order Details
       </Link>
-        <h2>Product Return Form</h2>
         <Card cardClass={styles.card_img}>
         {order === null ? (
           <img src={spinnerImg} alt='Loading...' style={{width: "60px"}}/>

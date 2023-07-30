@@ -66,10 +66,12 @@ const ReviewProducts = () => {
       {/* <div className={styles.continue}>
         <button onClick={() => navigate(-1)}>&larr; Back to Order Details</button>
       </div> */}
+      
       <div className={`container ${styles.review}`}>
         {/* <Link to={`/order-details/${id}`}>&larr; Back to Order Details</Link> */}
-        <button className={styles.continue} onClick={() => navigate(-1)}>&larr; Back to Order Details</button>
+        
         <h2>Review Products</h2>
+        <button className={styles.continue} onClick={() => navigate(-1)}>&larr; Back to Order Details</button>
         <Card cardClass={styles.card_img}>
         {product === null ? (
           <img src={spinnerImg} alt='Loading...' style={{width: "60px"}}/>
