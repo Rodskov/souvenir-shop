@@ -197,7 +197,7 @@ const AddProduct = () => {
             onChange={(e) => handleInputChange(e)}/>
           
           <label>Product image:</label>
-          <Card cardClass={styles.group}>
+          <div className={styles.card_custom}>
             {uploadProgress === 0 ? null : (
               <div className={styles.progress}>
 
@@ -208,7 +208,6 @@ const AddProduct = () => {
 
             </div>
             )}
-            
             <input type='file' 
               accept='image/*' 
               placeholder='Product Image' 
@@ -225,9 +224,9 @@ const AddProduct = () => {
               )}
           
             
-          </Card>
+          </div>
           
-          <label>Product price:</label>
+          <label className={styles.price_label}>Product price:</label>
           <input 
             type='number' 
             placeholder='Product price' 
@@ -252,7 +251,7 @@ const AddProduct = () => {
           </select>
           
           <label>Colors:</label>
-          <Card cardClass={styles.group}>
+          <div className={styles.card_custom}>
           <button type="button" onClick={()=>colorHandleAdd()}>Add color</button>
           {colorVar.map((data, i) => {
             return(
@@ -262,9 +261,9 @@ const AddProduct = () => {
               </div>
             )
           })}
-          </Card>
-          <label>Size:</label>
-          <Card cardClass={styles.group}>
+          </div>
+          <label className={styles.size_label}>Size:</label>
+          <div className={styles.card_custom}>
           <button type="button" onClick={()=>sizeHandleAdd()}>Add size</button>
           {sizeVar.map((data, i) => {
             return(
@@ -274,7 +273,7 @@ const AddProduct = () => {
               </div>
             )
           })}
-          </Card>
+          </div>
 
 
 
@@ -290,7 +289,7 @@ const AddProduct = () => {
             value={product.brand} 
             onChange={(e) => handleInputChange(e)}/> */}
 
-          <label>Product Description:</label>
+          <label className={styles.prod_desclabel}>Product Description:</label>
           <textarea 
             name='desc' 
             required 
