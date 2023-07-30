@@ -3,6 +3,10 @@
 // }
 
 .product {
+
+  width: 100%;
+  max-width: 1000px;
+  margin: 2rem 0;
     .desc {
       padding-top: 2rem;
       & > p {
@@ -27,6 +31,10 @@
             font-size: 30px;
             font-weight: 600;
           }
+          .desc {
+            word-wrap: break-word;
+            padding-top: 0;
+          }
         }
       }
     }
@@ -43,6 +51,7 @@
     .card {
       padding: 1rem;
       margin-top: 2rem;
+
       h3 {
         font-size: 20px;
       }
@@ -98,6 +107,9 @@
             border-radius: 5px;
             background-color: transparent;
             cursor: pointer;
+            font-size: 1.5rem;
+            color: rgba(52, 52, 52, 0.923);
+
 
             &.active {
               background-color: #97180f;
@@ -119,6 +131,8 @@
             border-radius: 5px;
             background-color: transparent;
             cursor: pointer;
+            font-size: 1.5rem;
+            color: rgba(52, 52, 52, 0.923);
 
             &.active {
               background-color: #97180f;
@@ -128,7 +142,7 @@
         }
       }
     }
-  
+
   @media screen and (max-width: 700px) {
     .product {
       .details {

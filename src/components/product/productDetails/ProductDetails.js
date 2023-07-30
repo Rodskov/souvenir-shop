@@ -136,7 +136,7 @@ const ProductDetails = () => {
             <div className={styles.content}>
               <h3>{product.name}</h3>
               <p className={styles.price}>{`₱${product.price}`}</p>
-              {/* <p>Description: {product.desc}</p> */}
+              <p className={styles.desc}>Description: {product.desc}</p>
               <p>
                 <b>Colors:</b>{" "}
                 {/* {product.color ? (
@@ -199,17 +199,17 @@ const ProductDetails = () => {
                 )}
                 
               </div>
-              <button className="--btn --btn-primary4" onClick={() => addToCart(product, selectedSize, selectedColor)}>ADD TO CART</button>
+              <button className="--btn --btn-primary4" onClick={() => addToCart(product, selectedSize, selectedColor)}>Add to Cart</button>
             </div>
           </div>
           </Card>
 
           
 
-          <Card cardClass={styles.card_desc}>
+          {/* <Card cardClass={styles.card_desc}>
               <h3>Product Description</h3>     
               <p>Description: {product.desc}</p>
-          </Card>
+          </Card> */}
           
         </>
       )}
