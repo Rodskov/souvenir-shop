@@ -23,6 +23,9 @@ const ReviewProducts = () => {
   const userID = useSelector(selectUserID)
   const userName = useSelector(selectUserName)
   const navigate = useNavigate();
+  const navigateToOrderDetails = () => {
+    navigate(`/order-details/${id}`);
+  };
 
 
   useEffect(() => {
@@ -60,20 +63,23 @@ const ReviewProducts = () => {
       {/* <div className={styles.continue}>
         <Link to={navigate(-1)}>&larr; Back to Order Details</Link>
       </div> */}
-      <div className={styles.continue}>
+      {/* <div className={styles.continue}>
         <button onClick={() => navigate(-1)}>&larr; Back to Order Details</button>
-      </div>
+      </div> */}
       <div className={`container ${styles.review}`}>
+        {/* <Link to={`/order-details/${id}`}>&larr; Back to Order Details</Link> */}
+        <button className={styles.continue} onClick={() => navigate(-1)}>&larr; Back to Order Details</button>
         <h2>Review Products</h2>
+        <Card cardClass={styles.card_img}>
         {product === null ? (
           <img src={spinnerImg} alt='Loading...' style={{width: "60px"}}/>
         ):(
           <>
             <p><b>Product Name </b> {product.name}</p>
-          <img src={product.imageURL} alt={product.name} style={{ width: "250px" }} />
+          <img src={product.imageURL} alt={product.name}/>
         </>
         )}
-        
+        </Card>
         <Card cardClass={styles.card}>
           <form onSubmit={(e)=> submitReview(e)}>
             <label>Rating: </label>
