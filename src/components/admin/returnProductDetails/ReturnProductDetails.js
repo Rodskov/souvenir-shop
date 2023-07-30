@@ -97,9 +97,9 @@ return (
           <p>
               <b>Shipping Address</b> 
               <br/> 
-              Address: {order.shippingAddress.line1}, {order.shippingAddress.line2}, {order.shippingAddress.city}
+              <b>Address: </b>{order.shippingAddress.line1}, {order.shippingAddress.line2}, {order.shippingAddress.city}
               <br/> 
-              State: {order.shippingAddress.state}
+              <b>State: </b>{order.shippingAddress.state}
           </p>
           <br/>
           <table>
