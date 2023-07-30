@@ -275,6 +275,12 @@ const AddProduct = () => {
             )
           })}
           </Card>
+
+
+
+
+
+          
           {/* <label>Product Company/Brand:</label>
           <input 
             type='text' 

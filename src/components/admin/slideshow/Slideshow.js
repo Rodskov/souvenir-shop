@@ -204,7 +204,7 @@ const Slideshow = () => {
               )
             })}
           </div>
-          <h3>Current slideshow:</h3>
+          <h3 className={styles.text_ss}>Current slideshow:</h3>
           <div>
             {imageFromDatabase.map((data, i) => {
               console.log(data.image)

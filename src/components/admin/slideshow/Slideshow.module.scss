@@ -10,6 +10,9 @@
         display: block;
         font-size: 1.4rem;
         font-weight: 500;
+        padding-bottom: 1rem;
+        padding-top: .4rem;
+        padding-left: 1rem;
       }
       input[type="text"],
       input[type="number"],
@@ -53,10 +56,19 @@
   .group {
     border: 1px solid var(--dark-blue);
     padding: 5px;
+    margin-left: .9rem;
+    margin-right: .9rem;
+    margin-bottom: 1rem;
+    .text_ss {
+      margin-left: 1rem;
+    }
   }
 
 .image {
   display: inline;
+  // justify-content: space-between;
   width: 192px;
   height: 108px;
+  // margin-left: 1rem;
+  // margin-right: 1rem;
 }

@@ -54,4 +54,22 @@
     border: 1px solid var(--dark-blue);
     padding: 5px;
     color: #000000;
+
+    button{
+      flex-shrink: 0;
+      background-color: #760700;
+      color: #ffffff;
+      border: 1px solid #760700;
+      padding: 0.5rem 1rem;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 1.4rem;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+      &:hover {
+        background-color: #97180f;
+        color: #ffca00;
+      }
+    }
+    
   }
