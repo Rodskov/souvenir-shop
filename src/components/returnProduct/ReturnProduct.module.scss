@@ -1,10 +1,32 @@
 .review {
-  .continue{
-    margin: 2em 0;
-    padding: 5px;
+  width: 100%;
+  // max-width: 1000px;
+  // margin-left: 10rem;
+  // .continue{
+  //   margin: 2em 0;
+  //   padding: 5px;
+  //   width: 100%;
+  //   overflow-x: auto;
+  // }
+
+  .card_img {
     width: 100%;
-    overflow-x: auto;
+    max-width: 500px;
+    padding: 1rem;
+    margin-bottom: 23px;
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    .prod_name {
+      // left: 0;
+      padding-bottom: 10px;
+    }
+    img {
+      width: 100%;
+      height: auto;
+    }
   }
+  
   .card {
     width: 100%;
     max-width: 500px;
