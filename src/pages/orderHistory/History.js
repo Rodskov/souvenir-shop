@@ -61,7 +61,12 @@ const History = () => {
                       <td>{id}</td>
                       <td>{"₱"}{orderAmount+shippingFee}</td>
                       <td>
-                        <p className= {orderStatus !== "Delivered" ? `${styles.pending}` : `${styles.delivered}`}>
+                        <p className={
+                          orderStatus === "Order Placed" ? styles.pending :
+                          orderStatus === "Processing" ? styles.processing :
+                          orderStatus === "Shipped" ? styles.shipped :
+                          orderStatus === "Delivered" ? styles.delivered : ''
+                          }>
                           {orderStatus}
                         </p>
                       </td>
