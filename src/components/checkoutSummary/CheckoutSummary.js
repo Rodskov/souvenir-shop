@@ -8,7 +8,7 @@ import styles from "./CheckoutSummary.module.scss"
 import { toast } from "react-toastify";
 import { shippingFeeAmount } from "../../redux/slice/checkoutSlice";
 
-const CheckoutSummary = () => {
+const CheckoutSummary = ( ) => {
     const cartItems = useSelector(selectCartItems);
     const shipFee = useSelector(shippingFeeAmount)
     const cartTotalAmount = useSelector(selectCartTotalAmount);
@@ -41,7 +41,7 @@ const CheckoutSummary = () => {
                         <h4>Subtotal: </h4>
                         <h3>{totalAmount.toFixed(2)}</h3>
                         <div></div>
-                        {/* <p>Shipping Fee: {updatedShippingFee}</p> */}
+                        <p>Shipping Fee: { shipFee }</p>
                     </div>
                     {cartItems.map((item, index) => {
                         const {id, name, price, cartQuantity} = item
