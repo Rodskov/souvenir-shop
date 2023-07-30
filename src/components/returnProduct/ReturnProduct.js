@@ -82,19 +82,21 @@ const ReturnProduct = () => {
 
   return (
     <section>
-      <div className={styles.continue}>
-        <Link to={`/order-details/${id}`}>&larr; Back to Order Details</Link>
-      </div>
       <div className={`container ${styles.review}`}>
+      <Link to={`/order-details/${id}`}>
+        &larr; Back to Order Details
+      </Link>
         <h2>Product Return Form</h2>
+        <Card cardClass={styles.card_img}>
         {order === null ? (
           <img src={spinnerImg} alt='Loading...' style={{width: "60px"}}/>
         ):(
           <>
-            <p><b>Product Name: </b> {order.cartItems[0].name}</p>
-          <img src={order.cartItems[0].imageURL} alt={order.cartItems[0].name} style={{width:"250px"}} />
+            <p className={styles.prod_name}><b>Product Name: </b> {order.cartItems[0].name}</p>
+          <img src={order.cartItems[0].imageURL} alt={order.cartItems[0].name} />
         </>
         )}
+        </Card>
         
         <Card cardClass={styles.card}>
           <form onSubmit={(e)=> returnProduct(e)}>
