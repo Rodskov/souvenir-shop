@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./ProductList.module.scss";
-// import {BsFillGridFill} from "react-icons/bs";
-// import {FaListAlt} from "react-icons/fa";
+import {BsFillGridFill} from "react-icons/bs";
+import {FaListAlt} from "react-icons/fa";
 import Search from '../../search/Search';
 import ProductItem from '../productItem/ProductItem';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,8 +10,7 @@ import Pagination from '../../pagination/Pagination';
 
 
 const ProductList = ({products}) => {
-  
-  // const [grid, setGrid] = useState(true);   *For grid and list*
+  const [grid, setGrid] = useState(true);
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("latest");
   const filteredProducts = useSelector(selectFilteredProducts)
@@ -39,17 +38,17 @@ const ProductList = ({products}) => {
       <div className={styles.top}>
 
         {/* GRID & LIST */}
-        {/* <div className={styles.icons}>
+        <div className={styles.icons}>
           <BsFillGridFill size={22} color='orangered'
           onClick={() => setGrid(true)}/>
 
           <FaListAlt size={24} color='#0066d4'
           onClick={() => setGrid(false)}/>
 
-          <p>
+          {/* <p>
             <b>{filteredProducts.length}</b> Products found
-          </p>
-        </div> */}
+          </p> */}
+        </div>
 
         {/* Search Icon */}
         <div className={styles.icons}>
@@ -69,7 +68,7 @@ const ProductList = ({products}) => {
         </div>
       </div>
 
-      <div className={styles.grid}>
+      {/* <div className={styles.grid}>
         {products.length === 0 ? (
           <p>No products found.</p>
         ) : (
@@ -83,7 +82,24 @@ const ProductList = ({products}) => {
           })}
           </>
         )}
+      </div> */}
+
+      <div className={grid ? `  ${styles.grid}` : `${styles.list}`}>
+        {products.length === 0 ? (
+          <p>No products found.</p>
+        ) : (
+          <>
+          {currentProducts.map((product) => {
+            return (
+              <div key={product.id}>
+                <ProductItem {...product} grid={grid} product={product} />
+              </div>
+            )
+          })}
+          </>
+        )}
       </div>
+
       <Pagination 
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
