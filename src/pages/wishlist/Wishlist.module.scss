@@ -45,18 +45,77 @@ section{
         .uploadContainer {
           display: flex;
           align-items: center;
-          justify-content: space-between;
+          flex-direction: column;
+          justify-content: center;
           margin-bottom: 1rem; /* Add margin between the container and the button */
+          
+          
+         
         }
+        .bottomIconWishlist{
+          position: relative;
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+          justify-content: space-between;
+          width: 100%;
+          
+        }
+        
         .uploadImageContainer{
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
           gap: 2em;
+          overflow-x: auto;
+          overflow-y: hidden;
+          width: 100%;
+
+          .uploadedImageRow {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1rem;
+            max-height: 300px;
+      
+          }
+       
+        
+          .uploadedImageContainer {
+            position: relative;
+            img {
+              /* Adjust the size of the images here */
+              width: 200px; /* Set the width of the images */
+              height: 150px; /* Set the height of the images */
+              object-fit: cover; /* Resize the image to cover the entire container while preserving aspect ratio */
+              display: block;
+            }
+          }
+        
+          .deleteImageButton {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 25px;
+            height: 25px;
+            background-color: red;
+            border-radius: 50%;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: none;
+            outline: none;
+          }
         }
+        
 
         .uploadButton {
-          display: inline-block;
+        display: inline-block;
           cursor: pointer;
           
           
@@ -80,6 +139,16 @@ section{
           align-items: center;
           justify-content: space-between;
           gap: 0.5rem;
+          position: relative;
+        }
+        .iconTextContainer::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: -5px; /* Adjust the distance of the line from the status text */
+          width: 100%;
+          height: 1px;
+          background-color: #ccc;
         }
 
         .wishlist-user-name{
@@ -90,30 +159,51 @@ section{
           font-weight: 400;
           font-size: 12px;
         }
+        .wishlist-status{
+          margin-left: 1rem;
+          margin-bottom: 1rem;
+          font-weight: 500;
+        }
+        
         .fileInput {
           display: none;
         }
         .wishlistImage {
-          /* Your image grid styles here */
-          /* ... */
+        
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 10px;
           align-items: center;
+          gap: 10px;
         
           div {
-            /* Adjust the size of the image containers here */
             width: 100%;
-            height: auto;
-            aspect-ratio: 16/9;
-            overflow: hidden
+            padding-top: 66.66%; /* Set the aspect ratio of 3:2 (for example) */
+            position: relative;
+            overflow: hidden;
           }
         
           img {
             /* Adjust the size of the images here */
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* Resize the image to cover the entire container while preserving aspect ratio */
+            display: block;
+            
+          }
+          &.twoRows {
+            grid-template-columns: repeat(2, 1fr);
+            
+            div {
+              padding-top: 100%;
+            }
+            
+            
+            
+          }
+          &.threeRows {
+            grid-template-columns: repeat(3, 1fr);
           }
         }
         .wishlistLabel{
@@ -123,7 +213,7 @@ section{
           display: flex;
           justify-content: center;
           align-items: center;
-          height: 300px; /* Set a fixed height for the single image container */
+          height: 450px; /* Set a fixed height for the single image container */
           overflow: hidden; /* Hide any overflowing content (image) within the div */
           text-align: center;
         }

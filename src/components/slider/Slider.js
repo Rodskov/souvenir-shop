@@ -34,10 +34,10 @@ const Slider = () => {
         }
         return () => clearInterval(slideInterval);
     }, [currentSlide, slideInterval, autoScroll]);
-
+    
   return (
     
-    <div className='slider'>
+    <div className='slider' >
         <MdKeyboardArrowLeft className = 'arrow prev' onClick={prevSlide}/>
         <MdKeyboardArrowRight className = 'arrow next' onClick={nextSlide}/>
         { ExportData().map ((slide, index) =>{

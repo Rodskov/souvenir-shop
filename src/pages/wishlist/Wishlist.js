@@ -13,6 +13,7 @@ import { BsPersonFill } from "react-icons/bs"
 import spinnerImg from "../../assets/spinner.jpg"
 import Card from '../../components/card/Card'
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage'
+import ImageModal from './modalWishlist';
 
 const Wishlist = () => {
     
@@ -34,18 +35,29 @@ const Wishlist = () => {
   
     const  [eventChanger, setEventChanger] = useState(0);
 
-    const numImages = imageArray.length;
-    let numRows = Math.ceil(numImages / 2);
-    numRows = Math.max(numRows, 2); // Ensure a minimum of 2 rows for two images
-    numRows = Math.min(numRows, 3); // Ensure a maximum of 3 rows for odd numbers of images
-    const numColumns = Math.ceil(numImages / numRows);
-    
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [enlargedImage, setEnlargedImage] = useState('');
+
+    const handleImageClick = (imageSource) => { // Fix the variable name here
+      setIsModalOpen(true);
+      setEnlargedImage(imageSource); // Fix the variable name here
+    };
+  
+    // Function to handle the click on the close button and hide the modal
+    const handleCloseModal = () => {
+      setIsModalOpen(false);
+    };
+    const deleteImage = (index) => {
+      const newImageArray = [...imageArray];
+      newImageArray.splice(index, 1);
+      setImageArray(newImageArray);
+    };
+
     const storage = getStorage()
 
     const imageStyle = {
     //display: imageDisplay,
-    height: "108px",
-    width: "192px"
+   
     }
 
     const divStyle = {
@@ -237,28 +249,40 @@ const Wishlist = () => {
           ></textarea>
           <div className={styles.uploadContainer}>
             <div className={styles.uploadImageContainer}> 
-              <label htmlFor="fileInput" className={styles.uploadButton}>
-                <IoIosImage className={styles.imageIcon} />
-              </label>
-              <input
-                type="file"
-                id="fileInput"
-                onChange={fileReceiver}
-                multiple
-                className={styles.fileInput}
-              />
-              <div style={divStyle}>
-                {imageArray.map((links, i) => {
-                  return(
-                    <img style={imageStyle} src={links}/>
-                  )
-                })}
+              <div className={styles.uploadedImageRow}>
+                {imageArray.map((links, i) => (
+                  <div key={i} className={styles.uploadedImageContainer}>
+                    <img style={imageStyle} src={links} alt={`Uploaded ${i + 1}`} />
+                    <button
+                      type="button"
+                      className={styles.deleteImageButton}
+                      onClick={() => deleteImage(i)}
+                    >
+                      X
+                    </button>
+                  </div>
+                ))}
               </div>
-                <p style={textStyle}>{uploadedFiles}/{numOfFiles} Uploaded</p>
+             
+              
             </div>
-            <button type='submit' className='--btn --btn-primary3'>
-            Submit Wishlist
-          </button>
+            <div className={styles.bottomIconWishlist}>
+                <label htmlFor="fileInput" className={styles.uploadButton}>
+                  <IoIosImage className={styles.imageIcon} />
+                </label>
+                <input
+                  type="file"
+                  id="fileInput"
+                  onChange={fileReceiver}
+                  multiple
+                  className={styles.fileInput}
+                />
+                <p style={textStyle}>{uploadedFiles}/{numOfFiles} Uploaded</p>
+              
+                <button type='submit' className='--btn --btn-primary3'>
+                Submit Wishlist</button>
+            </div>
+            
           </div>
           
         </form>
@@ -283,19 +307,34 @@ const Wishlist = () => {
                 </div>
                   {/* Check if there's only one image */}
                   {item.images.length === 1 && (
-                    <div className={styles.centeredImage}>
-                      <img src={item.images[0]} alt={`Wishlist ${index + 1}`} />
-                    </div>
+                    <div
+                    className={styles.centeredImage}
+                    onClick={() => handleImageClick(item.images[0])}
+                  >
+                    <img
+                      style={imageStyle}
+                      src={item.images[0]}
+                      alt={`Wishlist ${index + 1}`}
+                    />
+                  </div>
                   )}
                   {/* Check if there are multiple images */}
                   {item.images.length > 1 && (
-                    <div className={styles.wishlistImage} style={{ gridTemplateColumns: `repeat(${numColumns}, 1fr)` }}>
-                      {item.images.map((imageSource, i) => (
-                        <div key={i}>
-                          <img style={imageStyle} src={imageSource} alt={`Wishlist ${index + 1} - Image ${i + 1}`} />
-                        </div>
-                      ))}
-                    </div>
+                     <div
+                     className={`${styles.wishlistImage} ${
+                       item.images.length % 3 === 0 ? styles.threeRows : styles.twoRows
+                     }`}
+                   >
+                     {item.images.map((imageSource, i) => (
+                       <div key={i} onClick={() => handleImageClick(item.images[0])}>
+                         <img
+                           style={imageStyle}
+                           src={imageSource}
+                           alt={`Wishlist ${index + 1} - Image ${i + 1}`}
+                         />
+                       </div>
+                     ))}
+                   </div>
                   )}
                 </div>
               </div>
@@ -303,6 +342,9 @@ const Wishlist = () => {
           ) : (
             <p>No wishlist data available.</p>
           )
+        )}
+        {isModalOpen && (
+          <ImageModal imageUrl={enlargedImage} onClose={handleCloseModal} />
         )}
       
     </div>
