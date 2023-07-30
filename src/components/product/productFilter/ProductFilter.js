@@ -29,10 +29,7 @@ const ProductFilter = () => {
     ));
   };
 
-  const clearFilters = () => {
-    setCategory("All");
-    setPrice(maxPrice);
-  };
+  
 
   return (
     <div className={styles.filter}>
@@ -63,11 +60,7 @@ const ProductFilter = () => {
         max={maxPrice}/>
       </div>
       <br/>
-      <button 
-      className='--btn --btn-danger'
-      onClick={clearFilters}
-      >Clear Filter
-      </button>
+     
     </div>
   );
 };

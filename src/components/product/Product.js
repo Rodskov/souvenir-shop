@@ -49,7 +49,7 @@ const Product = () => {
                 <ProductList products={products}/>
               )}
             <div className={styles.icon} onClick={toggleFilter}>
-              <FaCogs size={20} color="orangered"/>
+              <FaCogs size={20} color="#dc0000"/>
               <p>
                 <b>{showFilter ? "Hide Filter" : "Show Filter"}</b>
               </p>

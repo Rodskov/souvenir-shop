@@ -10,7 +10,7 @@ import Pagination from '../../pagination/Pagination';
 
 
 const ProductList = ({products}) => {
-  console.log(products);
+  
   // const [grid, setGrid] = useState(true);   *For grid and list*
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("latest");
