@@ -47,6 +47,11 @@
       width: 160%;
       display: flex;
       justify-content: space-between;
+
+      .adminbtn_sidebar{
+        display: none;
+      }
+
       ul {
         display: flex;
         justify-content: space-between;
@@ -69,43 +74,10 @@
         }
       }
 
-      .displayNameWrapper {
-        position: absolute;
-        bottom: 10px;
-        left: 20px; 
-        display: flex;
-        align-items: center;
-        color: #fff;
-        font-size: 14px;
-        font-weight: bold;
-      }
-
-      // .displayNameWrapperMediaScreen {
-      //   position: absolute;
-      //   top: 10px;
-      //   left: 20px;
-      //   align-items: center;
-      //   color: #fff;
-      //   font-size: 14px;
-      //   font-weight: bold;
-      // }
-
-      // .hideOnMediaScreen {
-      //   display: none;
-      // }
-
       .displayNameWrapperMediaScreen {
-        display: none; // Hides it by default
-      }
-    
-      .show-nav {
-        .displayNameWrapperMediaScreen {
-          display: flex;
-        }
-      }
-    
-      .hideOnMediaScreen {
-        display: none;
+        .user_sidebar {
+          display: none;
+        } // Hides it by default
       }
 
     }
@@ -156,69 +128,31 @@
       display: none;
     }
 
-    // .displayNameWrapper {
-    //   position: absolute;
-    //   bottom: 10px;
-    //   left: 20px; /* Adjust the left position as needed */
-    //   display: flex;
-    //   align-items: center;
-    //   color: #fff;
-    //   font-size: 14px;
-    //   font-weight: bold;
+    @media screen and (min-width: 801px) {
+      nav {
+        .adminbtn_sidebar {
+          display: none; /* Hide the admin button in normal screens */
+        }
+      }
+    }
     
-    //   /* Hide displayNameWrapper on media screen */
-    //   @media screen and (max-width: 800px) {
-    //     display: none;
-    //     }
-    //   }
+    @media screen and (max-width: 800px) {
+      /* ... (other styles) ... */
     
-    //   .displayNameWrapperMediaScreen {
-    //     display: none; /* Hide it by default */
-      
-    //     /* Show displayNameWrapperMediaScreen on media screen */
-    //     @media screen and (max-width: 800px) {
-    //       position: absolute;
-    //       bottom: 10px;
-    //       left: 20px; /* Adjust the left position as needed */
-    //       display: flex;
-    //       align-items: center;
-    //       color: #fff;
-    //       font-size: 14px;
-    //       font-weight: bold;
-    //     }
-    //   }
+      nav {
+        /* ... (other styles) ... */
+        .adminbtn_sidebar {
+          display: block; /* Display the admin button in media screens when the side nav is open */
+          position: absolute;
+          top: 15px;
+          right: 30px;
+          z-index: 11; /* Ensure it appears above the side nav */
+        }
+      }
     
+      /* ... (other styles) ... */
+    }
 
-    .displayNameWrapper {
-      position: absolute;
-      bottom: 10px;
-      left: 20px;
-      display: flex;
-      align-items: center;
-      color: #fff;
-      font-size: 14px;
-      font-weight: bold;
-      /* Hides the displayNameWrapper on media screen */
-      @media screen and (max-width: 800px) {
-        display: none;
-      }
-    }
-    
-    .displayNameWrapperMediaScreen {
-      position: absolute;
-      bottom: 10px; 
-      left: 20px; 
-      display: flex;
-      align-items: center;
-      color: #fff;
-      font-size: 14px;
-      font-weight: bold;
-    
-      /* Shows the displayNameWrapperMediaScreen on media screen */
-      @media screen and (max-width: 800px) {
-        display: flex;
-      }
-    }
 
     @media screen and (max-width: 800px) {
       .logo img {
@@ -229,19 +163,17 @@
         transform: translateX(0);
     
         .displayNameWrapperMediaScreen {
-          position: absolute;
-          bottom: 10px;
-          left: 20px; /* Adjust the left position as needed */
-          display: flex;
-          align-items: center;
-          color: #fff;
-          font-size: 14px;
-          font-weight: bold;
-        }
-    
-        // Hide the displayNameWrapper when in media screen state
-        .displayNameWrapper {
-          display: none;
+          .user_sidebar {
+            position: absolute;
+            bottom: 10px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+          }
+          
         }
         
       }
@@ -291,6 +223,9 @@
               display: block;
             }
           }
+          .adminbtn{
+            display: none;
+          }
         }
   
         .header-right {
@@ -309,9 +244,6 @@
               }
             }
 
-          .displayNameWrapper{
-            display: none;
-          }
           }
   
           .links {
@@ -321,7 +253,13 @@
               margin: 0;
               padding: 5px 0;
               border-bottom: 1px solid #333;
+              // display: none;
+              
             }
+            .user {
+              display: none;
+            }
+            
           }
         }
       }

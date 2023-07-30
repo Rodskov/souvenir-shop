@@ -87,6 +87,7 @@ const Header = () => {
 
   const hideMenu = () =>{
     setShowMenu(false)
+    setIsMediaScreen(false);
   };
 
   const logoutUser = () =>{
@@ -122,19 +123,33 @@ const Header = () => {
     <header className={scrollPage ? `${styles.fixed}` : null}>
         <div className={styles.header}>
           {logo}
+          {/* {isMediaScreen && (
+            <AdminOnlyLink className={styles.adminbtn_sidebar}>
+              <Link to="/admin/home">
+                <button className={"--btn --btn-primary2"}>Admin</button>
+              </Link>
+            </AdminOnlyLink>
+          )} */}
             <nav className={showMenu ? `${styles["show-nav"]}`:`${styles['hide-nav']}`}>
 
               <div className={showMenu ? `${styles["nav-wrapper"]} ${styles["show-nav-wrapper"]}` :
                `${styles["nav-wrapper"]}`} onClick={hideMenu}
                ></div>
-
+            
               <ul onClick={hideMenu}>
                 <li className={styles["logo-mobile"]}>
                   <Link to= "/">{logo}</Link>
+                  {isMediaScreen && (
+                    <AdminOnlyLink className={styles.adminbtn_sidebar}>
+                      <Link to="/admin/home">
+                        <button className={"--btn --btn-primary2"}>Admin</button>
+                      </Link>
+                    </AdminOnlyLink>
+                  )}
                   <FaTimes size={25} color='#fff' onClick={hideMenu} />
                 </li>
 
-                <li>
+                <li className={styles.adminbtn}>
                   <AdminOnlyLink>
                     <Link to="/admin/home">
                     <button className={'--btn --btn-primary2'}>Admin</button>
@@ -158,7 +173,7 @@ const Header = () => {
               <div className={styles["header-right"]} onClick={hideMenu}>
                   <span className={styles.links}>
                     <ShowOnLogout><NavLink to='/login' className={activeLink}>Login</NavLink></ShowOnLogout>
-                    <ShowOnLogin><a href='#home' style={{color: "#fdca0f"}}>
+                    <ShowOnLogin><a href='#home' className={styles.user} style={{color: "#fdca0f"}}>
                       <FaUserCircle size={16}/>
                       Hi, {displayName}
                     </a></ShowOnLogin>
@@ -172,27 +187,16 @@ const Header = () => {
               
 
               {/* For Side Navbar */}
-              {/* {!isMediaScreen && (
-                <div className={styles.displayNameWrapper}>
+              {isMediaScreen && ( 
+                <div className={styles.displayNameWrapperMediaScreen}>
                   <ShowOnLogin>
-                    <a href="#home" style={{ color: "#fdca0f" }}>
+                    <a className={styles.user_sidebar} href="#home" style={{ color: "#fdca0f" }}>
                       <FaUserCircle size={16} />
                       Hi, {displayName}
                     </a>
                   </ShowOnLogin>
                 </div>
               )}
-
-              {isMediaScreen && ( 
-                <div className={styles.displayNameWrapperMediaScreen}>
-                  <ShowOnLogin>
-                    <a href="#home" style={{ color: "#fdca0f" }}>
-                      <FaUserCircle size={16} />
-                      Hi, {displayName}
-                    </a>
-                  </ShowOnLogin>
-                </div>
-              )} */}
 
 
 
