@@ -50,13 +50,13 @@ const Orders = () => {
               </thead>
               <tbody>
                 {orders.map((order, index)=>{
-                  const {id, orderDate, orderTime, orderAmount, orderStatus} = order
+                  const {id, orderDate, orderTime, orderAmount, shippingFee, orderStatus} = order
                   return(
                     <tr key ={id} onClick={() => handleClick(id)}>
                       <td>{index + 1}</td>
                       <td>{orderDate} at {orderTime}</td>
                       <td>{id}</td>
-                      <td>{"₱"}{orderAmount}</td>
+                      <td>{"₱"}{orderAmount+shippingFee}</td>
                       <td>
                         <p className= {orderStatus !== "Delivered" ? `${styles.pending}` : `${styles.delivered}`}>
                           {orderStatus}

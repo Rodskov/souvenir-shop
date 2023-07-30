@@ -25,6 +25,7 @@ const ChangeReturnStatus = ({order, id}) => {
       orderStatus: status,
       cartItems: order.cartItems,
       shippingAddress: order.shippingAddress,
+      shippingFee: order.shippingFee,
       createdAt: order.createdAt,
       editedAt: Timestamp.now().toDate(),
     }
