@@ -163,15 +163,22 @@
         transform: translateX(0);
     
         .displayNameWrapperMediaScreen {
+          
           .user_sidebar {
             position: absolute;
-            bottom: 10px;
-            left: 20px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            padding-left: 20px;
+            bottom: 0px;
+            left: 0px;
+            width: 100%;
             display: flex;
             align-items: center;
             color: #fff;
             font-size: 14px;
             font-weight: bold;
+            border-top: 1px solid #a01212;
+            z-index: 1;
           }
           
         }
@@ -218,7 +225,7 @@
           }
           li {
             padding: 5px 0;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #a01212;
             a {
               display: block;
             }
@@ -233,7 +240,7 @@
           .cart {
             display: block;
             padding: 5px 0;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #a01212;
             a {
               position: relative;
               p {
@@ -252,7 +259,7 @@
               display: block;
               margin: 0;
               padding: 5px 0;
-              border-bottom: 1px solid #333;
+              border-bottom: 1px solid #a01212;
               // display: none;
               
             }
