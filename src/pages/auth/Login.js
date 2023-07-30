@@ -4,7 +4,7 @@ import loginBg from '../../assets/loginBg.jpg'
 import { Link, useNavigate } from 'react-router-dom'
 import Card from '../../components/card/Card'
 import { FcGoogle } from "react-icons/fc"
-import { toast, ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify'
 import {GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup} from 'firebase/auth'
 import { auth } from "../../firebase/config"
 import Loader from "../../components/loader/Loader"
@@ -72,15 +72,7 @@ const Login = () => {
 
   return (
     <>
-    <ToastContainer position='top-left'
-            autoClose= {2000}
-            hideProgressBar= {false}
-            newestOnTop= {false}
-            closeOnClick = {false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme= "dark"/>
+    
     {isLoading && <Loader/>}
     <section className={`container ${styles.auth}`}>
       <div className={styles.imgLogin}>

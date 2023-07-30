@@ -7,7 +7,7 @@ import Card from '../../components/card/Card'
 import {createUserWithEmailAndPassword, sendEmailVerification, signOut} from 'firebase/auth'
 import { auth } from "../../firebase/config"
 import Loader from "../../components/loader/Loader"
-import { toast, ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify'
 import { BsEye, BsEyeSlash, BsFillCheckCircleFill, BsFillExclamationCircleFill } from "react-icons/bs"
 
 const SignUp = () => {
@@ -110,15 +110,7 @@ const registerUser = (e) =>{
   return (
     
     <>
-    <ToastContainer position='top-left'
-            autoClose= {2000}
-            hideProgressBar= {false}
-            newestOnTop= {false}
-            closeOnClick = {false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme= "dark"/>
+  
 
     {isLoading && <Loader/>}
     <section className={`container ${styles.auth}`}>

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import Card from '../../components/card/Card'
 import { sendPasswordResetEmail } from 'firebase/auth'
 import { auth } from '../../firebase/config'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import Loader from '../../components/loader/Loader'
 import  {BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs"
 
@@ -30,15 +30,7 @@ const resetPassword = (e) =>{
 
   return (
     <>
-     <ToastContainer position='top-left'
-            autoClose= {2000}
-            hideProgressBar= {false}
-            newestOnTop= {false}
-            closeOnClick = {false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme= "dark"/>
+    
     {isLoading && <Loader/>}
     <section className={`container ${styles.auth}`}>
       
