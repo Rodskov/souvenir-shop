@@ -16,7 +16,7 @@
     .prod_det {
       padding: 0.5px;
       margin-top: 2rem;
-      .details {
+      .detailsProduct {
         justify-content: center;
         align-items: center;
         .content {
@@ -58,7 +58,7 @@
     .review {
       border-top: 1px solid #ccc;
     }
-    .details {
+    .detailsProduct {
       // padding-top: 2rem;
       display: flex;
       // padding-bottom: 2rem;
@@ -142,18 +142,19 @@
       }
     }
 
-  @media screen and (max-width: 700px) {
-    .product {
-      .details {
-        flex-direction: column;
   
-        .img {
-          width: 100%;
-        }
-  
-        .content {
-          width: 100%;
-        }
+}
+@media screen and (max-width: 700px) {
+  .product {
+    .detailsProduct {
+      flex-direction: column;
+   
+      .img {
+        width: 100%;
+      }
+
+      .content {
+        width: 100%;
       }
     }
   }

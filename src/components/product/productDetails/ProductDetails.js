@@ -129,7 +129,7 @@ const ProductDetails = () => {
       ) : (
         <>
         <Card cardClass={styles.prod_det}>
-          <div className={styles.details}>
+          <div className={styles.detailsProduct}>
             <div className={styles.img}>
               <img src={product.imageURL} alt={product.name} />
             </div>
