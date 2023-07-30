@@ -31,13 +31,15 @@ const ChangeReturnStatus = ({order, id}) => {
     }
 
     try {
-      setDoc(doc(db, "orders", id), orderConfig);
-     
-      toast.success("Order Status Changed");
-      setIsLoading(false)
-      navigate("/admin/orders")
       
-    } catch(error) {
+      setDoc(doc(db, "orders", id), orderConfig);
+      navigate("/admin/orders");
+      setDoc(doc(db, "returns", id), orderConfig);
+
+      toast.success("Return Status Changed");
+      setIsLoading(false);
+      navigate("/admin/return-product");
+    } catch (error) {
       setIsLoading(false);
       toast.error(error.message);
     }

@@ -52,28 +52,28 @@
   
       /* Additional colors for new order statuses */
       .processing {
-        color: yellow;
-        font-weight: 500;
+        color: #ffca00;
+        font-weight: 600;
       }
   
       .shipped {
         color: orange;
-        font-weight: 500;
+        font-weight: 600;
       }
   
       .return {
         color: green;
-        font-weight: 500;
+        font-weight: 600;
       }
   
       .request-rejected {
         color: red;
-        font-weight: 500;
+        font-weight: 600;
       }
   
       .follow-up-required {
-        color: yellow;
-        font-weight: 500;
+        color: #ffca00;
+        font-weight: 600;
       }
     }
   }
