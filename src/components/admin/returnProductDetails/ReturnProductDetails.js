@@ -141,8 +141,8 @@ return (
           </table>
           </>
       )}
-      <ChangeReturnStatus order={order} id={id}/>
       <ReturnMessage order={order} id={id}/>
+      <ChangeReturnStatus order={order} id={id}/>
       </div>
 
   </>
