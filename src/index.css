@@ -293,8 +293,31 @@ p {
   transition: all 0.3s;
 }
 
+.--btn2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 8px 12px;
+  margin: 0 5px 0 0;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
+  background-color: #760700;  
+}
+
 .--btn:hover {
   transform: translateY(-2px);
+}
+.--btn2:hover {
+  transform: translateY(-2px);
+  
+}
+.--btn2 a:hover {
+  color: #fff;
+  
 }
 
 .--btn-lg {
@@ -329,6 +352,11 @@ p {
   font-weight: 600;
   font-size: 18px;
 }
+
+.--btn-primary5 {
+  color: #fff;
+}
+
 .--btn-google {
   color: #5d5e5e;
   background: #fff;;

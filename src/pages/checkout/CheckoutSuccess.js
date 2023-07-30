@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import styles from "./CheckoutDetails.module.scss";
 
 const CheckoutSuccess = () => {
   return (
@@ -9,7 +10,7 @@ const CheckoutSuccess = () => {
         <p>Thank you for your purchase!</p>
         <br />
         
-          <button className='--btn --btn-primary'><Link to="/order-history">View Order Status</Link></button>
+          <button className='--btn2'><Link className='--btn-primary5' to="/order-history">View Order Status</Link></button>
         
       </div>
 
