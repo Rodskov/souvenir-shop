@@ -137,20 +137,17 @@
     }
     
     @media screen and (max-width: 800px) {
-      /* ... (other styles) ... */
     
       nav {
-        /* ... (other styles) ... */
         .adminbtn_sidebar {
-          display: block; /* Display the admin button in media screens when the side nav is open */
+          display: block;
           position: absolute;
           top: 15px;
           right: 30px;
-          z-index: 11; /* Ensure it appears above the side nav */
+          z-index: 11;
         }
       }
-    
-      /* ... (other styles) ... */
+  
     }
 
 
@@ -226,7 +223,7 @@
           }
           li {
             padding: 5px 0;
-            border-bottom: 1px solid #a01212;
+            border-bottom: 1px solid #a83737;
             a {
               display: block;
             }
@@ -241,7 +238,7 @@
           .cart {
             display: block;
             padding: 5px 0;
-            border-bottom: 1px solid #a01212;
+            border-bottom: 1px solid #a83737;
             a {
               position: relative;
               p {
@@ -260,7 +257,7 @@
               display: block;
               margin: 0;
               padding: 5px 0;
-              border-bottom: 1px solid #a01212;
+              border-bottom: 1px solid #a83737;
               // display: none;
               
             }
@@ -318,5 +315,5 @@
     bottom: -3px;
     width: 100%;
     height: 2px;
-    background-color: #fff;
+    background-color: #daa51f;
   }
