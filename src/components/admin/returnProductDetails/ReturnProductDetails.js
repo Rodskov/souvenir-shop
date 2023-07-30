@@ -37,13 +37,13 @@ const ReturnProductDetails = () => {
       setLoading(false);
   }, [ordersDocument])
 
-  const { document: returnsDocument } = useFetchDocuments("returns", id)
+  // const { document: returnsDocument } = useFetchDocuments("returns", id)
 
-  useEffect(() => {
-    // console.log("Return Document:", returnsDocument);
-    setOrder(returnsDocument);
-    setLoading(false);
-  }, [returnsDocument]);
+  // useEffect(() => {
+  //   // console.log("Return Document:", returnsDocument);
+  //   setOrder(returnsDocument);
+  //   setLoading(false);
+  // }, [returnsDocument]);
 
   const addWishlist = (e) =>{
     e.preventDefault()
