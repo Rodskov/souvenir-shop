@@ -128,7 +128,7 @@ const Wishlist = () => {
         for(var i=0; i < arrayImage.length; i++){
           const fileName = arrayImage[i].name
           console.log(fileName)
-          imageLinks.push("gs://pup-tanglaw-clothing.appspot.com/wishlist/"+fileName)
+          imageLinks.push("gs://pup-souvenir-shop.appspot.com/wishlist/"+fileName)
           const imageRef = ref(storage, "wishlist/"+fileName)
           await uploadBytes(imageRef, arrayImage[i]).then((snapshot) => {
             uploaded++
