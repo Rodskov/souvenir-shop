@@ -45,22 +45,7 @@ const ReturnProductDetails = () => {
   //   setLoading(false);
   // }, [returnsDocument]);
 
-  const addWishlist = (e) =>{
-    e.preventDefault()
-
-    const today = new Date();
-    const date =  today.toDateString();
-
-    const returnConfig = {
-        return: newReturn,
-        returnDate: date,
-        createdAt: Timestamp.now().toDate()
-      }
-  
-      console.log(returnConfig);
-
-    setNewReturn("");
-  };
+ 
   
     useEffect(() => {
         fetchReturn().then((returnData) => {
@@ -95,11 +80,9 @@ return (
               <b>Order Status:</b> {order.orderStatus}
           </p>
           <p>
-              <b>Shipping Address</b> 
-              <br/> 
+              
               <b>Address: </b>{order.shippingAddress.line1}, {order.shippingAddress.line2}, {order.shippingAddress.city}
-              <br/> 
-              <b>State: </b>{order.shippingAddress.state}
+              
           </p>
           <br/>
           <table>
