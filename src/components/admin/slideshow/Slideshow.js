@@ -145,7 +145,7 @@ const Slideshow = () => {
       console.log(receiveFiles)
       for(var i=0; i < receiveFiles.length; i++){
         const fileName = receiveFiles[i].name;
-        imageLinks.push("gs://pup-tanglaw-clothing.appspot.com/slideshows/"+fileName)
+        imageLinks.push("gs://pup-souvenir-shop.appspot.com/slideshows/"+fileName)
         const imageRef = ref(storage, "slideshows/"+fileName)
         console.log(fileName)
         await uploadBytes(imageRef, receiveFiles[i]).then((snapshot) => {
