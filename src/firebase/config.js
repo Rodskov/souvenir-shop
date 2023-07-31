@@ -4,12 +4,12 @@ import { getFirestore } from "firebase/firestore"
 import { getStorage } from "firebase/storage"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBopD80NdafSAzhEZtsF-srORB57OzDl_M",
-  authDomain: "pup-souvenir-shop.firebaseapp.com",
-  projectId: "pup-souvenir-shop",
-  storageBucket: "pup-souvenir-shop.appspot.com",
-  messagingSenderId: "568131932661",
-  appId: "1:568131932661:web:b3c19370c3ccfa874dd0bc"
+  apiKey: "AIzaSyAY3CTYagqEtjv7moN03330wViqRSqfk6k",
+  authDomain: "pup-tanglaw-clothing-shop.firebaseapp.com",
+  projectId: "pup-tanglaw-clothing-shop",
+  storageBucket: "pup-tanglaw-clothing-shop.appspot.com",
+  messagingSenderId: "453504706083",
+  appId: "1:453504706083:web:e0e1b34b977356dcbdb396"
 };
 
 
