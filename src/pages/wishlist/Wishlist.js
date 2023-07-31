@@ -8,7 +8,7 @@ import { selectIsLoggedIn, selectUserID, selectUserName } from '../../redux/slic
 import { IoIosArrowUp, IoIosImage } from 'react-icons/io';
 import { toast } from 'react-toastify'
 import { Timestamp, addDoc, collection, getDocs } from 'firebase/firestore'
-import { db } from '../../firebase/config'
+import { configImagesLinks, db } from '../../firebase/config'
 
 
 import Card from '../../components/card/Card'
@@ -128,7 +128,7 @@ const Wishlist = () => {
         for(var i=0; i < arrayImage.length; i++){
           const fileName = arrayImage[i].name
           console.log(fileName)
-          imageLinks.push("gs://pup-souvenir-shop.appspot.com/wishlist/"+fileName)
+          imageLinks.push(configImagesLinks+"wishlist/"+fileName)
           const imageRef = ref(storage, "wishlist/"+fileName)
           await uploadBytes(imageRef, arrayImage[i]).then((snapshot) => {
             uploaded++

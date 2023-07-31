@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from "./ReturnProduct.module.scss"
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectUserID, selectUserName } from '../../redux/slice/authSlice'
 import { Link, useParams } from 'react-router-dom'
 import Card from '../card/Card'
@@ -10,6 +10,9 @@ import { configImagesLinks, db, storage } from '../../firebase/config'
 import useFetchDocuments from '../../customHooks/useFetchDocuments'
 import spinnerImg from "../../assets/spinner.jpg"
 import { getDownloadURL, ref, uploadBytes, uploadBytesResumable } from 'firebase/storage'
+import ChangeOrderStatus from '../admin/changeOrderStatus/ChangeOrderStatus'
+import ChangeReturnStatus from '../admin/changeReturnStatus/ChangeReturnStatus'
+import {storeReturnConfig, STORE_RETURN_CONFIG} from '../../redux/slice/orderSlice'
 
 const ReturnProduct = () => {
   const [returns, setReturns] = useState("");
@@ -17,6 +20,9 @@ const ReturnProduct = () => {
   const { id } = useParams();
   const userID = useSelector(selectUserID);
   const userName = useSelector(selectUserName);
+  const returnConfigSave = useSelector(storeReturnConfig)
+
+  const dispatch = useDispatch()
 
   const [imageLinksArray, setImageLinksArray] = useState([])
   const [imageDownloadsArray, setImageDownloadsArray] = useState([])
@@ -32,6 +38,14 @@ const ReturnProduct = () => {
   const day = date.getDate()
   const month = date.getMonth()
   const hour = date.getHours()
+
+  useEffect(() => {
+    dispatch(STORE_RETURN_CONFIG({}))
+  }, [])
+
+  useEffect(() => {
+    console.log(returnConfigSave)
+  }, [returnConfigSave])
 
   useEffect(() => {
     setImageDownloadsArray([])
@@ -102,6 +116,10 @@ const ReturnProduct = () => {
       console.error("error", error)
     }
   }
+
+  useEffect(() => {
+    console.log(fileLength)
+  }, [fileLength])
   
   useEffect(() => {
     console.log(videoDownloadArray)
@@ -182,44 +200,48 @@ const ReturnProduct = () => {
         returnDate: date,
         createdAt: Timestamp.now().toDate()
       };
-
+      
+      dispatch(STORE_RETURN_CONFIG(returnConfig))
     
       try {
         const newItemRef = doc(db, "returns", id);
+        console.log(returnConfig)
         await setDoc(newItemRef, returnConfig, { merge: true });
         toast.success("Return Form Submitted");
         setReturns("");
       } catch (error) {
         toast.error(error.message);
       }
+
+      const orderConfig = {
+        userID: order.userID,
+        userEmail: order.userEmail,
+        orderDate: order.orderDate,
+        orderTime: order.orderTime,
+        orderAmount: order.orderAmount,
+        orderStatus: "For Return",
+        cartItems: order.cartItems,
+        shippingAddress: order.shippingAddress,
+        shippingFee: order.shippingFee,
+        createdAt: order.createdAt,
+        editedAt: Timestamp.now().toDate(),
+      }
+  
+      try {
+        
+        setDoc(doc(db, "orders", id), orderConfig);
+        //setDoc(doc(db, "returns", id), orderConfig);
+  
+      } catch (error) {
+        toast.error(error.message);
+      }
+  
     }
     else{
       toast.error("Images are still uploading")
     }
 
-    const orderConfig = {
-      userID: order.userID,
-      userEmail: order.userEmail,
-      orderDate: order.orderDate,
-      orderTime: order.orderTime,
-      orderAmount: order.orderAmount,
-      orderStatus: "For Return",
-      cartItems: order.cartItems,
-      shippingAddress: order.shippingAddress,
-      shippingFee: order.shippingFee,
-      createdAt: order.createdAt,
-      editedAt: Timestamp.now().toDate(),
-    }
-
-    try {
-      
-      setDoc(doc(db, "orders", id), orderConfig);
-      setDoc(doc(db, "returns", id), orderConfig);
-
-    } catch (error) {
-      toast.error(error.message);
-    }
-
+    
   };
 
   return (

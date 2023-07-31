@@ -39,6 +39,7 @@ const ReturnMessage = () => {
   useEffect(() => {
     console.log(returns?.productID);
   }, [returns]);
+  console.log(returns)
 //   useEffect(() => {
 //       console.log(returns)
 //     const fetchReturnsData = async () => {

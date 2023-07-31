@@ -6,11 +6,14 @@ import { Timestamp, setDoc, doc } from 'firebase/firestore'
 import { toast } from 'react-toastify'
 import { db } from '../../../firebase/config'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { storeReturnConfig } from '../../../redux/slice/orderSlice'
 
 const ChangeReturnStatus = ({order, id}) => {
   const [status, setStatus] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate();
+  const returnConfig = useSelector(storeReturnConfig)
  
   const editOrder = (e, id) => {
     e.preventDefault()
@@ -34,7 +37,7 @@ const ChangeReturnStatus = ({order, id}) => {
       
       setDoc(doc(db, "orders", id), orderConfig);
       navigate("/admin/orders");
-      setDoc(doc(db, "returns", id), orderConfig);
+      setDoc(doc(db, "returns", id), returnConfig, { merge:true });
 
       toast.success("Return Status Changed");
       setIsLoading(false);
