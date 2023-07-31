@@ -7,6 +7,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Loader from '../../loader/Loader';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../firebase/config';
+import useFetchDocuments from '../../../customHooks/useFetchDocuments';
+import { selectOrderHistory } from '../../../redux/slice/orderSlice';
 
 const ReturnProduct = () => {
   const { data, isLoading } = useFetchCollection("returns");
@@ -14,8 +16,17 @@ const ReturnProduct = () => {
   const { id } = useParams();
   const [returns, setReturns] = useState(null);
   const [loading, setLoading] = useState(true);
+  const orders = useSelector(selectOrderHistory)
+  // const [order, setOrder] = useState(null);
+  // const { document } = useFetchDocuments("orders", id)
   
   const navigate = useNavigate();
+  const allowedOrderStatus = ["For Return", "Request Rejected", "Follow-up Required"];
+
+  // useEffect(()=>{
+  //     setOrder(document)
+  //     setLoading(false);
+  // }, [document])
 
   useEffect(() => {
     const fetchReturnsData = async () => {
@@ -37,7 +48,8 @@ const ReturnProduct = () => {
   const handleClick = (id, productID) => {
     navigate(`/admin/return-product/${id}`);
   }
-
+console.log("This")
+console.log(data.id)
   return (
     <>
       <div className={`${styles.order}`}>
@@ -62,7 +74,9 @@ const ReturnProduct = () => {
                 </tr>
               </thead>
               <tbody>
-                {data.map((order, index) => {
+                {orders
+                .filter((order) => allowedOrderStatus.includes(order.orderStatus))
+                .map((order, index) => {
                   const { id, orderDate, orderTime,shippingFee, orderAmount, orderStatus } = order;
                   return (
                     <tr key={id} onClick={() => handleClick(id)}>
