@@ -83,29 +83,6 @@ const ReturnMessage = () => {
                   {returns.returns}
                   {returns.productID}
                   </p>
-                  {returns.videoURLs !== undefined ? (
-                    returns.videoURLs.map((links, i) => {
-                      return(
-                        <div key={i}>
-                          <video src={links} style={imageStyleHardCoded} autoPlay controls/>
-                        </div>
-                      )
-                    })
-                  ) : (
-                    console.log("Return has no media files")
-                  )}
-                  {returns.imageURLs !== undefined ? (
-                    returns.imageURLs.map((links, i) => {
-                      return (
-                        <div key={i} style={{display: 'inline'}}>
-                          <img src={links} style={imageStyleHardCoded}/>
-                        </div>
-                      )
-                    })
-                  ) : (
-                    console.log("Return has no media files")
-                  )
-                  }
                 </Card>
               ) : (
                 <p>Loading...</p>
