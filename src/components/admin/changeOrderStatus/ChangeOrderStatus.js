@@ -11,7 +11,7 @@ const ChangeOrderStatus = ({order, id}) => {
   const [status, setStatus] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate();
- 
+  
   const editOrder = (e, id) => {
     e.preventDefault()
     setIsLoading(true)

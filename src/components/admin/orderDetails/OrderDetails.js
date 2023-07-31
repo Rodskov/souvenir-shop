@@ -13,6 +13,10 @@ const OrderDetails = () => {
       setOrder(document)
   }, [document])
 
+  const isOrderStatusRestricted = () => {
+    const restrictedStatuses = ["For Return", "Request Rejected", "Follow-up Required"];
+    return restrictedStatuses.includes(order?.orderStatus);
+  };
 
 return (
   <>
@@ -83,7 +87,11 @@ return (
           </table>
           </>
       )}
-      <ChangeOrderStatus order={order} id={id}/>
+      {isOrderStatusRestricted() ? (
+              <p className={styles.orderReturnStatus}>This product is in the process of return.</p>
+            ) : (
+              <ChangeOrderStatus order={order} id={id} />
+        )}
       </div>
 
   </>
