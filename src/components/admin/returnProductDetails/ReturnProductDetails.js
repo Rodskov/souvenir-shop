@@ -124,8 +124,10 @@ return (
           </table>
           </>
       )}
-      <ReturnMessage order={order} id={id}/>
-      <ChangeReturnStatus order={order} id={id}/>
+      <div className={styles.returnBottomDetails}>
+          <ReturnMessage order={order} id={id} />
+          <ChangeReturnStatus order={order} id={id} />
+        </div>
       </div>
 
   </>

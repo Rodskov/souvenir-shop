@@ -60,6 +60,23 @@
         }
       }
     }
+    .returnBottomDetails {
+      display: flex;
+    flex-direction: row; /* Display the components in a row */
+    justify-content: flex-start; /* Add space between the components */
+    gap: 1em;
+    /* Additional styles for the container div wrapping ReturnMessage and ChangeReturnStatus components */
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    }
+    @media screen and (max-width: 700px) {
+      .returnBottomDetails{
+        gap: 0em;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
   }
   .count {
     display: flex;
@@ -71,3 +88,4 @@
       margin-right: 1rem;
     }
   }
+  

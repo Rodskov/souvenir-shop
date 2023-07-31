@@ -7,6 +7,8 @@ import { useParams } from 'react-router-dom'
 import { doc, documentId, getDoc, getDocs } from 'firebase/firestore'
 import { db } from '../../../firebase/config'
 import useFetchCollection from '../../../customHooks/useFetchCollection'
+import ImageModal from '../../../pages/wishlist/modalWishlist';
+import VideoModal from '../../../pages/wishlist/modalVideo';
 
 const ReturnMessage = () => {
   const [returns, setReturns] = useState(null)
@@ -15,9 +17,28 @@ const ReturnMessage = () => {
   const { data } = useFetchCollection('returns')
 
   const imageStyleHardCoded = {
-    height: 108,
-    width: 192
+    height: 200,
+    width: Math.round(200 * 16 / 9),
+    objectFit: 'cover'
   }
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [enlargedImage, setEnlargedImage] = useState('');
+
+  const handleImageClick = (imageSource) => { // Fix the variable name here
+    setIsModalOpen(true);
+    setEnlargedImage(imageSource); // Fix the variable name here
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [enlargedVideo, setEnlargedVideo] = useState('');
+
+  const handleVideoClick = (videoSource) => {
+    setIsVideoModalOpen(true);
+    setEnlargedVideo(videoSource);
+  };
 
   useEffect(() => {
     const fetchReturnsData = async () => {
@@ -35,6 +56,7 @@ const ReturnMessage = () => {
 
     fetchReturnsData();
   }, []);
+  
 
   useEffect(() => {
     console.log(returns?.productID);
@@ -81,7 +103,7 @@ const ReturnMessage = () => {
           ) : returns === null ? (
             <p>No order data found.</p>
           ) : (
-            <div className={styles.status}>
+            <div className={styles.statusReturnMessage}  >
               {returns ? (
                 <Card cardClass={styles.card}>
                   <h4>Reason for Return Request:</h4>
@@ -89,35 +111,43 @@ const ReturnMessage = () => {
                   {returns.returns}
                   {returns.productID}
                   </p>
-                  {returns.videoURLs !== undefined ? (
-                    returns.videoURLs.map((links, i) => {
-                      return(
-                        <div key={i}>
-                          <video src={links} style={imageStyleHardCoded} autoPlay controls/>
-                        </div>
-                      )
-                    })
-                  ) : (
-                    console.log("Return has no media files")
-                  )}
-                  {returns.imageURLs !== undefined ? (
-                    returns.imageURLs.map((links, i) => {
-                      return (
-                        <div key={i} style={{display: 'inline'}}>
-                          <img src={links} style={imageStyleHardCoded}/>
-                        </div>
-                      )
-                    })
-                  ) : (
-                    console.log("Return has no media files")
-                  )
-                  }
+                  <div className={styles.statusContainerMessage}>
+                    {returns.videoURLs !== undefined ? (
+                      returns.videoURLs.map((links, i) => {
+                        return(
+                          <div key={i}>
+                            <video src={links} style={imageStyleHardCoded} controls onClick={() => handleVideoClick(links)}/>
+                          </div>
+                        )
+                      })
+                    ) : (
+                      console.log("Return has no media files")
+                    )}
+                    {returns.imageURLs !== undefined ? (
+                      returns.imageURLs.map((links, i) => {
+                        return (
+                          <div key={i} style={{display: 'inline'}}>
+                            <img src={links} style={imageStyleHardCoded} onClick={() => handleImageClick(links)}/>
+                          </div>
+                        )
+                      })
+                    ) : (
+                      console.log("Return has no media files")
+                    )
+                    }
+                  </div>
                 </Card>
               ) : (
                 <p>Loading...</p>
               )}
             </div>
           )}
+           {isModalOpen && (
+          <ImageModal imageUrl={enlargedImage} onClose={handleCloseModal} />
+    )}
+    {isVideoModalOpen && (
+        <VideoModal videoUrl={enlargedVideo} onClose={() => setIsVideoModalOpen(false)} />
+      )}
         </>
       )
     }

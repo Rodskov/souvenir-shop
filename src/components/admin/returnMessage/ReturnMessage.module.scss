@@ -1,13 +1,20 @@
-.status {
+.statusReturnMessage {
+  
   width: 100%;
   max-width: 400px;
   margin: 2rem 0;
-
+  
+  
 
   .card {
     padding: 1rem;
     border: 2px solid #760700;
-  }  
+  } 
+  
+}
+.statusContainerMessage{
+  max-height: 200px ;
+  overflow-y: auto;
 }
 
 .table {
