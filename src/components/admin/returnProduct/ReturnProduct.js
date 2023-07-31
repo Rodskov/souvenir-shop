@@ -8,7 +8,7 @@ import Loader from '../../loader/Loader';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../firebase/config';
 import useFetchDocuments from '../../../customHooks/useFetchDocuments';
-import { selectOrderHistory } from '../../../redux/slice/orderSlice';
+import { reRenderController, selectOrderHistory } from '../../../redux/slice/orderSlice';
 
 const ReturnProduct = () => {
   const { data, isLoading } = useFetchCollection("returns");
@@ -17,6 +17,7 @@ const ReturnProduct = () => {
   const [returns, setReturns] = useState(null);
   const [loading, setLoading] = useState(true);
   const orders = useSelector(selectOrderHistory)
+
   // const [order, setOrder] = useState(null);
   // const { document } = useFetchDocuments("orders", id)
   
@@ -48,8 +49,6 @@ const ReturnProduct = () => {
   const handleClick = (id, productID) => {
     navigate(`/admin/return-product/${id}`);
   }
-console.log("This")
-console.log(data.id)
   return (
     <>
       <div className={`${styles.order}`}>

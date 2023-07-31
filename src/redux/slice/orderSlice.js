@@ -4,6 +4,7 @@ const initialState = {
     orderHistory: [],
     totalOrderAmount: null,
     returnConfig: {},
+    reRender: 0,
 }
 
 const orderSlice = createSlice({
@@ -30,7 +31,7 @@ const orderSlice = createSlice({
     }
 });
 
-export const {STORE_ORDERS, CALC_TOTAL_ORDER_AMOUNT, STORE_RETURN_CONFIG} = orderSlice.actions
+export const {STORE_ORDERS, CALC_TOTAL_ORDER_AMOUNT, STORE_RETURN_CONFIG, RE_RENDER_CONTROLLER} = orderSlice.actions
 export const selectOrderHistory = (state) => state.orders.orderHistory
 export const selectTotalOrderAmount= (state) => state.orders.totalOrderAmount
 export const storeReturnConfig = (state) => state.orders.returnConfig
