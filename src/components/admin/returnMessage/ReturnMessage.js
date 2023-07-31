@@ -88,7 +88,7 @@ const ReturnMessage = () => {
                   {returns.returns}
                   {returns.productID}
                   </p>
-                  {returns.videoURLs !=0 ? (
+                  {returns.videoURLs !== undefined ? (
                     returns.videoURLs.map((links, i) => {
                       return(
                         <div key={i}>
@@ -99,7 +99,7 @@ const ReturnMessage = () => {
                   ) : (
                     console.log("Return has no media files")
                   )}
-                  {returns.imageURLs != 0 ? (
+                  {returns.imageURLs !== undefined ? (
                     returns.imageURLs.map((links, i) => {
                       return (
                         <div key={i} style={{display: 'inline'}}>
