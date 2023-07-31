@@ -5,6 +5,10 @@ import { getStorage, uploadBytes, ref, getDownloadURL } from 'firebase/storage';
 import { doc, getDoc, getFirestore, setDoc, snapshotEqual } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { configImagesLinks } from '../../../firebase/config';
+import { FaTimes } from 'react-icons/fa';
+import ImageModal from '../../../pages/wishlist/modalWishlist';
+
+
 
 const Slideshow = () => {
   const [imageLinksArray, setImageLinksArray] = useState([]);
@@ -23,6 +27,9 @@ const Slideshow = () => {
   const [authentication, setAuthentication] = useState(0)
   const [authenticator, setAuthenticator] = useState(0)
   const fileInputRef = useRef(null)
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [enlargedImage, setEnlargedImage] = useState('');
 
 
   const [status, setStatus] = useState(0)
@@ -73,7 +80,8 @@ const Slideshow = () => {
   const imageStyle = {
     display: imageDisplay,
     height: "108px",
-    width: "192px"
+    width: "192px",
+    
   }
 
   const cancel = () => {
@@ -117,14 +125,41 @@ const Slideshow = () => {
       toast.error("Images are still uploading")
     }
   }
+  const deleteImage = (index) => {
+    const updatedLinksArray = [...imageLinksArray];
+    updatedLinksArray.splice(index, 1);
+    setImageLinksArray(updatedLinksArray);
+
+    const updatedDownloadArray = [...imageDownloadArray];
+    updatedDownloadArray.splice(index, 1);
+    setImageDownloadArray(updatedDownloadArray);
+  };
+
+  useEffect(() => {
+    if (imageDownloadArray.length === 0) {
+      setBtnDisplay("none");
+      setConfirmBtnDisplay("none");
+      setConfirmText("none");
+      setImageDisplay("none");
+      setStatsDisplay("none");
+    }
+  }, [imageDownloadArray]);
 
   const showImages = () => {
-    return imageDownloadArray.map(
-      (links, i) => {
-        return <img style={imageStyle} src={links}></img>
-      }
-    )
-  }
+    
+    return imageDownloadArray.map((link, i) => (
+      <div key={i} className={styles.imageContainer}>
+        <img style={imageStyle} src={link} alt={`Uploaded Image ${i + 1}`} />
+        <button className={styles.deleteButton} onClick={() => deleteImage(i)}>
+          <FaTimes />
+        </button>
+        <div className={styles.arrowContainer}>
+          <div className={styles.arrow}></div>
+        </div>
+        <div className={styles.redCircle}></div>
+      </div>
+    ));
+  };
 
   const linkFetcher = async () => {
     setConfirmation(true)
@@ -164,6 +199,13 @@ const Slideshow = () => {
       console.log(imageLinksArray)
     }
   }
+  const handleImageClick = (imageSource) => { // Fix the variable name here
+    setIsModalOpen(true);
+    setEnlargedImage(imageSource); // Fix the variable name here
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   // Create a handler in checking files if input has changed
   const handleEventChange = async (event) => {
@@ -234,13 +276,12 @@ const Slideshow = () => {
             </div>
             </div>
           </form>
-          <div className={styles.uploaded}>
+          
+          
+          <h3 className={styles.check_text} style={textConfirmation}>Below are the Images to be included in the slideshow:</h3>
+          {/* <div className={styles.uploaded}>
             <p style={statusText}>{status}/{numFiles} file(s) uploaded</p>
-          </div>
-          <div className={styles.btn_confirm}>
-            <button onClick={confirmImages} style={buttonStyle}>Confirm Images</button>
-          </div>
-          <h3 className={styles.check_text} style={textConfirmation}>Below are the Images to be included in the slideshow. Please check:</h3>
+          </div> */}
           <div>
             {/* {imageDownloadArray.map((data, i) => {
               return(
@@ -251,16 +292,21 @@ const Slideshow = () => {
           </div>
           <h3 className={styles.text_ss}><b>Current slideshow:</b></h3>
           <div>
-            {imageFromDatabase.map((data, i) => {
-              console.log(data.image)
-              return(
-                <img style={{display: "inline", height: "108px", width: "192px"}} src={data.image}></img>
-              )
-            })}
+            {imageFromDatabase.map((data, i) => (
+              <img
+                key={i}
+                style={{ display: "inline", height: "108px", width: "192px", margin: "5px" }}
+                src={data.image}
+                onClick={() => handleImageClick(data.image)} // Pass the image URL to handleImageClick
+              />
+            ))}
           </div>
         </div>
       </Card>
     </div>
+    {isModalOpen && (
+          <ImageModal imageUrl={enlargedImage} onClose={handleCloseModal} />
+    )}
     </>
   
   
