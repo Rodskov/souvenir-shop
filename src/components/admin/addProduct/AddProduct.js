@@ -13,11 +13,11 @@ import { selectProducts } from '../../../redux/slice/productSlice';
 const categories = [
   {id: 1, name: "Activewear"},
   {id: 2, name: "Casual Polo"},
-  {id: 3, name: "Drift"},
+  {id: 3, name: "Drift Collection"},
   {id: 4, name: "Hoodies"},
-  {id: 5, name: "Klasika"},
-  {id: 6, name: "Klasika Minimalista"},
-  {id: 7, name: "Special & Limited"},
+  {id: 5, name: "Klasika Collection"},
+  {id: 6, name: "Klasika Minimalista Collection"},
+  {id: 7, name: "Special and Limited Collection"},
 ]
 
 const initialState = {
