@@ -56,6 +56,11 @@ const ReturnProduct = () => {
     fetchReturnsData();
   }, [id]);
 
+  const handleImages = async (e) => {
+    const file = e.target.files
+    console.log(file)
+  }
+
   const returnProduct = async (e) => {
     e.preventDefault();
     const today = new Date();
@@ -70,6 +75,7 @@ const ReturnProduct = () => {
       createdAt: Timestamp.now().toDate()
     };
 
+  
     try {
       const newItemRef = doc(db, "returns", id);
       await setDoc(newItemRef, returnConfig, { merge: true });
@@ -103,6 +109,7 @@ const ReturnProduct = () => {
           <form onSubmit={(e)=> returnProduct(e)}>
             <label>Return Details:</label>
             <textarea value= {returns} required onChange= {(e)=> setReturns(e.target.value)}cols="30" rows="10"></textarea>
+            <input type='file' onChange={(e) => handleImages(e)} accept='image/*, video/*' multiple/>
             <button type='submit' className='--btn --btn-primary'>Submit Request</button>
           </form>
         </Card>

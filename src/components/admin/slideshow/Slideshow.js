@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from "./Slideshow.module.scss"
 import Card from '../../card/Card'
 import { getStorage, uploadBytes, ref, getDownloadURL } from 'firebase/storage';
 import { doc, getDoc, getFirestore, setDoc, snapshotEqual } from 'firebase/firestore';
 import { toast } from 'react-toastify';
+import { configImagesLinks } from '../../../firebase/config';
 
 const Slideshow = () => {
   const [imageLinksArray, setImageLinksArray] = useState([]);
@@ -21,13 +22,24 @@ const Slideshow = () => {
   
   const [authentication, setAuthentication] = useState(0)
   const [authenticator, setAuthenticator] = useState(0)
+  const fileInputRef = useRef(null)
 
 
   const [status, setStatus] = useState(0)
   const storage = getStorage()
   const database = getFirestore()
   const collectionRef = doc(database, "slideshow", "slideshow")
+  
 
+  useEffect(() => {
+    setTimeout(() => {
+      cancel()
+    }, 1)
+    cancel()
+    setConfirmBtnDisplay("none")
+    setStatsDisplay("none")
+    setBtnDisplay("none")
+  }, [])
 
   useEffect(() => {
     getDoc(collectionRef).then((snapshot) => {
@@ -35,6 +47,12 @@ const Slideshow = () => {
       setImageFromDatabase(snapshot.data().data)
     })
   }, [changeDisplay])
+
+  useEffect(() => { 
+    console.log("Changes have been made")
+    console.log(imageDownloadArray)
+    console.log(imageLinksArray)
+  }, [imageDownloadArray, imageLinksArray])
 
   const statusText = {
     display: statsDisplay
@@ -59,35 +77,53 @@ const Slideshow = () => {
   }
 
   const cancel = () => {
-    setBtnDisplay("none")
-    setConfirmBtnDisplay("none")
-    setConfirmText("none")
-    setImageDisplay("none")
+  setBtnDisplay("none");
+  setConfirmBtnDisplay("none");
+  setConfirmText("none");
+  setImageDisplay("none");
+  setStatsDisplay("none"); // Add this line to hide the status text as well
+  if (fileInputRef.current) {
+    fileInputRef.current.value = null;
+  }
   }
 
   // Create a handler for submission
   const submissionHandler = (e) => {
     e.preventDefault();
-    console.log(imageDownloadArray)
-    var dataArray = []
-    const collectionRefWithName = doc(database, "slideshow", "slideshow")
-    for(var i=0; i < imageDownloadArray.length; i++){
-      const imageData = {
-        image: imageDownloadArray[i]
+    if(authenticator === authentication){
+      console.log(imageDownloadArray)
+      var dataArray = []
+      const collectionRefWithName = doc(database, "slideshow", "slideshow")
+      for(var i=0; i < imageDownloadArray.length; i++){
+        const imageData = {
+          image: imageDownloadArray[i]
+        }
+        dataArray.push(imageData)
+        console.log(dataArray)
       }
-      dataArray.push(imageData)
-      console.log(dataArray)
+      setDoc(collectionRefWithName, {
+        data: dataArray
+      }).then(() => {
+        setChangeDiplay(Math.random())
+        setImageDisplay("none")
+        setConfirmBtnDisplay("none")
+        setStatsDisplay("none")
+        setConfirmText("none")
+        setStatsDisplay("none")
+        toast.success("Slideshow successfully changed!")
+      })
     }
-    setDoc(collectionRefWithName, {
-      data: dataArray
-    }).then(() => {
-      setChangeDiplay(Math.random())
-      setImageDisplay("none")
-      setConfirmBtnDisplay("none")
-      setStatsDisplay("none")
-      setConfirmText("none")
-      toast.success("Slideshow successfully changed!")
-    })
+    else{
+      toast.error("Images are still uploading")
+    }
+  }
+
+  const showImages = () => {
+    return imageDownloadArray.map(
+      (links, i) => {
+        return <img style={imageStyle} src={links}></img>
+      }
+    )
   }
 
   const linkFetcher = async () => {
@@ -100,17 +136,25 @@ const Slideshow = () => {
       })
       );
       setImageDownloadArray(urls)
+      
       setConfirmBtnDisplay("block")
     } catch(error) {
       console.error("error", error)
     }
   }
 
+  useEffect(() => {
+    showImages()
+  }, [imageDownloadArray])
+
+  useEffect(() => {
+    linkFetcher()
+  }, [imageLinksArray])
+
   const confirmImages = () => {
     if(authenticator != authentication){
       console.log(authenticator)
       console.log(authentication)
-      alert("Images are still uploading")
     }
     else{
       setImageDisplay("inline")
@@ -118,7 +162,6 @@ const Slideshow = () => {
       console.log(authenticator)
       console.log(authentication)
       console.log(imageLinksArray)
-      linkFetcher()
     }
   }
 
@@ -130,7 +173,7 @@ const Slideshow = () => {
       setStatsDisplay("block")
       setStatus(statusUpdate)
       setConfirmBtnDisplay("none")
-      setBtnDisplay("block")
+      //setBtnDisplay("block")
       setImageLinksArray([])
       setImageDownloadArray([])
       const imageLinks = [];
@@ -145,7 +188,7 @@ const Slideshow = () => {
       console.log(receiveFiles)
       for(var i=0; i < receiveFiles.length; i++){
         const fileName = receiveFiles[i].name;
-        imageLinks.push("gs://pup-souvenir-shop.appspot.com/slideshows/"+fileName)
+        imageLinks.push(configImagesLinks+"slideshows/"+fileName)
         const imageRef = ref(storage, "slideshows/"+fileName)
         console.log(fileName)
         await uploadBytes(imageRef, receiveFiles[i]).then((snapshot) => {
@@ -160,6 +203,7 @@ const Slideshow = () => {
       setAuthentication(authenticationChild)
       setAuthenticator(authenticatorChild)
       setImageLinksArray(imageLinks)
+      confirmImages()
     }
     else{
       setConfirmText("none")
@@ -182,7 +226,7 @@ const Slideshow = () => {
             </label>
             <div className={styles.card_custom}>
             <div>
-              <input onChange={handleEventChange} id="imageFiles" type="file" multiple/>
+              <input ref={fileInputRef} onChange={handleEventChange} id="imageFiles" type="file" accept='image/*' multiple/>
             </div>
             <div className={styles.newslideshow_confirmcancel}>
               <button className={styles.confirm_ns} style={confirmButtonStyle}>Confirm New Slideshow</button>
@@ -198,11 +242,12 @@ const Slideshow = () => {
           </div>
           <h3 className={styles.check_text} style={textConfirmation}>Below are the Images to be included in the slideshow. Please check:</h3>
           <div>
-            {imageDownloadArray.map((data, i) => {
+            {/* {imageDownloadArray.map((data, i) => {
               return(
                 <img style={imageStyle} src={data}></img>
               )
-            })}
+            })} */}
+            {showImages()}
           </div>
           <h3 className={styles.text_ss}><b>Current slideshow:</b></h3>
           <div>
