@@ -213,7 +213,7 @@ const handleSubmit = (e) => {
                         <label>Address Line 2</label>
                         <input type='text' 
                         placeholder='Address Line 2'
-                        required
+                        // required
                         name='line2'
                         value={shippingAddress.line2}
                         onChange={(e) => handleShipping(e)}
@@ -226,14 +226,14 @@ const handleSubmit = (e) => {
                         value={shippingAddress.city}
                         onChange={(e) => handleShipping(e)}
                         />
-                        <label>State</label>
+                        {/* <label>State</label>
                         <input type='text' 
                         placeholder='State'
                         required
                         name='state'
                         value={shippingAddress.state}
                         onChange={(e) => handleShipping(e)}
-                        />
+                        /> */}
                         <label>Postal code</label>
                         <input type='text' 
                         placeholder='Postal code'
