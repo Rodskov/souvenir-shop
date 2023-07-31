@@ -6,10 +6,9 @@ import { Link, useParams } from 'react-router-dom'
 import Card from '../card/Card'
 import { toast } from 'react-toastify'
 import { Timestamp, addDoc, collection, doc, setDoc, getDoc } from 'firebase/firestore'
-import { configImagesLinks, db, storage } from '../../firebase/config'
+import { db } from '../../firebase/config'
 import useFetchDocuments from '../../customHooks/useFetchDocuments'
 import spinnerImg from "../../assets/spinner.jpg"
-import { getDownloadURL, ref, uploadBytes, uploadBytesResumable } from 'firebase/storage'
 
 const ReturnProduct = () => {
   const [returns, setReturns] = useState("");
@@ -17,26 +16,6 @@ const ReturnProduct = () => {
   const { id } = useParams();
   const userID = useSelector(selectUserID);
   const userName = useSelector(selectUserName);
-
-  const [imageLinksArray, setImageLinksArray] = useState([])
-  const [imageDownloadsArray, setImageDownloadsArray] = useState([])
-
-  const [videoLinksArray, setVideoLinksArray] = useState([])
-  const [videoDownloadArray, setVideoDownloadArray] = useState([])
-
-  const [fileLength, setFileLength] = useState(0)
-  const [authenticator, setAuthenticator] = useState(0)
-
-  const date = new Date()
-  const year = date.getFullYear()
-  const day = date.getDate()
-  const month = date.getMonth()
-  const hour = date.getHours()
-
-  useEffect(() => {
-    setImageDownloadsArray([])
-    setImageLinksArray([])
-  }, [])
 
   useEffect(() => {
     const fetchOrderData = async () => {
@@ -77,124 +56,33 @@ const ReturnProduct = () => {
     fetchReturnsData();
   }, [id]);
 
-  const videoLinkFetcher = async () => {
-    try{
-      const urls = await Promise.all(videoLinksArray.map((URLs) => {
-        const imageRef = ref(storage, URLs);
-        return getDownloadURL(imageRef);
-      })
-      );
-      setVideoDownloadArray(urls)
-    } catch(error) {
-      console.error("error", error)
-    }
-  }
-
-  const imageLinkFetcher = async () => {
-    try{
-      const urls = await Promise.all(imageLinksArray.map((URLs) => {
-        const imageRef = ref(storage, URLs);
-        return getDownloadURL(imageRef);
-      })
-      );
-      setImageDownloadsArray(urls)
-    } catch(error) {
-      console.error("error", error)
-    }
-  }
-  
-  useEffect(() => {
-    console.log(videoDownloadArray)
-  }, [videoDownloadArray])
-
-  useEffect(() => {
-    console.log(videoLinksArray)
-    videoLinkFetcher()
-  }, [videoLinksArray])
-
-  useEffect(() => {
-    console.log(imageDownloadsArray)
-  }, [imageDownloadsArray])
-
-  useEffect(() => {
-    console.log(imageLinksArray)
-    imageLinkFetcher()
-    
-  }, [imageLinksArray])
-
   const handleImages = async (e) => {
-    if(e.target.files.length != 0){
-      toast.success("Uploads started, please wait until all images are uploaded")
-      const file = e.target.files
-      console.log(file)
-      var adder = 0
-      setAuthenticator(0)
-      setFileLength(file.length)
-      setImageLinksArray([])
-      setImageDownloadsArray([])
-      var imageLinks = []
-      var videoLinks = []
-      for(var i=0; i < file.length; i++){
-        if(file[i].type === "video/mp4"){
-          toast.success("Video found!")
-          const videoRef = ref(storage, `returnVideos/${year}-${day}-${month}-${hour}_${file[i].name}`)
-          videoLinks.push(configImagesLinks+`returnVideos/${year}-${day}-${month}-${hour}_${file[i].name}`)
-          await uploadBytes(videoRef, file[i]).then((snapshot) => {
-            adder++
-            toast.success(file[i].name+" is successfully added")
-            console.log(snapshot)
-          })
-        }
-        if(file[i].type === "image/jpg" || file[i].type === "image/jpeg" || file[i].type === "image/png") {
-          const imageRef = ref(storage, `returnImages/${year}-${day}-${month}-${hour}_${file[i].name}`)
-          imageLinks.push(configImagesLinks+`returnImages/${year}-${day}-${month}-${hour}_${file[i].name}`)
-          await uploadBytes(imageRef, file[i]).then((snapshot) => {
-            adder++
-            toast.success(file[i].name+" is successfully added")
-            console.log(snapshot)
-          })
-        }
-      }
-      setAuthenticator(adder)
-      setImageLinksArray(imageLinks)
-      setVideoLinksArray(videoLinks)
-      toast.success("All images are added succesfully")
-    }
-    else{
-      toast.error("Files successfully removed")
-    }
+    const file = e.target.files
+    console.log(file)
   }
 
   const returnProduct = async (e) => {
     e.preventDefault();
+    const today = new Date();
+    const date = today.toDateString();
 
-    if(authenticator === fileLength){
-      const today = new Date();
-      const date = today.toDateString();
+    const returnConfig = {
+      userID,
+      userName,
+      id: id,
+      returns,
+      returnDate: date,
+      createdAt: Timestamp.now().toDate()
+    };
 
-      const returnConfig = {
-        userID,
-        userName,
-        id: id,
-        returns,
-        videoURLs: videoDownloadArray,
-        imageURLs: imageDownloadsArray,
-        returnDate: date,
-        createdAt: Timestamp.now().toDate()
-      };
-
-    
-      try {
-        const newItemRef = doc(db, "returns", id);
-        await setDoc(newItemRef, returnConfig, { merge: true });
-        toast.success("Return Form Submitted");
-        setReturns("");
-      } catch (error) {
-        toast.error(error.message);
-      }
-    }
-    else{
-      toast.error("Images are still uploading")
+  
+    try {
+      const newItemRef = doc(db, "returns", id);
+      await setDoc(newItemRef, returnConfig, { merge: true });
+      toast.success("Return Form Submitted");
+      setReturns("");
+    } catch (error) {
+      toast.error(error.message);
     }
   };
 
@@ -221,7 +109,7 @@ const ReturnProduct = () => {
           <form onSubmit={(e)=> returnProduct(e)}>
             <label>Return Details:</label>
             <textarea value= {returns} required onChange= {(e)=> setReturns(e.target.value)}cols="30" rows="10"></textarea>
-            <input type='file' onChange={(e) => handleImages(e)} accept='image/*, video/mp4' multiple/>
+            <input type='file' onChange={(e) => handleImages(e)} accept='image/*, video/*' multiple/>
             <button type='submit' className='--btn --btn-primary'>Submit Request</button>
           </form>
         </Card>

@@ -14,11 +14,6 @@ const ReturnMessage = () => {
   const {id, productID} = useParams()
   const { data } = useFetchCollection('returns')
 
-  const imageStyleHardCoded = {
-    height: 108,
-    width: 192
-  }
-
   useEffect(() => {
     const fetchReturnsData = async () => {
       try {
