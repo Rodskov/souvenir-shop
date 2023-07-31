@@ -25,7 +25,8 @@ const ContactUs = () => {
 
   return (
     <section>
-      <div className={`container ${styles.contact}`}>
+      <div className={styles.contactContainer}>
+      <div className={styles.contact}>
         <h2>Contact Us</h2>
         <div className={styles.section}>
           <form ref={form} onSubmit={sendEmail}>
@@ -67,6 +68,7 @@ const ContactUs = () => {
             </Card>
           </div>
         </div>
+      </div>
       </div>
     </section>
   )
