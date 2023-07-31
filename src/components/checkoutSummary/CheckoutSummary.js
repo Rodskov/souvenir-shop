@@ -51,13 +51,13 @@ const CheckoutSummary = ( ) => {
                     </>
                 ) : (
                     <div className={styles.subtotal}>
-                        <p className={styles.ship}>Shipping Fee: { shipFee }</p>
+                        <p className={styles.ship}><b>Shipping Fee: </b>{ shipFee }</p>
                         <p className={styles.cartItems}>
                             <b>{`Cart item(s): ${cartTotalQuantity}`}</b>
                         </p>
                         <div className={styles.text}>
-                            <h4 className={styles.subtotal1}>Subtotal: </h4>
-                            <h3>{totalAmount.toFixed(2)}</h3>
+                            <h4 className={styles.subtotal1}>Total: </h4>
+                            <h3><b>{totalAmount.toFixed(2)}</b></h3>
                             <div></div>
                             
                         </div>

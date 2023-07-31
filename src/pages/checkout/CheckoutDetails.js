@@ -243,14 +243,16 @@ const handleSubmit = (e) => {
                         onChange={(e) => handleShipping(e)}
                         />
                         {/* COUNTRY INPUT */}
-                        <label>Name of Province</label>
-                        <select id="City" name="province" onChange={(e) => handleShipping(e)} required>
+                        <label className={styles.prov}>Name of Province</label>
+                        <div  className={styles.dropdownContainer}>
+                        <select className={styles.provinceDropdown} id="City" name="province" onChange={(e) => handleShipping(e)} required>
                             {province.map((data, i) => {
                                 return(
                                     <option key={i} value={data}>{data}</option>
                                 )
                             })}
                         </select>
+                        </div>
                         {/* <CountryDropdown
                             valueType='short'
                             className={styles.select}
