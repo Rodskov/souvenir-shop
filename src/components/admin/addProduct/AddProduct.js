@@ -122,7 +122,20 @@ const AddProduct = () => {
 
   const addProduct = (e) => {
     e.preventDefault();
+    if (sizeVar.length === 0 || colorVar.length === 0) {
+      toast.error("Please add at least one size and one color.");
+      return;
+    }
+  
     setIsLoading(true);
+  
+    try {
+      // ... (rest of the function remains the same)
+    } catch (error) {
+      setIsLoading(false);
+      toast.error(error.message);
+    }
+    
 
     try {
       const docRef = addDoc(collection(db, "products"), {
@@ -149,6 +162,10 @@ const AddProduct = () => {
 
   const editProduct = (e) => {
     e.preventDefault();
+    if (sizeVar.length === 0 || colorVar.length === 0) {
+      toast.error("Please add at least one size and one color.");
+      return;
+    }
     setIsLoading(true);
 
     if (product.imageURL !== productEdit.imageURL) {
