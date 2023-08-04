@@ -88,7 +88,7 @@
     background-color: #fff;
     margin: 1rem 0;
     .img {
-     
+
       width: 100%;
       max-width: 20rem;
       height: 100%;
@@ -149,12 +149,18 @@
    
   }
   @media screen and (max-width: 768px) {
-    .content{
-      h4{
-        font-size: 2rem !important;
+    
+    .details {
+      h4 {
+        text-align: left !important;
+        font-weight: 600 !important;
+        font-size: 1.6rem !important;
+        
       }
-      p{
-        font-size: 1.3rem !important;
+      p {
+        font-weight: 600 !important;
+        color: #dc0000 !important;
+        font-size: 1.4rem !important; 
       }
     }
     
