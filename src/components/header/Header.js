@@ -119,7 +119,7 @@ const Header = () => {
             pauseOnFocusLoss
             draggable
             pauseOnHover
-            theme= "dark"
+            toastStyle={{ backgroundColor: "white" }}
             toastClassName={styles["toast-message"]}/>
     <header className={scrollPage ? `${styles.fixed}` : null}>
         <div className={styles.header}>
