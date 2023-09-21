@@ -51,7 +51,7 @@ app.post("/create-payment-intent", async (req, res) => {
 });
 
 app.get("/", (req, res) => {
-    res.sendFile('/App.js');
+    res.sendFile(__dirname + '/App.js');
 });
 
 
