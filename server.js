@@ -51,7 +51,7 @@ app.post("/create-payment-intent", async (req, res) => {
 });
 
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + '/src/index.js')
+    res.send("Welcome to Tanglaw Clothing")
 });
 
 
