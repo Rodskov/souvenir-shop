@@ -52,7 +52,7 @@ app.post("/create-payment-intent", async (req, res) => {
 
 app.get("/", (req, res) => {
     res.send("Welcome to PUP Souvenir Shop Website");
-    res.sendFile(__dirname + '/App.js')
+    res.sendFile(__dirname + '/src/App.js')
 });
 
 
