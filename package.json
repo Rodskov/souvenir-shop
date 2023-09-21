@@ -32,8 +32,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start:frontend": "react-scripts start",
-    "start:backend": "nodemon server.js",
+    "dev": "react-scripts start & nodemon server.js",
     "start": "node server",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -58,6 +57,7 @@
     ]
   },
   "devDependencies": {
+    "concurrently": "^8.2.1",
     "sass": "^1.64.0"
   }
 }
