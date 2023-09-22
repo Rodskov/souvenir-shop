@@ -6,7 +6,7 @@ aims to improve the efficiency of running an online store while enhancing the
 shopping experience for customers.
 
 
-3.1 Customer Module
+__3.1 Customer Module__
 • User registration and login
 • Reset password
 • Browse products by category and search
@@ -22,7 +22,7 @@ shopping experience for customers.
 • Suggest future products to the store via wishlist
 
 
-3.2 Admin Module
+__3.2 Admin Module__
 • Admin login to access the admin dashboard
 • Manage products (add, edit, delete)
 • View and process customer orders
@@ -35,4 +35,19 @@ shopping experience for customers.
 To start the application both in Client side and Server Side
 
 
-![Alt text](./Image_Docu/1.png)
+![Sign Up](./Image_Docu/1.png)
+![Login](./Image_Docu/2.png)
+![Reset](./Image_Docu/3.png)
+![Products](./Image_Docu/4.png)
+![Product Details](./Image_Docu/5.png)
+![Cart](./Image_Docu/6.png)
+![Checkout](./Image_Docu/7.png)
+![Review](./Image_Docu/8.png)
+![Return](./Image_Docu/9.png)
+![Add Products](./Image_Docu/Add%20Products.png)
+![Admin View](./Image_Docu/Admin%View.png)
+![View Products](./Image_Docu/All%Products.png)
+![Contact Us](./Image_Docu/Contact%Us.png)
+![Orders](./Image_Docu/Orders.png)
+![Return Products](./Image_Docu/Return%Products.png)
+![Slideshow](./Image_Docu/Slideshow.png)
